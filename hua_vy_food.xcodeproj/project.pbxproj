@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ACE6AACA6824CDFEE40C7FF /* Pods_hua_vy_food.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */; };
 		DFBF41C0288CDB0C00203759 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF41BF288CDB0C00203759 /* AppDelegate.swift */; };
 		DFBF41C2288CDB0C00203759 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF41C1288CDB0C00203759 /* SceneDelegate.swift */; };
 		DFBF41C4288CDB0C00203759 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF41C3288CDB0C00203759 /* ViewController.swift */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A41161FAF4EAA2374DEDB2A /* Pods-hua_vy_food.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.release.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.release.xcconfig"; sourceTree = "<group>"; };
+		3E14807D4A1DD20150F1C079 /* Pods-hua_vy_food.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.debug.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.debug.xcconfig"; sourceTree = "<group>"; };
+		D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hua_vy_food.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFBF41BC288CDB0C00203759 /* hua_vy_food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hua_vy_food.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFBF41BF288CDB0C00203759 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFBF41C1288CDB0C00203759 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +35,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ACE6AACA6824CDFEE40C7FF /* Pods_hua_vy_food.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06FEF8CE49A79BB11CE4ED5F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BFA00F9D881B100B616057B3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E14807D4A1DD20150F1C079 /* Pods-hua_vy_food.debug.xcconfig */,
+				1A41161FAF4EAA2374DEDB2A /* Pods-hua_vy_food.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		DFBF41B3288CDB0C00203759 = {
 			isa = PBXGroup;
 			children = (
 				DFBF41BE288CDB0C00203759 /* hua_vy_food */,
 				DFBF41BD288CDB0C00203759 /* Products */,
+				BFA00F9D881B100B616057B3 /* Pods */,
+				06FEF8CE49A79BB11CE4ED5F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFBF41D0288CDB0E00203759 /* Build configuration list for PBXNativeTarget "hua_vy_food" */;
 			buildPhases = (
+				EF91846639F7D88C2C35BC94 /* [CP] Check Pods Manifest.lock */,
 				DFBF41B8288CDB0C00203759 /* Sources */,
 				DFBF41B9288CDB0C00203759 /* Frameworks */,
 				DFBF41BA288CDB0C00203759 /* Resources */,
+				0C0A2C6E4585C8A84FA18E3E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C0A2C6E4585C8A84FA18E3E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF91846639F7D88C2C35BC94 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hua_vy_food-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DFBF41B8288CDB0C00203759 /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		DFBF41D1288CDB0E00203759 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E14807D4A1DD20150F1C079 /* Pods-hua_vy_food.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +380,7 @@
 		};
 		DFBF41D2288CDB0E00203759 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A41161FAF4EAA2374DEDB2A /* Pods-hua_vy_food.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
