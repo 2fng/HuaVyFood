@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="hua_vy_food" customModuleProvider="target">
+            <connections>
+                <outlet property="emailTextField" destination="yDF-IT-YST" id="KU3-1Q-yE6"/>
+                <outlet property="forgotPasswordTextField" destination="CeC-10-CD7" id="DpA-AN-MdS"/>
+                <outlet property="loginButton" destination="Nj8-ar-XBF" id="l9G-aP-YeC"/>
+                <outlet property="loginWithGoogleButton" destination="CUc-98-L1F" id="ZP4-ch-wIv"/>
+                <outlet property="passwordTextField" destination="lvO-EO-vXm" id="yNB-kk-1dJ"/>
+                <outlet property="registerButton" destination="jTu-Ys-NoR" id="p1g-GZ-VkD"/>
+                <outlet property="seePasswordTextField" destination="7wd-ZL-Sqy" id="lzy-AH-54W"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huaVyFoodLogo" translatesAutoresizingMaskIntoConstraints="NO" id="mrL-u2-oTU">
+                    <rect key="frame" x="100" y="114" width="214" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="nV7-fv-qnf"/>
+                    </constraints>
+                </imageView>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tài khoản" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yDF-IT-YST">
+                    <rect key="frame" x="23" y="384" width="368" height="56"/>
+                    <color key="backgroundColor" red="0.96862745098039216" green="0.97254901960784312" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="I5e-cR-MZl"/>
+                    </constraints>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mật khẩu" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lvO-EO-vXm">
+                    <rect key="frame" x="23" y="455" width="368" height="56"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="t35-Nd-hpZ"/>
+                    </constraints>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wd-ZL-Sqy">
+                    <rect key="frame" x="340" y="455" width="51" height="56"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="seePassword" title=" "/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeC-10-CD7">
+                    <rect key="frame" x="260.5" y="516" width="130.5" height="31"/>
+                    <color key="tintColor" red="0.41568627450980389" green="0.4392156862745098" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Quên mật khẩu?">
+                        <fontDescription key="titleFontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                    </buttonConfiguration>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nj8-ar-XBF">
+                    <rect key="frame" x="23" y="607" width="368" height="56"/>
+                    <color key="backgroundColor" red="0.93333333333333335" green="0.5725490196078431" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="bWE-1S-6dp"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Đăng nhập">
+                        <fontDescription key="titleFontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                    </buttonConfiguration>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WhX-iH-y6w">
+                    <rect key="frame" x="23" y="693" width="368" height="1"/>
+                    <color key="backgroundColor" white="0.90033893195950254" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="5g0-Nj-qJF"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hoặc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Uo-DG-umT">
+                    <rect key="frame" x="177" y="684.5" width="60" height="18"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="oIk-zj-3Xp"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUc-98-L1F">
+                    <rect key="frame" x="23" y="724.5" width="368" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="s42-oR-h2N"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="google_ic"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTu-Ys-NoR">
+                    <rect key="frame" x="146.5" y="803.5" width="121" height="32"/>
+                    <color key="tintColor" red="0.20784313725490194" green="0.76078431372549016" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Đăng ký ngay">
+                        <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                    </buttonConfiguration>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="WhX-iH-y6w" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="149-pT-5i3"/>
+                <constraint firstItem="WhX-iH-y6w" firstAttribute="top" secondItem="Nj8-ar-XBF" secondAttribute="bottom" constant="30" id="2qb-ef-2Nt"/>
+                <constraint firstItem="CUc-98-L1F" firstAttribute="top" secondItem="4Uo-DG-umT" secondAttribute="bottom" constant="22" id="3Iq-A9-jm5"/>
+                <constraint firstItem="CUc-98-L1F" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="4jI-jh-JBu"/>
+                <constraint firstItem="Nj8-ar-XBF" firstAttribute="top" secondItem="CeC-10-CD7" secondAttribute="bottom" constant="60" id="5nR-I1-rD4"/>
+                <constraint firstItem="yDF-IT-YST" firstAttribute="top" secondItem="mrL-u2-oTU" secondAttribute="bottom" constant="70" id="8Cp-4A-dM4"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WhX-iH-y6w" secondAttribute="trailing" constant="23" id="8mC-Ie-Pch"/>
+                <constraint firstItem="CeC-10-CD7" firstAttribute="top" secondItem="lvO-EO-vXm" secondAttribute="bottom" constant="5" id="8zo-2T-rQ8"/>
+                <constraint firstItem="mrL-u2-oTU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CNZ-Ur-LzS"/>
+                <constraint firstItem="jTu-Ys-NoR" firstAttribute="top" secondItem="CUc-98-L1F" secondAttribute="bottom" constant="23" id="CY1-L4-CoL"/>
+                <constraint firstItem="lvO-EO-vXm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="FFk-7M-6cg"/>
+                <constraint firstItem="mrL-u2-oTU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="100" id="Flm-DG-MmR"/>
+                <constraint firstItem="Nj8-ar-XBF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="JqM-LH-BOi"/>
+                <constraint firstItem="lvO-EO-vXm" firstAttribute="bottom" secondItem="7wd-ZL-Sqy" secondAttribute="bottom" id="JvU-Dv-rSD"/>
+                <constraint firstItem="lvO-EO-vXm" firstAttribute="trailing" secondItem="7wd-ZL-Sqy" secondAttribute="trailing" id="K26-0E-vvF"/>
+                <constraint firstAttribute="trailing" secondItem="lvO-EO-vXm" secondAttribute="trailing" constant="23" id="TrR-GS-cAs"/>
+                <constraint firstItem="mrL-u2-oTU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="70" id="bO8-Yz-PM8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CeC-10-CD7" secondAttribute="trailing" constant="23" id="dDh-Nn-txb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CUc-98-L1F" secondAttribute="trailing" constant="23" id="gvc-QY-yZ2"/>
+                <constraint firstItem="yDF-IT-YST" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="k43-dI-gvC"/>
+                <constraint firstItem="4Uo-DG-umT" firstAttribute="centerY" secondItem="WhX-iH-y6w" secondAttribute="centerY" id="l03-gm-SrN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yDF-IT-YST" secondAttribute="trailing" constant="23" id="lMl-d4-0qb"/>
+                <constraint firstItem="jTu-Ys-NoR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="muV-0X-cwO"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mrL-u2-oTU" secondAttribute="trailing" constant="100" id="p9a-wg-Z3I"/>
+                <constraint firstItem="lvO-EO-vXm" firstAttribute="top" secondItem="yDF-IT-YST" secondAttribute="bottom" constant="15" id="rQa-B7-jbQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Nj8-ar-XBF" secondAttribute="trailing" constant="23" id="uVr-hW-A7Y"/>
+                <constraint firstItem="7wd-ZL-Sqy" firstAttribute="top" secondItem="lvO-EO-vXm" secondAttribute="top" id="ui2-nT-mhg"/>
+                <constraint firstItem="4Uo-DG-umT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vww-75-xcc"/>
+            </constraints>
+            <point key="canvasLocation" x="132" y="101"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="google_ic" width="26" height="26"/>
+        <image name="huaVyFoodLogo" width="401" height="403"/>
+        <image name="seePassword" width="23" height="22"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
