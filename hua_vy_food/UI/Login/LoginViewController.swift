@@ -14,7 +14,7 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var seePasswordTextField: UIButton!
-    @IBOutlet private weak var forgotPasswordTextField: UIButton!
+    @IBOutlet private weak var forgotPasswordButton: UIButton!
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var loginWithGoogleButton: UIButton!
     @IBOutlet private weak var registerButton: UIButton!
@@ -45,6 +45,12 @@ final class LoginViewController: UIViewController {
         registerButton.rx.tap
             .subscribe(onNext: {
                 self.navigationController?.pushViewController(RegisterViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
+
+        forgotPasswordButton.rx.tap
+            .subscribe(onNext: {
+                self.navigationController?.pushViewController(ForgotPasswordViewController(), animated: true)
             })
             .disposed(by: disposeBag)
     }

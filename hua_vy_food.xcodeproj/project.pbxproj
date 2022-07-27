@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0ACE6AACA6824CDFEE40C7FF /* Pods_hua_vy_food.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */; };
+		DF7C1A0E28915C100023CC11 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7C1A0C28915C100023CC11 /* ForgotPasswordViewController.swift */; };
+		DF7C1A0F28915C100023CC11 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF7C1A0D28915C100023CC11 /* ForgotPasswordViewController.xib */; };
 		DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8E7486288EAC190010DFD9 /* MainViewController.swift */; };
 		DF8E7489288EAC190010DFD9 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8E7487288EAC190010DFD9 /* MainViewController.xib */; };
 		DFA11ED4288EB04C00C8E2E2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA11ED2288EB04C00C8E2E2 /* LoginViewController.swift */; };
@@ -25,6 +27,8 @@
 		1A41161FAF4EAA2374DEDB2A /* Pods-hua_vy_food.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.release.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.release.xcconfig"; sourceTree = "<group>"; };
 		3E14807D4A1DD20150F1C079 /* Pods-hua_vy_food.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.debug.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.debug.xcconfig"; sourceTree = "<group>"; };
 		D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hua_vy_food.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF7C1A0C28915C100023CC11 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		DF7C1A0D28915C100023CC11 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		DF8E7486288EAC190010DFD9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		DF8E7487288EAC190010DFD9 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		DFA11ED2288EB04C00C8E2E2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -69,9 +73,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DF7C1A0B28915BFD0023CC11 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				DF7C1A0C28915C100023CC11 /* ForgotPasswordViewController.swift */,
+				DF7C1A0D28915C100023CC11 /* ForgotPasswordViewController.xib */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
 		DF8E7480288EABC50010DFD9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DF7C1A0B28915BFD0023CC11 /* ForgotPassword */,
 				DFB4D0BB289121AE00B109C0 /* Register */,
 				DFA11ED1288EB03C00C8E2E2 /* Login */,
 				DF8E7481288EABD10010DFD9 /* Main */,
@@ -214,6 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF7C1A0F28915C100023CC11 /* ForgotPasswordViewController.xib in Resources */,
 				DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */,
 				DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */,
 				DFBF41CC288CDB0E00203759 /* LaunchScreen.storyboard in Resources */,
@@ -272,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFBF41C0288CDB0C00203759 /* AppDelegate.swift in Sources */,
+				DF7C1A0E28915C100023CC11 /* ForgotPasswordViewController.swift in Sources */,
 				DFB4D0BE289121C300B109C0 /* RegisterViewController.swift in Sources */,
 				DFBF41C2288CDB0C00203759 /* SceneDelegate.swift in Sources */,
 				DFA11ED4288EB04C00C8E2E2 /* LoginViewController.swift in Sources */,

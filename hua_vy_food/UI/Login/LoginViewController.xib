@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="hua_vy_food" customModuleProvider="target">
             <connections>
                 <outlet property="emailTextField" destination="yDF-IT-YST" id="KU3-1Q-yE6"/>
-                <outlet property="forgotPasswordTextField" destination="CeC-10-CD7" id="DpA-AN-MdS"/>
+                <outlet property="forgotPasswordButton" destination="CeC-10-CD7" id="QCi-e7-wC3"/>
                 <outlet property="loginButton" destination="Nj8-ar-XBF" id="l9G-aP-YeC"/>
                 <outlet property="loginWithGoogleButton" destination="CUc-98-L1F" id="ZP4-ch-wIv"/>
                 <outlet property="passwordTextField" destination="lvO-EO-vXm" id="yNB-kk-1dJ"/>
@@ -31,7 +31,7 @@
                         <constraint firstAttribute="height" constant="200" id="nV7-fv-qnf"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yDF-IT-YST">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yDF-IT-YST">
                     <rect key="frame" x="23" y="364" width="368" height="56"/>
                     <color key="backgroundColor" red="0.96862745098039216" green="0.97254901960784312" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -41,7 +41,7 @@
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mật khẩu" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lvO-EO-vXm">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập mật khẩu" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lvO-EO-vXm">
                     <rect key="frame" x="23" y="435" width="368" height="56"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
