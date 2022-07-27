@@ -23,13 +23,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hãy điền thông tin phía dưới để đăng ký tài khoản" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEf-h0-hnX">
-                    <rect key="frame" x="23" y="145" width="368" height="69.5"/>
+                    <rect key="frame" x="23" y="84" width="368" height="69.5"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zg3-sa-onz">
-                    <rect key="frame" x="23" y="271.5" width="368" height="56"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zg3-sa-onz">
+                    <rect key="frame" x="23" y="210.5" width="368" height="56"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="3rn-HL-epo"/>
@@ -38,8 +38,8 @@
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mật khẩu" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RaV-Iw-m0y">
-                    <rect key="frame" x="23" y="342.5" width="368" height="56"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập mật khẩu" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RaV-Iw-m0y">
+                    <rect key="frame" x="23" y="281.5" width="368" height="56"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="s9G-W9-Nf1"/>
@@ -49,7 +49,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập lại mật khẩu" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rcd-pd-aK3">
-                    <rect key="frame" x="23" y="413.5" width="368" height="56"/>
+                    <rect key="frame" x="23" y="352.5" width="368" height="56"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="gsR-k8-8p0"/>
@@ -59,7 +59,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0x-3t-TDt">
-                    <rect key="frame" x="23" y="489.5" width="368" height="56"/>
+                    <rect key="frame" x="23" y="428.5" width="368" height="56"/>
                     <color key="backgroundColor" red="0.93333333330000001" green="0.57254901960000004" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="rYd-7C-Abu"/>
@@ -79,7 +79,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZEf-h0-hnX" secondAttribute="trailing" constant="23" id="6IU-bt-PT9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="o0x-3t-TDt" secondAttribute="trailing" constant="23" id="6bA-o4-gr3"/>
                 <constraint firstItem="o0x-3t-TDt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="FUb-SB-7rl"/>
-                <constraint firstItem="ZEf-h0-hnX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="101" id="FmT-HR-v80"/>
+                <constraint firstItem="ZEf-h0-hnX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="FmT-HR-v80"/>
                 <constraint firstItem="Rcd-pd-aK3" firstAttribute="top" secondItem="RaV-Iw-m0y" secondAttribute="bottom" constant="15" id="Ibr-ig-dOt"/>
                 <constraint firstItem="RaV-Iw-m0y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="23" id="PqN-Kx-ZEY"/>
                 <constraint firstAttribute="trailing" secondItem="Zg3-sa-onz" secondAttribute="trailing" constant="23" id="S56-yv-spy"/>
