@@ -12,6 +12,9 @@
 		DF8E7489288EAC190010DFD9 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8E7487288EAC190010DFD9 /* MainViewController.xib */; };
 		DFA11ED4288EB04C00C8E2E2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA11ED2288EB04C00C8E2E2 /* LoginViewController.swift */; };
 		DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFA11ED3288EB04C00C8E2E2 /* LoginViewController.xib */; };
+		DFB4D0BE289121C300B109C0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */; };
+		DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */; };
+		DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D0C22891265C00B109C0 /* UIColor+.swift */; };
 		DFBF41C0288CDB0C00203759 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF41BF288CDB0C00203759 /* AppDelegate.swift */; };
 		DFBF41C2288CDB0C00203759 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF41C1288CDB0C00203759 /* SceneDelegate.swift */; };
 		DFBF41C9288CDB0E00203759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFBF41C8288CDB0E00203759 /* Assets.xcassets */; };
@@ -26,6 +29,9 @@
 		DF8E7487288EAC190010DFD9 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		DFA11ED2288EB04C00C8E2E2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DFA11ED3288EB04C00C8E2E2 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		DFB4D0C22891265C00B109C0 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		DFBF41BC288CDB0C00203759 /* hua_vy_food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hua_vy_food.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFBF41BF288CDB0C00203759 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFBF41C1288CDB0C00203759 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +72,7 @@
 		DF8E7480288EABC50010DFD9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DFB4D0BB289121AE00B109C0 /* Register */,
 				DFA11ED1288EB03C00C8E2E2 /* Login */,
 				DF8E7481288EABD10010DFD9 /* Main */,
 			);
@@ -88,6 +95,31 @@
 				DFA11ED3288EB04C00C8E2E2 /* LoginViewController.xib */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		DFB4D0BB289121AE00B109C0 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */,
+				DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		DFB4D0C02891262700B109C0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DFB4D0C12891264600B109C0 /* Extentions */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		DFB4D0C12891264600B109C0 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				DFB4D0C22891265C00B109C0 /* UIColor+.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 		DFBF41B3288CDB0C00203759 = {
@@ -116,6 +148,7 @@
 				DFBF41C8288CDB0E00203759 /* Assets.xcassets */,
 				DFBF41CA288CDB0E00203759 /* LaunchScreen.storyboard */,
 				DFBF41CD288CDB0E00203759 /* Info.plist */,
+				DFB4D0C02891262700B109C0 /* Utilities */,
 				DF8E7480288EABC50010DFD9 /* UI */,
 			);
 			path = hua_vy_food;
@@ -182,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */,
+				DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */,
 				DFBF41CC288CDB0E00203759 /* LaunchScreen.storyboard in Resources */,
 				DFBF41C9288CDB0E00203759 /* Assets.xcassets in Resources */,
 				DF8E7489288EAC190010DFD9 /* MainViewController.xib in Resources */,
@@ -238,9 +272,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFBF41C0288CDB0C00203759 /* AppDelegate.swift in Sources */,
+				DFB4D0BE289121C300B109C0 /* RegisterViewController.swift in Sources */,
 				DFBF41C2288CDB0C00203759 /* SceneDelegate.swift in Sources */,
 				DFA11ED4288EB04C00C8E2E2 /* LoginViewController.swift in Sources */,
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
+				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
