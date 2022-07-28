@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>305546219849-av4410ug76qq9vq7744c323bmav5tu8n.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.305546219849-av4410ug76qq9vq7744c323bmav5tu8n</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDIOk0uANUs3xwx5Fj8oKaTIRF05EeCAUg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>305546219849</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Turacle.hua-vy-food</string>
+	<key>PROJECT_ID</key>
+	<string>hua-vy-food</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hua-vy-food.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:305546219849:ios:16dc2aa65c843e68b18a98</string>
+</dict>
+</plist>

@@ -15,25 +15,61 @@ final class RegisterViewController: UIViewController {
     @IBOutlet private weak var confirmPasswordTextField: UITextField!
     @IBOutlet private weak var signUpButton: UIButton!
 
+    var viewModel = RegisterViewModel(userRepository: UserRepository())
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        bindViewModel()
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .white
         setUpView()
     }
 
+    func bindViewModel() {
+        let input = RegisterViewModel.Input(
+            emailTrigger: emailTextField.rx.text.orEmpty.asDriver(),
+            passwordTrigger: passwordTextField.rx.text.orEmpty.asDriver(),
+            confirmPasswordTrigger: confirmPasswordTextField.rx.text.orEmpty.asDriver(),
+            registerTrigger: signUpButton.rx.tap.asDriver())
+
+        let output = viewModel.transform(input)
+
+        signUpButton.rx.tap
+            .map { [unowned self] in
+                self.signUpButton.animationSelect()
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+
+        output.register
+            .drive(onNext: { [weak self] _ in
+                self?.navigationController?.setViewControllers([MainViewController()], animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+
     private func setUpView() {
+        passwordTextField.isSecureTextEntry = true
+        confirmPasswordTextField.isSecureTextEntry = true
         signUpButton.do {
             $0.layer.cornerRadius = 5
         }
+    }
 
-        signUpButton.rx.tap
-            .subscribe(onNext: {
-                print("Sign Up!")
-            })
-            .disposed(by: disposeBag)
+    private func validateField() -> String? {
+        if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "Hãy điền tên tài khoản email bạn muốn đăng ký!"
+        }
+
+        if passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "Hãy điền mật khẩu mà bạn muốn đăng ký!"
+        }
+
+        if confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) != passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            return "Xác nhận mật không không đúng!"
+        }
+
+        return nil
     }
 }

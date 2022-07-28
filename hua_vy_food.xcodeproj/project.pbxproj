@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0ACE6AACA6824CDFEE40C7FF /* Pods_hua_vy_food.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */; };
+		DF6AAD1728929CA5008961FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */; };
+		DF6AAD192892A9D5008961FE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD182892A9D5008961FE /* RegisterViewModel.swift */; };
+		DF6AAD1C2892AB1B008961FE /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD1B2892AB1B008961FE /* ErrorTracker.swift */; };
+		DF6AAD1F2892AB8A008961FE /* ObservableType+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD1E2892AB8A008961FE /* ObservableType+.swift */; };
+		DF6AAD212892ABF3008961FE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD202892ABF3008961FE /* ActivityIndicator.swift */; };
+		DF6AAD252892AD6F008961FE /* UserRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD242892AD6F008961FE /* UserRepositoryType.swift */; };
+		DF6AAD2A2892B3A4008961FE /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD292892B3A4008961FE /* UIView+.swift */; };
+		DF6AAD2C2892B4AA008961FE /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD2B2892B4AA008961FE /* UIViewController+Rx.swift */; };
 		DF7C1A0E28915C100023CC11 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7C1A0C28915C100023CC11 /* ForgotPasswordViewController.swift */; };
 		DF7C1A0F28915C100023CC11 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF7C1A0D28915C100023CC11 /* ForgotPasswordViewController.xib */; };
 		DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8E7486288EAC190010DFD9 /* MainViewController.swift */; };
@@ -27,6 +35,14 @@
 		1A41161FAF4EAA2374DEDB2A /* Pods-hua_vy_food.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.release.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.release.xcconfig"; sourceTree = "<group>"; };
 		3E14807D4A1DD20150F1C079 /* Pods-hua_vy_food.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.debug.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.debug.xcconfig"; sourceTree = "<group>"; };
 		D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hua_vy_food.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DF6AAD182892A9D5008961FE /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		DF6AAD1B2892AB1B008961FE /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
+		DF6AAD1E2892AB8A008961FE /* ObservableType+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+.swift"; sourceTree = "<group>"; };
+		DF6AAD202892ABF3008961FE /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		DF6AAD242892AD6F008961FE /* UserRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryType.swift; sourceTree = "<group>"; };
+		DF6AAD292892B3A4008961FE /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		DF6AAD2B2892B4AA008961FE /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		DF7C1A0C28915C100023CC11 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		DF7C1A0D28915C100023CC11 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		DF8E7486288EAC190010DFD9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +89,47 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DF6AAD1A2892AAFC008961FE /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				DF6AAD1B2892AB1B008961FE /* ErrorTracker.swift */,
+				DF6AAD202892ABF3008961FE /* ActivityIndicator.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		DF6AAD1D2892AB6D008961FE /* RxExtentions */ = {
+			isa = PBXGroup;
+			children = (
+				DF6AAD1E2892AB8A008961FE /* ObservableType+.swift */,
+			);
+			path = RxExtentions;
+			sourceTree = "<group>";
+		};
+		DF6AAD222892AD40008961FE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DF6AAD262892ADAD008961FE /* Model */,
+				DF6AAD232892AD55008961FE /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		DF6AAD232892AD55008961FE /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				DF6AAD242892AD6F008961FE /* UserRepositoryType.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		DF6AAD262892ADAD008961FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DF7C1A0B28915BFD0023CC11 /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +173,7 @@
 			children = (
 				DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */,
 				DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */,
+				DF6AAD182892A9D5008961FE /* RegisterViewModel.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -123,6 +181,7 @@
 		DFB4D0C02891262700B109C0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				DF6AAD1A2892AAFC008961FE /* Support */,
 				DFB4D0C12891264600B109C0 /* Extentions */,
 			);
 			path = Utilities;
@@ -131,7 +190,10 @@
 		DFB4D0C12891264600B109C0 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				DF6AAD1D2892AB6D008961FE /* RxExtentions */,
 				DFB4D0C22891265C00B109C0 /* UIColor+.swift */,
+				DF6AAD292892B3A4008961FE /* UIView+.swift */,
+				DF6AAD2B2892B4AA008961FE /* UIViewController+Rx.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -162,8 +224,10 @@
 				DFBF41C8288CDB0E00203759 /* Assets.xcassets */,
 				DFBF41CA288CDB0E00203759 /* LaunchScreen.storyboard */,
 				DFBF41CD288CDB0E00203759 /* Info.plist */,
-				DFB4D0C02891262700B109C0 /* Utilities */,
+				DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */,
+				DF6AAD222892AD40008961FE /* Data */,
 				DF8E7480288EABC50010DFD9 /* UI */,
+				DFB4D0C02891262700B109C0 /* Utilities */,
 			);
 			path = hua_vy_food;
 			sourceTree = "<group>";
@@ -234,6 +298,7 @@
 				DFBF41CC288CDB0E00203759 /* LaunchScreen.storyboard in Resources */,
 				DFBF41C9288CDB0E00203759 /* Assets.xcassets in Resources */,
 				DF8E7489288EAC190010DFD9 /* MainViewController.xib in Resources */,
+				DF6AAD1728929CA5008961FE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,8 +354,15 @@
 				DFBF41C0288CDB0C00203759 /* AppDelegate.swift in Sources */,
 				DF7C1A0E28915C100023CC11 /* ForgotPasswordViewController.swift in Sources */,
 				DFB4D0BE289121C300B109C0 /* RegisterViewController.swift in Sources */,
+				DF6AAD192892A9D5008961FE /* RegisterViewModel.swift in Sources */,
+				DF6AAD1C2892AB1B008961FE /* ErrorTracker.swift in Sources */,
+				DF6AAD212892ABF3008961FE /* ActivityIndicator.swift in Sources */,
+				DF6AAD2C2892B4AA008961FE /* UIViewController+Rx.swift in Sources */,
 				DFBF41C2288CDB0C00203759 /* SceneDelegate.swift in Sources */,
+				DF6AAD1F2892AB8A008961FE /* ObservableType+.swift in Sources */,
+				DF6AAD252892AD6F008961FE /* UserRepositoryType.swift in Sources */,
 				DFA11ED4288EB04C00C8E2E2 /* LoginViewController.swift in Sources */,
+				DF6AAD2A2892B3A4008961FE /* UIView+.swift in Sources */,
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
 				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,
 			);
