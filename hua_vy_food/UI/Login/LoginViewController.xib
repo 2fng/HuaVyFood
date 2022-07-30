@@ -16,7 +16,7 @@
                 <outlet property="loginWithGoogleButton" destination="CUc-98-L1F" id="ZP4-ch-wIv"/>
                 <outlet property="passwordTextField" destination="lvO-EO-vXm" id="yNB-kk-1dJ"/>
                 <outlet property="registerButton" destination="jTu-Ys-NoR" id="p1g-GZ-VkD"/>
-                <outlet property="seePasswordTextField" destination="7wd-ZL-Sqy" id="lzy-AH-54W"/>
+                <outlet property="seePasswordButton" destination="7wd-ZL-Sqy" id="KUo-p3-nPU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

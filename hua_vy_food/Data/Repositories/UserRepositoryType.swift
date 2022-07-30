@@ -12,6 +12,7 @@ import FirebaseFirestore
 
 protocol UserRepositoryType {
     func register(email: String, password: String) -> Observable<Void>
+    func login(email: String, password: String) -> Observable<UserSignIn?>
 }
 
 final class UserRepository: UserRepositoryType {
@@ -36,6 +37,34 @@ final class UserRepository: UserRepositoryType {
                             }
                         }
                     }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func login(email: String, password: String) -> Observable<UserSignIn?> {
+        return Observable.create { observer in
+            Auth.auth().signIn(withEmail: email, password: password) { result, error in
+                if let error = error {
+                    print("Error on register: \(error)")
+                    observer.onError(error)
+                } else {
+                    let database = Firestore.firestore()
+                    database.collection("users").whereField("uid", isEqualTo: result?.user.uid)
+                        .getDocuments(completion: { snapshot, error in
+                            if error != nil {
+                                print("Error receiving user from database! \n Error: \(error)")
+                            } else {
+                                if let snapshot = snapshot {
+                                    let currentUserSignIn = snapshot.documents.map { document in
+                                        return UserSignIn(uid: document["uid"] as? String ?? "",
+                                                          isAdmin: document["isAdmin"] as? Bool ?? false)
+                                    }
+                                    observer.onNext(currentUserSignIn.first)
+                                }
+                            }
+                        })
                 }
             }
             return Disposables.create()
