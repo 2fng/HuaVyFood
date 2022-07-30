@@ -47,6 +47,14 @@ final class RegisterViewController: UIViewController {
                 self?.navigationController?.setViewControllers([MainViewController()], animated: true)
             })
             .disposed(by: disposeBag)
+
+        output.loading
+            .drive(rx.isLoading)
+            .disposed(by: disposeBag)
+
+        output.error
+            .drive(rx.error)
+            .disposed(by: disposeBag)
     }
 
     private func setUpView() {
@@ -55,21 +63,5 @@ final class RegisterViewController: UIViewController {
         signUpButton.do {
             $0.layer.cornerRadius = 5
         }
-    }
-
-    private func validateField() -> String? {
-        if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            return "Hãy điền tên tài khoản email bạn muốn đăng ký!"
-        }
-
-        if passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            return "Hãy điền mật khẩu mà bạn muốn đăng ký!"
-        }
-
-        if confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) != passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
-            return "Xác nhận mật không không đúng!"
-        }
-
-        return nil
     }
 }
