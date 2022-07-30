@@ -26,5 +26,6 @@ target 'hua_vy_food' do
   pod 'Then'
   pod 'SDWebImage'
   pod 'SwiftLint'
+  pod 'SVProgressHUD'
 
 end
