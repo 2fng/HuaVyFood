@@ -56,6 +56,7 @@ final class LoginViewController: UIViewController {
     private func setUpView() {
         self.navigationItem.backButtonTitle = "Quay lại"
         self.navigationController?.navigationBar.tintColor = UIColor.logoPink
+        hideKeyboardWhenTappedAround()
         passwordTextField.isSecureTextEntry = true
 
         seePasswordButton.rx.tap
