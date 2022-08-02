@@ -14,10 +14,22 @@ extension UIViewController {
         let ac = UIAlertController(title: "Lỗi",
                                    message: message,
                                    preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Đồng ý", style: .cancel) { _ in
+        let okAction = UIAlertAction(title: "Đóng", style: .cancel) { _ in
             completion?()
         }
         ac.addAction(okAction)
         present(ac, animated: true, completion: nil)
+    }
+
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
