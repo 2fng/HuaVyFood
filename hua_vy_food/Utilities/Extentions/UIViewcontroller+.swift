@@ -14,6 +14,7 @@ extension UIViewController {
         let ac = UIAlertController(title: "Lỗi",
                                    message: message,
                                    preferredStyle: .alert)
+        ac.view.tintColor = UIColor.logoPink
         let okAction = UIAlertAction(title: "Đóng", style: .cancel) { _ in
             completion?()
         }

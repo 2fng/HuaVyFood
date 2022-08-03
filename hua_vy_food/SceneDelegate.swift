@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
         let navigationController = UINavigationController()
+        UserManager.shared.clearUser()
         let isLogin = UserManager.shared.getUserID().isEmpty
         let startVC = isLogin ? LoginViewController() : MainViewController()
         navigationController.setViewControllers([startVC], animated: true)
