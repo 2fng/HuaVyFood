@@ -14,11 +14,35 @@ final class ForgotPasswordViewController: UIViewController {
     @IBOutlet private weak var confirmButton: UIButton!
 
     private let disposeBag = DisposeBag()
+    private let viewModel = ForgotPasswordViewModel(userRepository: UserRepository())
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setUpView()
+        bindViewModel()
+    }
+
+    private func bindViewModel() {
+        let input = ForgotPasswordViewModel.Input(
+            emailTrigger: emailTextField.rx.text.orEmpty.asDriver(),
+            submitTrigger: confirmButton.rx.tap.asDriver())
+
+        let output = viewModel.transform(input)
+
+        output.submit
+            .drive(onNext: { [weak self] _ in
+                self?.navigationController?.setViewControllers([LoginViewController()], animated: true)
+            })
+            .disposed(by: disposeBag)
+
+        output.loading
+            .drive(rx.isLoading)
+            .disposed(by: disposeBag)
+
+        output.error
+            .drive(rx.error)
+            .disposed(by: disposeBag)
     }
 
     private func setUpView() {
@@ -27,9 +51,10 @@ final class ForgotPasswordViewController: UIViewController {
         }
 
         confirmButton.rx.tap
-            .subscribe(onNext: {
-                print("Reset password!")
-            })
+            .map { [unowned self] in
+                self.confirmButton.animationSelect()
+            }
+            .subscribe()
             .disposed(by: disposeBag)
     }
 }

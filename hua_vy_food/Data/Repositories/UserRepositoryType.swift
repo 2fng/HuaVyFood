@@ -13,6 +13,7 @@ import FirebaseFirestore
 protocol UserRepositoryType {
     func register(email: String, password: String) -> Observable<Void>
     func login(email: String, password: String) -> Observable<UserSignIn?>
+    func forgotPassword(email: String) -> Observable<Void>
 }
 
 final class UserRepository: UserRepositoryType {
@@ -54,7 +55,7 @@ final class UserRepository: UserRepositoryType {
                     database.collection("users").whereField("uid", isEqualTo: result?.user.uid)
                         .getDocuments(completion: { snapshot, error in
                             if error != nil {
-                                print("Error receiving user from database! \n Error: \(error)")
+                                print("Error receiving user from database! \n Error: \(String(describing: error))")
                             } else {
                                 if let snapshot = snapshot {
                                     let currentUserSignIn = snapshot.documents.map { document in
@@ -65,6 +66,20 @@ final class UserRepository: UserRepositoryType {
                                 }
                             }
                         })
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func forgotPassword(email: String) -> Observable<Void> {
+        return Observable.create { observer in
+            Auth.auth().sendPasswordReset(withEmail: email) { error in
+                if error != nil {
+                    print("Error on sending reset password email: \(String(describing: error))")
+                    observer.onError(error!)
+                } else {
+                    observer.onNext(())
                 }
             }
             return Disposables.create()

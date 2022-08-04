@@ -34,6 +34,7 @@
 		DFBF41C2288CDB0C00203759 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF41C1288CDB0C00203759 /* SceneDelegate.swift */; };
 		DFBF41C9288CDB0E00203759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFBF41C8288CDB0E00203759 /* Assets.xcassets */; };
 		DFBF41CC288CDB0E00203759 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFBF41CA288CDB0E00203759 /* LaunchScreen.storyboard */; };
+		DFC49A5F289C013F00F856FC /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC49A5E289C013F00F856FC /* ForgotPasswordViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		DFBF41C8288CDB0E00203759 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DFBF41CB288CDB0E00203759 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DFBF41CD288CDB0E00203759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFC49A5E289C013F00F856FC /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			children = (
 				DF7C1A0C28915C100023CC11 /* ForgotPasswordViewController.swift */,
 				DF7C1A0D28915C100023CC11 /* ForgotPasswordViewController.xib */,
+				DFC49A5E289C013F00F856FC /* ForgotPasswordViewModel.swift */,
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				DF6AAD252892AD6F008961FE /* UserRepositoryType.swift in Sources */,
 				DFA11ED4288EB04C00C8E2E2 /* LoginViewController.swift in Sources */,
 				DF6AAD2A2892B3A4008961FE /* UIView+.swift in Sources */,
+				DFC49A5F289C013F00F856FC /* ForgotPasswordViewModel.swift in Sources */,
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
 				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,
 				DF8C81B02895440300A574CE /* UserManager.swift in Sources */,

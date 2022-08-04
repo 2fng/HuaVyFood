@@ -23,7 +23,7 @@ extension Reactive where Base: UIViewController {
         return Binder(base) { _, isLoading in
             if isLoading {
                 SVProgressHUD.setDefaultMaskType(.custom)
-                SVProgressHUD.setForegroundColor(.primaryDark)
+                SVProgressHUD.setForegroundColor(.logoPink)
                 SVProgressHUD.setBackgroundColor(.whiteTransparent50)
                 SVProgressHUD.setBackgroundLayerColor(UIColor.black.withAlphaComponent(0.3))
                 SVProgressHUD.show()
