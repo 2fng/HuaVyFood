@@ -1,36 +1,35 @@
 //
-//  ForgotPasswordViewController.swift
+//  UserSettingViewController.swift
 //  hua_vy_food
 //
-//  Created by Hua Son Tung on 27/07/2022.
+//  Created by Hua Son Tung on 06/08/2022.
 //
 
 import UIKit
-import RxSwift
+import Then
 import RxCocoa
+import RxSwift
 
-final class ForgotPasswordViewController: UIViewController {
-    @IBOutlet private weak var emailTextField: UITextField!
-    @IBOutlet private weak var confirmButton: UIButton!
+final class UserSettingViewController: UIViewController {
+    @IBOutlet private weak var logOutButton: UIButton!
 
     private let disposeBag = DisposeBag()
-    private let viewModel = ForgotPasswordViewModel(userRepository: UserRepository())
+    private let viewModel = UserSettingViewModel(userRepository: UserRepository())
+
+    private let logOutTrigger = PublishSubject<Void>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindViewModel()
         // Do any additional setup after loading the view.
         setupView()
-        bindViewModel()
     }
 
     private func bindViewModel() {
-        let input = ForgotPasswordViewModel.Input(
-            emailTrigger: emailTextField.rx.text.orEmpty.asDriver(),
-            submitTrigger: confirmButton.rx.tap.asDriver())
-
+        let input = UserSettingViewModel.Input(logoutTrigger: logOutTrigger.asDriverOnErrorJustComplete())
         let output = viewModel.transform(input)
 
-        output.submit
+        output.logout
             .drive(onNext: { [weak self] _ in
                 self?.navigationController?.setViewControllers([LoginViewController()], animated: true)
             })
@@ -46,14 +45,21 @@ final class ForgotPasswordViewController: UIViewController {
     }
 
     private func setupView() {
-        confirmButton.do {
+        self.navigationItem.backButtonTitle = "Quay lại"
+        self.navigationController?.navigationBar.tintColor = UIColor.logoPink
+        
+        logOutButton.do {
             $0.layer.cornerRadius = 5
             $0.shadowView(cornerRadius: 5)
         }
 
-        confirmButton.rx.tap
+        logOutButton.rx.tap
             .map { [unowned self] in
-                self.confirmButton.animationSelect()
+                logOutButton.animationSelect()
+                showAlert(message: "Bạn có chắc chắn muốn đăng xuất không? :(",
+                          rightCompletion: {
+                    self.logOutTrigger.onNext(())
+                })
             }
             .subscribe()
             .disposed(by: disposeBag)
