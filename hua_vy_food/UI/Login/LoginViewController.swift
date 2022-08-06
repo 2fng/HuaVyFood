@@ -71,12 +71,12 @@ final class LoginViewController: UIViewController {
 
         loginButton.do {
             $0.layer.cornerRadius = 5
+            $0.shadowView(cornerRadius: 5)
         }
 
         loginWithGoogleButton.do {
             $0.layer.cornerRadius = 5
-            $0.layer.borderWidth = 0.5
-            $0.layer.borderColor = UIColor.lightGray.cgColor
+            $0.shadowView(cornerRadius: 5)
         }
 
         loginButton.rx.tap

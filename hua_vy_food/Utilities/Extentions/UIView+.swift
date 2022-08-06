@@ -23,13 +23,15 @@ extension UIView {
     }
 
     func shadowView(
-        color: UIColor = UIColor.darkGray,
+        color: UIColor = UIColor.lightGray,
         shadowRadius: CGFloat = 8,
-        height: CGFloat = 6.0) {
+        height: CGFloat = 6.0,
+        cornerRadius: Double = 0) {
         layer.do {
+            $0.cornerRadius = cornerRadius
             $0.shadowColor = color.cgColor
             $0.shadowOffset = CGSize(width: 0.0, height: height)
-            $0.shadowOpacity = 0.3
+            $0.shadowOpacity = 0.4
             $0.shadowRadius = shadowRadius
             $0.masksToBounds = false
         }
