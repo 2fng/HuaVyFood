@@ -22,6 +22,21 @@ extension UIViewController {
         present(ac, animated: true, completion: nil)
     }
 
+    func showAlert(message: String,
+                   leftCompletion: (() -> Void)? = nil,
+                   rightCompletion: (() -> Void)? = nil) {
+        let ac = UIAlertController(title: nil,
+                                   message: message,
+                                   preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Đồng ý", style: .destructive) { _ in
+            rightCompletion?()
+        }
+        let closeAction = UIAlertAction(title: "Huỷ", style: .cancel)
+        ac.addAction(closeAction)
+        ac.addAction(okAction)
+        present(ac, animated: true, completion: nil)
+    }
+
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(
             target: self,

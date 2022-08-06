@@ -23,7 +23,7 @@ final class RegisterViewController: UIViewController {
         bindViewModel()
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .white
-        setUpView()
+        setupView()
     }
 
     func bindViewModel() {
@@ -57,7 +57,7 @@ final class RegisterViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
-    private func setUpView() {
+    private func setupView() {
         passwordTextField.isSecureTextEntry = true
         confirmPasswordTextField.isSecureTextEntry = true
         signUpButton.do {

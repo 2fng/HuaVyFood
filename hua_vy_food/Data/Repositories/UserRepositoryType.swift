@@ -14,6 +14,7 @@ protocol UserRepositoryType {
     func register(email: String, password: String) -> Observable<Void>
     func login(email: String, password: String) -> Observable<UserSignIn?>
     func forgotPassword(email: String) -> Observable<Void>
+    func logout() -> Observable<Void>
 }
 
 final class UserRepository: UserRepositoryType {
@@ -81,6 +82,18 @@ final class UserRepository: UserRepositoryType {
                 } else {
                     observer.onNext(())
                 }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func logout() -> Observable<Void> {
+        return Observable.create { observer in
+            do {
+                try Auth.auth().signOut()
+                observer.onNext(())
+            } catch {
+                observer.onError(error)
             }
             return Disposables.create()
         }

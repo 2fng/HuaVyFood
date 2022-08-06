@@ -28,7 +28,7 @@ final class LoginViewController: UIViewController {
         bindViewModel()
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .white
-        setUpView()
+        setupView()
     }
 
     private func bindViewModel() {
@@ -54,7 +54,7 @@ final class LoginViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
-    private func setUpView() {
+    private func setupView() {
         self.navigationItem.backButtonTitle = "Quay lại"
         self.navigationController?.navigationBar.tintColor = UIColor.logoPink
         hideKeyboardWhenTappedAround()
