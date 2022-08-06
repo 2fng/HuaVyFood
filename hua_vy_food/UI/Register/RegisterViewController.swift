@@ -62,6 +62,7 @@ final class RegisterViewController: UIViewController {
         confirmPasswordTextField.isSecureTextEntry = true
         signUpButton.do {
             $0.layer.cornerRadius = 5
+            $0.shadowView(cornerRadius: 5)
         }
     }
 }

@@ -48,6 +48,7 @@ final class ForgotPasswordViewController: UIViewController {
     private func setUpView() {
         confirmButton.do {
             $0.layer.cornerRadius = 5
+            $0.shadowView(cornerRadius: 5)
         }
 
         confirmButton.rx.tap
