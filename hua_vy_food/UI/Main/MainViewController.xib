@@ -10,8 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="hua_vy_food" customModuleProvider="target">
             <connections>
+                <outlet property="adminModeSegmentedControl" destination="wMd-vU-1K1" id="8Fz-Ox-8jR"/>
                 <outlet property="burgerMenuButton" destination="sUA-pf-ImP" id="O0z-pN-AIM"/>
                 <outlet property="shoppingCartButton" destination="hcz-GO-ZKq" id="pSS-hI-784"/>
+                <outlet property="tableView" destination="kbI-LS-rjV" id="qlj-UY-dbb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -38,6 +40,17 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="shoppingCartVector" title=" "/>
                 </button>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wMd-vU-1K1">
+                    <rect key="frame" x="126" y="53" width="162" height="33.5"/>
+                    <segments>
+                        <segment title="Admin"/>
+                        <segment title="Home"/>
+                    </segments>
+                </segmentedControl>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kbI-LS-rjV">
+                    <rect key="frame" x="26" y="135.5" width="362" height="726.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -45,8 +58,17 @@
                 <constraint firstItem="sUA-pf-ImP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="0Jq-uN-Ux9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hcz-GO-ZKq" secondAttribute="trailing" constant="26" id="0p0-eY-nOA"/>
                 <constraint firstItem="sUA-pf-ImP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="3Ty-21-Dmi"/>
+                <constraint firstItem="kbI-LS-rjV" firstAttribute="top" secondItem="wMd-vU-1K1" secondAttribute="bottom" constant="50" id="3py-ZM-83L"/>
+                <constraint firstItem="wMd-vU-1K1" firstAttribute="leading" secondItem="sUA-pf-ImP" secondAttribute="trailing" constant="50" id="HuZ-7h-dn4"/>
+                <constraint firstItem="hcz-GO-ZKq" firstAttribute="leading" secondItem="wMd-vU-1K1" secondAttribute="trailing" constant="50" id="T87-CJ-xEJ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="kbI-LS-rjV" secondAttribute="bottom" id="ZBO-lM-FRU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kbI-LS-rjV" secondAttribute="trailing" constant="26" id="Znh-Dv-2nx"/>
                 <constraint firstItem="hcz-GO-ZKq" firstAttribute="width" secondItem="hcz-GO-ZKq" secondAttribute="height" multiplier="1:1" id="ewL-0q-Suy"/>
                 <constraint firstItem="hcz-GO-ZKq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="kMD-w2-dMW"/>
+                <constraint firstItem="kbI-LS-rjV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="mky-km-Xc3"/>
+                <constraint firstItem="wMd-vU-1K1" firstAttribute="centerY" secondItem="hcz-GO-ZKq" secondAttribute="centerY" id="ryt-9m-eEf"/>
+                <constraint firstItem="wMd-vU-1K1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wuG-ON-BYW"/>
+                <constraint firstItem="wMd-vU-1K1" firstAttribute="height" secondItem="hcz-GO-ZKq" secondAttribute="height" multiplier="0.65" id="yhr-hC-2LH"/>
             </constraints>
             <point key="canvasLocation" x="139" y="99"/>
         </view>

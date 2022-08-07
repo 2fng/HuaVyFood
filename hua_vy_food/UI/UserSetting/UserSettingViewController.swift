@@ -11,7 +11,16 @@ import RxCocoa
 import RxSwift
 
 final class UserSettingViewController: UIViewController {
+    // Admin
     @IBOutlet private weak var logOutButton: UIButton!
+    @IBOutlet private weak var adminViewContainer: UIView!
+    @IBOutlet private weak var adminOrderButton: UIButton!
+    @IBOutlet private weak var adminProductButton: UIButton!
+    @IBOutlet private weak var adminAccountButton: UIButton!
+    @IBOutlet private weak var adminResponseButton: UIButton!
+    // User
+    @IBOutlet private weak var userViewContainer: UIView!
+    @IBOutlet private weak var userOrderButton: UIButton!
 
     private let disposeBag = DisposeBag()
     private let viewModel = UserSettingViewModel(userRepository: UserRepository())
@@ -47,8 +56,22 @@ final class UserSettingViewController: UIViewController {
     private func setupView() {
         self.navigationItem.backButtonTitle = "Quay lại"
         self.navigationController?.navigationBar.tintColor = UIColor.logoPink
+        let adminButtons = [adminOrderButton, adminAccountButton, adminProductButton, adminResponseButton]
+        adminViewContainer.isHidden = !UserManager.shared.getUserIsAdmin()
         
         logOutButton.do {
+            $0.layer.cornerRadius = 5
+            $0.shadowView(cornerRadius: 5)
+        }
+
+        adminButtons.forEach { adminButton in
+            adminButton?.do {
+                $0.layer.cornerRadius = 5
+                $0.shadowView(cornerRadius: 5)
+            }
+        }
+
+        userOrderButton.do {
             $0.layer.cornerRadius = 5
             $0.shadowView(cornerRadius: 5)
         }
