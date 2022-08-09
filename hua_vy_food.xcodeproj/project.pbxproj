@@ -33,6 +33,10 @@
 		DFB6DAC1289E806C008879BF /* UserSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6DABF289E806C008879BF /* UserSettingViewController.swift */; };
 		DFB6DAC2289E806C008879BF /* UserSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB6DAC0289E806C008879BF /* UserSettingViewController.xib */; };
 		DFB6DAC4289E83CA008879BF /* UserSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6DAC3289E83CA008879BF /* UserSettingViewModel.swift */; };
+		DFBB0D5128A25D5400EAA349 /* ManagerProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBB0D4F28A25D5400EAA349 /* ManagerProductViewController.swift */; };
+		DFBB0D5228A25D5400EAA349 /* ManagerProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFBB0D5028A25D5400EAA349 /* ManagerProductViewController.xib */; };
+		DFBB0D5628A265A600EAA349 /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBB0D5428A265A600EAA349 /* AddNewViewController.swift */; };
+		DFBB0D5728A265A600EAA349 /* AddNewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFBB0D5528A265A600EAA349 /* AddNewViewController.xib */; };
 		DFBF41C0288CDB0C00203759 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF41BF288CDB0C00203759 /* AppDelegate.swift */; };
 		DFBF41C2288CDB0C00203759 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBF41C1288CDB0C00203759 /* SceneDelegate.swift */; };
 		DFBF41C9288CDB0E00203759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFBF41C8288CDB0E00203759 /* Assets.xcassets */; };
@@ -69,6 +73,10 @@
 		DFB6DABF289E806C008879BF /* UserSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingViewController.swift; sourceTree = "<group>"; };
 		DFB6DAC0289E806C008879BF /* UserSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserSettingViewController.xib; sourceTree = "<group>"; };
 		DFB6DAC3289E83CA008879BF /* UserSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingViewModel.swift; sourceTree = "<group>"; };
+		DFBB0D4F28A25D5400EAA349 /* ManagerProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerProductViewController.swift; sourceTree = "<group>"; };
+		DFBB0D5028A25D5400EAA349 /* ManagerProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManagerProductViewController.xib; sourceTree = "<group>"; };
+		DFBB0D5428A265A600EAA349 /* AddNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
+		DFBB0D5528A265A600EAA349 /* AddNewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddNewViewController.xib; sourceTree = "<group>"; };
 		DFBF41BC288CDB0C00203759 /* hua_vy_food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hua_vy_food.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFBF41BF288CDB0C00203759 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFBF41C1288CDB0C00203759 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +188,7 @@
 		DF8E7480288EABC50010DFD9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DFBB0D4E28A25D3800EAA349 /* ManagerProduct */,
 				DFB6DABE289E8040008879BF /* UserSetting */,
 				DF7C1A0B28915BFD0023CC11 /* ForgotPassword */,
 				DFB4D0BB289121AE00B109C0 /* Register */,
@@ -247,6 +256,25 @@
 				DFB6DAC3289E83CA008879BF /* UserSettingViewModel.swift */,
 			);
 			path = UserSetting;
+			sourceTree = "<group>";
+		};
+		DFBB0D4E28A25D3800EAA349 /* ManagerProduct */ = {
+			isa = PBXGroup;
+			children = (
+				DFBB0D5328A2657A00EAA349 /* AddNewProduct */,
+				DFBB0D4F28A25D5400EAA349 /* ManagerProductViewController.swift */,
+				DFBB0D5028A25D5400EAA349 /* ManagerProductViewController.xib */,
+			);
+			path = ManagerProduct;
+			sourceTree = "<group>";
+		};
+		DFBB0D5328A2657A00EAA349 /* AddNewProduct */ = {
+			isa = PBXGroup;
+			children = (
+				DFBB0D5428A265A600EAA349 /* AddNewViewController.swift */,
+				DFBB0D5528A265A600EAA349 /* AddNewViewController.xib */,
+			);
+			path = AddNewProduct;
 			sourceTree = "<group>";
 		};
 		DFBF41B3288CDB0C00203759 = {
@@ -348,7 +376,9 @@
 				DFB6DAC2289E806C008879BF /* UserSettingViewController.xib in Resources */,
 				DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */,
 				DFBF41CC288CDB0E00203759 /* LaunchScreen.storyboard in Resources */,
+				DFBB0D5728A265A600EAA349 /* AddNewViewController.xib in Resources */,
 				DFBF41C9288CDB0E00203759 /* Assets.xcassets in Resources */,
+				DFBB0D5228A25D5400EAA349 /* ManagerProductViewController.xib in Resources */,
 				DF8E7489288EAC190010DFD9 /* MainViewController.xib in Resources */,
 				DF6AAD1728929CA5008961FE /* GoogleService-Info.plist in Resources */,
 			);
@@ -410,6 +440,7 @@
 				DF6AAD192892A9D5008961FE /* RegisterViewModel.swift in Sources */,
 				DF8C81AC2895409F00A574CE /* LoginViewModel.swift in Sources */,
 				DF6AAD1C2892AB1B008961FE /* ErrorTracker.swift in Sources */,
+				DFBB0D5628A265A600EAA349 /* AddNewViewController.swift in Sources */,
 				DF6AAD212892ABF3008961FE /* ActivityIndicator.swift in Sources */,
 				DF6AAD2C2892B4AA008961FE /* UIViewController+Rx.swift in Sources */,
 				DF8C81B428954C1F00A574CE /* SharedSequenceConvertibleType+.swift in Sources */,
@@ -420,6 +451,7 @@
 				DFB6DAC4289E83CA008879BF /* UserSettingViewModel.swift in Sources */,
 				DF6AAD252892AD6F008961FE /* UserRepositoryType.swift in Sources */,
 				DFA11ED4288EB04C00C8E2E2 /* LoginViewController.swift in Sources */,
+				DFBB0D5128A25D5400EAA349 /* ManagerProductViewController.swift in Sources */,
 				DF6AAD2A2892B3A4008961FE /* UIView+.swift in Sources */,
 				DFC49A5F289C013F00F856FC /* ForgotPasswordViewModel.swift in Sources */,
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
