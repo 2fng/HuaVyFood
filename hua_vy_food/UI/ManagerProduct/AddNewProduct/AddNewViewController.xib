@@ -10,6 +10,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewViewController" customModule="hua_vy_food" customModuleProvider="target">
             <connections>
+                <outlet property="addNewCategoryButton" destination="3Vx-4d-R89" id="Ep6-ly-Nti"/>
+                <outlet property="categoryStackView" destination="jGc-cn-ysk" id="zUD-sv-d2f"/>
+                <outlet property="categoryTextField" destination="aBp-36-rqG" id="yuB-G3-gf8"/>
+                <outlet property="nameTextField" destination="hvn-yT-OlW" id="9ZT-1s-L9F"/>
+                <outlet property="priceTextField" destination="LLW-IM-qES" id="9Cx-yZ-qma"/>
+                <outlet property="productImageLabelTopConstraints" destination="RyF-0k-TcH" id="7o9-o8-o7s"/>
+                <outlet property="productImageView" destination="ydd-HZ-Vdq" id="XdA-M0-OJg"/>
+                <outlet property="saveButton" destination="XVk-on-Tla" id="ofS-8b-pev"/>
+                <outlet property="saveNewCategoryButton" destination="1bm-qp-Jw1" id="su4-MT-PsC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,18 +33,159 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên sản phẩm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VwN-jZ-Nyz">
+                    <rect key="frame" x="23" y="144" width="106.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tên sản phẩm" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hvn-yT-OlW">
+                    <rect key="frame" x="23" y="174.5" width="368" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giá sản phẩm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScO-qo-39r">
+                    <rect key="frame" x="23" y="223.5" width="103.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Giá sản phẩm" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LLW-IM-qES">
+                    <rect key="frame" x="23" y="254" width="368" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jGc-cn-ysk">
+                    <rect key="frame" x="0.0" y="303" width="414" height="130"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sC6-wS-3We">
+                            <rect key="frame" x="23" y="0.0" width="368" height="70"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thể loại" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWu-9W-cGH">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Thể loại sản phẩm" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aBp-36-rqG">
+                                    <rect key="frame" x="0.0" y="30.5" width="323" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Vx-4d-R89">
+                                    <rect key="frame" x="338" y="32.5" width="30" height="30"/>
+                                    <color key="backgroundColor" red="0.93333333330000001" green="0.57254901960000004" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="3Vx-4d-R89" secondAttribute="height" multiplier="1:1" id="SOq-NE-A9v"/>
+                                        <constraint firstAttribute="width" constant="30" id="Weq-hw-YEL"/>
+                                    </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system" title=""/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="aBp-36-rqG" firstAttribute="leading" secondItem="sC6-wS-3We" secondAttribute="leading" id="CRr-Ev-0N2"/>
+                                <constraint firstItem="wWu-9W-cGH" firstAttribute="leading" secondItem="sC6-wS-3We" secondAttribute="leading" id="Cex-xR-LYU"/>
+                                <constraint firstItem="wWu-9W-cGH" firstAttribute="top" secondItem="sC6-wS-3We" secondAttribute="top" id="MwI-Ge-IT1"/>
+                                <constraint firstItem="aBp-36-rqG" firstAttribute="top" secondItem="wWu-9W-cGH" secondAttribute="bottom" constant="10" id="O9z-07-Jov"/>
+                                <constraint firstAttribute="trailing" secondItem="3Vx-4d-R89" secondAttribute="trailing" id="dMr-zd-B06"/>
+                                <constraint firstAttribute="width" constant="368" id="f4k-UK-apd"/>
+                                <constraint firstItem="3Vx-4d-R89" firstAttribute="height" secondItem="aBp-36-rqG" secondAttribute="height" multiplier="0.882353" id="fgD-LF-Hvq"/>
+                                <constraint firstAttribute="height" constant="70" id="hpE-Xy-mHW"/>
+                                <constraint firstItem="3Vx-4d-R89" firstAttribute="leading" secondItem="aBp-36-rqG" secondAttribute="trailing" constant="15" id="svS-eI-N2U"/>
+                                <constraint firstItem="3Vx-4d-R89" firstAttribute="centerY" secondItem="aBp-36-rqG" secondAttribute="centerY" id="y5B-d8-Yl1"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1bm-qp-Jw1">
+                            <rect key="frame" x="23" y="80" width="368" height="50"/>
+                            <color key="backgroundColor" red="0.93333333330000001" green="0.57254901960000004" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="gGG-jV-5v1"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Tạo thể loại">
+                                        <attributes>
+                                            <font key="NSFont" size="16" name="Helvetica-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </buttonConfiguration>
+                        </button>
+                    </subviews>
+                </stackView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="ydd-HZ-Vdq">
+                    <rect key="frame" x="107" y="503.5" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="CNC-Yb-DqD"/>
+                        <constraint firstAttribute="width" secondItem="ydd-HZ-Vdq" secondAttribute="height" multiplier="1:1" id="PkO-Dr-ZKA"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hình ảnh sản phẩm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGU-V9-soQ">
+                    <rect key="frame" x="23" y="458" width="146" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVk-on-Tla">
+                    <rect key="frame" x="23" y="789" width="368" height="50"/>
+                    <color key="backgroundColor" red="0.93333333330000001" green="0.57254901960000004" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="DAo-Ee-Utx"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <attributedString key="attributedTitle">
+                            <fragment content="Lưu">
+                                <attributes>
+                                    <font key="NSFont" size="16" name="Helvetica-Bold"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </buttonConfiguration>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="LLW-IM-qES" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="1qy-Pe-PcR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LLW-IM-qES" secondAttribute="trailing" constant="23" id="3Ct-tI-Gyi"/>
+                <constraint firstItem="1bm-qp-Jw1" firstAttribute="width" secondItem="XVk-on-Tla" secondAttribute="width" id="5n4-18-usY"/>
                 <constraint firstItem="RNG-Kn-Ls0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="BW2-Mb-Sh2"/>
                 <constraint firstItem="RNG-Kn-Ls0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="EFn-Mp-BZW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="XVk-on-Tla" secondAttribute="bottom" constant="23" id="FAz-P3-g7C"/>
+                <constraint firstItem="VwN-jZ-Nyz" firstAttribute="top" secondItem="RNG-Kn-Ls0" secondAttribute="bottom" constant="50" id="K9a-Ol-GUq"/>
+                <constraint firstItem="UGU-V9-soQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="Ko4-MB-eex"/>
+                <constraint firstItem="jGc-cn-ysk" firstAttribute="top" secondItem="LLW-IM-qES" secondAttribute="bottom" constant="15" id="Kpv-r4-6Lr"/>
+                <constraint firstItem="XVk-on-Tla" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="Pp3-aR-Z9n"/>
+                <constraint firstItem="UGU-V9-soQ" firstAttribute="top" secondItem="jGc-cn-ysk" secondAttribute="bottom" constant="25" id="RyF-0k-TcH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hvn-yT-OlW" secondAttribute="trailing" constant="23" id="Sx1-cy-0BI"/>
+                <constraint firstItem="ScO-qo-39r" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="WK0-b4-4cC"/>
+                <constraint firstItem="hvn-yT-OlW" firstAttribute="top" secondItem="VwN-jZ-Nyz" secondAttribute="bottom" constant="10" id="cm4-gX-IvM"/>
+                <constraint firstItem="jGc-cn-ysk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dRs-OZ-VFh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jGc-cn-ysk" secondAttribute="trailing" id="e0a-05-Hqq"/>
+                <constraint firstItem="ScO-qo-39r" firstAttribute="top" secondItem="hvn-yT-OlW" secondAttribute="bottom" constant="15" id="g8L-D7-ZVt"/>
+                <constraint firstItem="ydd-HZ-Vdq" firstAttribute="top" secondItem="UGU-V9-soQ" secondAttribute="bottom" constant="25" id="hyM-Tq-v9O"/>
                 <constraint firstAttribute="trailing" secondItem="RNG-Kn-Ls0" secondAttribute="trailing" constant="23" id="jue-4R-4d6"/>
+                <constraint firstItem="ydd-HZ-Vdq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lFE-NM-7O1"/>
+                <constraint firstItem="LLW-IM-qES" firstAttribute="top" secondItem="ScO-qo-39r" secondAttribute="bottom" constant="10" id="ne2-uc-neA"/>
+                <constraint firstItem="VwN-jZ-Nyz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="qPf-oV-zoH"/>
+                <constraint firstItem="hvn-yT-OlW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="rO9-uV-uV1"/>
+                <constraint firstAttribute="trailing" secondItem="XVk-on-Tla" secondAttribute="trailing" constant="23" id="rdx-gE-ZQv"/>
             </constraints>
             <point key="canvasLocation" x="132" y="115"/>
         </view>
     </objects>
     <resources>
+        <image name="imagePlaceholder" width="1200" height="800"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
