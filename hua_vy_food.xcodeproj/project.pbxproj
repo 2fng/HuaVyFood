@@ -599,8 +599,10 @@
 				DEVELOPMENT_TEAM = QW4XF2Y493;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hua_vy_food/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Hãy cho Hứa Vy Food quyền truy cập vào thư viện ảnh để có thể upload ảnh nhé ^^";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -627,8 +629,10 @@
 				DEVELOPMENT_TEAM = QW4XF2Y493;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hua_vy_food/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Hãy cho Hứa Vy Food quyền truy cập vào thư viện ảnh để có thể upload ảnh nhé ^^";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
