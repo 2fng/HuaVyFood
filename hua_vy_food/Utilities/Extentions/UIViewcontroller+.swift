@@ -23,17 +23,23 @@ extension UIViewController {
     }
 
     func showAlert(message: String,
+                   okButtonOnly: Bool = false,
                    leftCompletion: (() -> Void)? = nil,
                    rightCompletion: (() -> Void)? = nil) {
         let ac = UIAlertController(title: nil,
                                    message: message,
                                    preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Đồng ý", style: .destructive) { _ in
+        let agreeAction = UIAlertAction(title: "Đồng ý", style: .destructive) { _ in
             rightCompletion?()
         }
         let closeAction = UIAlertAction(title: "Huỷ", style: .cancel)
-        ac.addAction(closeAction)
-        ac.addAction(okAction)
+        let okAction = UIAlertAction(title: "Đã hiểu", style: .cancel)
+        if okButtonOnly {
+            ac.addAction(okAction)
+        } else {
+            ac.addAction(closeAction)
+            ac.addAction(agreeAction)
+        }
         present(ac, animated: true, completion: nil)
     }
 
