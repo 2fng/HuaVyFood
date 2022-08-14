@@ -22,12 +22,34 @@ final class AddNewViewController: UIViewController {
     @IBOutlet private weak var productImageLabelTopConstraints: NSLayoutConstraint!
 
     private let disposeBag = DisposeBag()
+    private let viewModel = AddNewViewModel(productRepository: ProductRepository())
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        bindViewModel()
         setupView()
+    }
+
+    private func bindViewModel() {
+        let input = AddNewViewModel.Input(
+            addNewProductTextFieldTrigger: categoryTextField.rx.text.orEmpty.asDriver(),
+            addNewCategoryTrigger: saveNewCategoryButton.rx.tap.asDriver())
+
+        let output = viewModel.transform(input)
+
+        output.addNewProduct
+            .drive(addnewCategoryMessage)
+            .disposed(by: disposeBag)
+
+        output.loading
+            .drive(rx.isLoading)
+            .disposed(by: disposeBag)
+
+        output.error
+            .drive(rx.error)
+            .disposed(by: disposeBag)
     }
 
     private func setupView() {
@@ -83,6 +105,14 @@ final class AddNewViewController: UIViewController {
         vc.delegate = self
         vc.allowsEditing = true
         present(vc, animated: true)
+    }
+}
+
+extension AddNewViewController {
+    private var addnewCategoryMessage: Binder<String> {
+        return Binder(self) { vc, alertMessage in
+            vc.showAlert(message: alertMessage, okButtonOnly: true)
+        }
     }
 }
 
