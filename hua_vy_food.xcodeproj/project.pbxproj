@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0ACE6AACA6824CDFEE40C7FF /* Pods_hua_vy_food.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */; };
+		DF122CCA28ACFC08001E14EC /* ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF122CC928ACFC08001E14EC /* ProductCategory.swift */; };
 		DF6AAD1728929CA5008961FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */; };
 		DF6AAD192892A9D5008961FE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD182892A9D5008961FE /* RegisterViewModel.swift */; };
 		DF6AAD1C2892AB1B008961FE /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD1B2892AB1B008961FE /* ErrorTracker.swift */; };
@@ -50,6 +51,7 @@
 		1A41161FAF4EAA2374DEDB2A /* Pods-hua_vy_food.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.release.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.release.xcconfig"; sourceTree = "<group>"; };
 		3E14807D4A1DD20150F1C079 /* Pods-hua_vy_food.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.debug.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.debug.xcconfig"; sourceTree = "<group>"; };
 		D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hua_vy_food.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF122CC928ACFC08001E14EC /* ProductCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategory.swift; sourceTree = "<group>"; };
 		DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DF6AAD182892A9D5008961FE /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		DF6AAD1B2892AB1B008961FE /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				DF8C81B1289546A400A574CE /* UserSignIn.swift */,
+				DF122CC928ACFC08001E14EC /* ProductCategory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				DFBB0D5128A25D5400EAA349 /* ManagerProductViewController.swift in Sources */,
 				DF6AAD2A2892B3A4008961FE /* UIView+.swift in Sources */,
 				DFB6019328A8F6E6009CEA90 /* AddNewViewModel.swift in Sources */,
+				DF122CCA28ACFC08001E14EC /* ProductCategory.swift in Sources */,
 				DFC49A5F289C013F00F856FC /* ForgotPasswordViewModel.swift in Sources */,
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
 				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,

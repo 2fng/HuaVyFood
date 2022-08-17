@@ -16,12 +16,14 @@ struct AddNewViewModel {
 
 extension AddNewViewModel {
     struct Input {
+        let getProductCategories: Driver<Void>
         let addNewProductTextFieldTrigger: Driver<String>
         let addNewCategoryTrigger: Driver<Void>
     }
 
     struct Output {
         let addNewProduct: Driver<String>
+        let productCategories: Driver<[ProductCategory]>
         let loading: Driver<Bool>
         let error: Driver<Error>
     }
@@ -39,7 +41,16 @@ extension AddNewViewModel {
                     .asDriverOnErrorJustComplete()
             }
 
+        let productCategories = input.getProductCategories
+            .flatMapLatest {
+                return self.productRepository.getProductCategories()
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+
         return Output(addNewProduct: addNewProduct,
+                      productCategories: productCategories,
                       loading: activityIndicator.asDriver(),
                       error: errorTracker.asDriver())
     }

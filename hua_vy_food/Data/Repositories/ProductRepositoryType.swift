@@ -11,10 +11,37 @@ import FirebaseAuth
 import FirebaseFirestore
 
 protocol ProductRepositoryType {
+    func getProductCategories() -> Observable<[ProductCategory]>
     func addNewCategory(categoryName: String) -> Observable<String>
 }
 
 final class ProductRepository: ProductRepositoryType {
+    func getProductCategories() -> Observable<[ProductCategory]> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("categories").getDocuments { snapShot, error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    if let snapShot = snapShot {
+                        if snapShot.isEmpty {
+                            observer.onNext([])
+                        } else {
+                            var returnCategories = [ProductCategory]()
+                            for document in snapShot.documents {
+                                returnCategories.append(ProductCategory(
+                                    id: document["id"] as? String ?? "",
+                                    name: document["name"] as? String ?? ""))
+                            }
+                            observer.onNext(returnCategories)
+                        }
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
     func addNewCategory(categoryName: String) -> Observable<String> {
         return Observable.create { observer in
             let database = Firestore.firestore()
