@@ -24,6 +24,9 @@ final class AddNewViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel = AddNewViewModel(productRepository: ProductRepository())
 
+    // Variables
+    private var productCategories = [ProductCategory]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,10 +37,15 @@ final class AddNewViewController: UIViewController {
 
     private func bindViewModel() {
         let input = AddNewViewModel.Input(
+            getProductCategories: Driver.just(()),
             addNewProductTextFieldTrigger: categoryTextField.rx.text.orEmpty.asDriver(),
             addNewCategoryTrigger: saveNewCategoryButton.rx.tap.asDriver())
 
         let output = viewModel.transform(input)
+
+        output.productCategories
+            .drive(returnProductCategories)
+            .disposed(by: disposeBag)
 
         output.addNewProduct
             .drive(addnewCategoryMessage)
@@ -109,6 +117,11 @@ final class AddNewViewController: UIViewController {
 }
 
 extension AddNewViewController {
+    private var returnProductCategories: Binder<[ProductCategory]> {
+        return Binder(self) { vc, categories in
+            vc.productCategories = categories
+        }
+    }
     private var addnewCategoryMessage: Binder<String> {
         return Binder(self) { vc, alertMessage in
             vc.showAlert(message: alertMessage, okButtonOnly: true)
