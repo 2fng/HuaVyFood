@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0ACE6AACA6824CDFEE40C7FF /* Pods_hua_vy_food.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */; };
 		DF122CCA28ACFC08001E14EC /* ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF122CC928ACFC08001E14EC /* ProductCategory.swift */; };
+		DF67FA0828ADF943001F446B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF67FA0728ADF943001F446B /* Product.swift */; };
 		DF6AAD1728929CA5008961FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */; };
 		DF6AAD192892A9D5008961FE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD182892A9D5008961FE /* RegisterViewModel.swift */; };
 		DF6AAD1C2892AB1B008961FE /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD1B2892AB1B008961FE /* ErrorTracker.swift */; };
@@ -52,6 +53,7 @@
 		3E14807D4A1DD20150F1C079 /* Pods-hua_vy_food.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.debug.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.debug.xcconfig"; sourceTree = "<group>"; };
 		D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hua_vy_food.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF122CC928ACFC08001E14EC /* ProductCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategory.swift; sourceTree = "<group>"; };
+		DF67FA0728ADF943001F446B /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DF6AAD182892A9D5008961FE /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		DF6AAD1B2892AB1B008961FE /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				DF8C81B1289546A400A574CE /* UserSignIn.swift */,
 				DF122CC928ACFC08001E14EC /* ProductCategory.swift */,
+				DF67FA0728ADF943001F446B /* Product.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				DF8C81B428954C1F00A574CE /* SharedSequenceConvertibleType+.swift in Sources */,
 				DFBF41C2288CDB0C00203759 /* SceneDelegate.swift in Sources */,
 				DFB0880E2894E327002D2AE3 /* UIViewcontroller+.swift in Sources */,
+				DF67FA0828ADF943001F446B /* Product.swift in Sources */,
 				DF6AAD1F2892AB8A008961FE /* ObservableType+.swift in Sources */,
 				DFB6DAC1289E806C008879BF /* UserSettingViewController.swift in Sources */,
 				DFB6DAC4289E83CA008879BF /* UserSettingViewModel.swift in Sources */,

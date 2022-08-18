@@ -13,6 +13,7 @@ import FirebaseFirestore
 protocol ProductRepositoryType {
     func getProductCategories() -> Observable<[ProductCategory]>
     func addNewCategory(categoryName: String) -> Observable<String>
+    func addNewProduct(product: Product) -> Observable<String>
 }
 
 final class ProductRepository: ProductRepositoryType {
@@ -67,6 +68,42 @@ final class ProductRepository: ProductRepositoryType {
                             }
                         } else {
                             observer.onNext("Thể loại đã tồn tại!")
+                        }
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func addNewProduct(product: Product) -> Observable<String> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            var numberOfProduct = 0
+            database.collection("products").getDocuments { snapShot, error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    numberOfProduct = snapShot?.count ?? 0
+                    let _existProduct = database.collection("products").whereField("name", isEqualTo: product.name)
+                    _existProduct.getDocuments { _snapShot, _error in
+                        guard let _snapShot = _snapShot else { return }
+                        if _snapShot.isEmpty {
+                            database.collection("products").addDocument(data: [
+                                "id": "HVFP\(numberOfProduct)",
+                                "name":  product.name,
+                                "price": product.price,
+                                "categoryID": product.category.id,
+                                "imageName": product.imageName
+                            ]) { error in
+                                if let error = error {
+                                    observer.onError(error)
+                                } else {
+                                    observer.onNext("Thêm mới sản phẩm thành công!")
+                                }
+                            }
+                        } else {
+                            observer.onNext("Sản phẩm đã tồn tại!")
                         }
                     }
                 }
