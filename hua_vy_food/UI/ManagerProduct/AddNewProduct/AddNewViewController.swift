@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Then
+import Photos
 
 final class AddNewViewController: UIViewController {
     @IBOutlet private weak var nameTextField: UITextField!
@@ -26,6 +27,7 @@ final class AddNewViewController: UIViewController {
 
     // Variables
     private var productCategories = [ProductCategory]()
+    private var imageName = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,7 +109,7 @@ final class AddNewViewController: UIViewController {
     }
 
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        let tappedImage = tapGestureRecognizer.view as? UIImageView
+        let _ = tapGestureRecognizer.view as? UIImageView
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
         vc.delegate = self
@@ -134,6 +136,12 @@ extension AddNewViewController: UIImagePickerControllerDelegate,
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage  {
             productImageView.image = image
+            if let imageURL = info[UIImagePickerController.InfoKey.referenceURL] as? URL {
+                let result = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil)
+                guard let asset = result.firstObject else { return }
+                imageName = asset.value(forKey: "filename") as? String ?? ""
+                print(imageName)
+            }
         }
 
         picker.dismiss(animated: true)
