@@ -141,7 +141,18 @@ final class AddNewViewController: UIViewController {
     }
 
     @objc func categoryTapped() {
-        print(productCategories)
+        let vc = PopupListViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true)
+
+        vc.getData(tableViewData: productCategories, selectedData: self.product.category)
+        vc.handleDoneButton = { [unowned self] data in
+            if let data = data as? ProductCategory {
+                self.categoryTextField.text = data.name
+                self.product.category = data
+            }
+        }
     }
 }
 
