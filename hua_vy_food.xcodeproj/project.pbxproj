@@ -606,11 +606,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QW4XF2Y493;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hua_vy_food/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Hứa Vy Food";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Hãy cho Hứa Vy Food quyền truy cập vào thư viện ảnh để có thể upload ảnh nhé ^^";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -636,11 +638,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QW4XF2Y493;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hua_vy_food/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Hứa Vy Food";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Hãy cho Hứa Vy Food quyền truy cập vào thư viện ảnh để có thể upload ảnh nhé ^^";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
