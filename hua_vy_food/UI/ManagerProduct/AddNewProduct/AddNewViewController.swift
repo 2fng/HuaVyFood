@@ -24,8 +24,10 @@ final class AddNewViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     private let viewModel = AddNewViewModel(productRepository: ProductRepository())
+    private let submitTrigger = PublishSubject<Product>()
 
     // Variables
+    private var product = Product()
     private var productCategories = [ProductCategory]()
     private var imageName = ""
 
@@ -41,7 +43,8 @@ final class AddNewViewController: UIViewController {
         let input = AddNewViewModel.Input(
             getProductCategories: Driver.just(()),
             addNewProductTextFieldTrigger: categoryTextField.rx.text.orEmpty.asDriver(),
-            addNewCategoryTrigger: saveNewCategoryButton.rx.tap.asDriver())
+            addNewCategoryTrigger: saveNewCategoryButton.rx.tap.asDriver(),
+            submitTrigger: submitTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -49,8 +52,12 @@ final class AddNewViewController: UIViewController {
             .drive(returnProductCategories)
             .disposed(by: disposeBag)
 
-        output.addNewProduct
+        output.addNewCategory
             .drive(addnewCategoryMessage)
+            .disposed(by: disposeBag)
+
+        output.addNewProduct
+            .drive()
             .disposed(by: disposeBag)
 
         output.loading
@@ -65,6 +72,11 @@ final class AddNewViewController: UIViewController {
     private func setupView() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         hideKeyboardWhenTappedAround()
+        nameTextField.delegate = self
+        priceTextField.delegate = self
+        categoryTextField.delegate = self
+        let tappedOnCategoryTextField = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
+        categoryTextField.addGestureRecognizer(tappedOnCategoryTextField)
 
         saveNewCategoryButton.do {
             $0.isHidden = true
@@ -106,6 +118,17 @@ final class AddNewViewController: UIViewController {
             }
             .subscribe()
             .disposed(by: disposeBag)
+
+        saveButton.rx.tap
+            .map { [unowned self] in
+                saveButton.animationSelect()
+            }
+            .subscribe(onNext: { [unowned self] in
+                // submitTrigger.onNext(self.product)
+                print(self.product)
+            })
+            .disposed(by: disposeBag)
+        
     }
 
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -115,6 +138,10 @@ final class AddNewViewController: UIViewController {
         vc.delegate = self
         vc.allowsEditing = true
         present(vc, animated: true)
+    }
+
+    @objc func categoryTapped() {
+        print(productCategories)
     }
 }
 
@@ -131,6 +158,25 @@ extension AddNewViewController {
     }
 }
 
+extension AddNewViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField {
+        case nameTextField:
+            self.product.name = textField.text ?? ""
+        case priceTextField:
+            let formatter = NumberFormatter()
+            formatter.locale = Locale.current
+            formatter.numberStyle = .decimal
+            let number = formatter.number(from: textField.text ?? "0.0")
+            self.product.price = number as? Double ?? 0.0
+        case categoryTextField:
+            self.product.category.name = textField.text ?? ""
+        default:
+            return
+        }
+    }
+}
+
 extension AddNewViewController: UIImagePickerControllerDelegate,
                                 UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -140,7 +186,7 @@ extension AddNewViewController: UIImagePickerControllerDelegate,
                 let result = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil)
                 guard let asset = result.firstObject else { return }
                 imageName = asset.value(forKey: "filename") as? String ?? ""
-                print(imageName)
+                self.product.imageName = imageName
             }
         }
 
