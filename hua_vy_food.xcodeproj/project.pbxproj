@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0ACE6AACA6824CDFEE40C7FF /* Pods_hua_vy_food.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */; };
 		DF122CCA28ACFC08001E14EC /* ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF122CC928ACFC08001E14EC /* ProductCategory.swift */; };
+		DF12DEF128AE2B4E00558DF7 /* PopupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF12DEEF28AE2B4E00558DF7 /* PopupListViewController.swift */; };
+		DF12DEF228AE2B4E00558DF7 /* PopupListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF12DEF028AE2B4E00558DF7 /* PopupListViewController.xib */; };
+		DF12DEF628AE361900558DF7 /* PopupTableViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF12DEF428AE361900558DF7 /* PopupTableViewTableViewCell.swift */; };
+		DF12DEF728AE361900558DF7 /* PopupTableViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF12DEF528AE361900558DF7 /* PopupTableViewTableViewCell.xib */; };
+		DF12DEF928AE47A600558DF7 /* ReuseableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF12DEF828AE47A600558DF7 /* ReuseableCell.swift */; };
 		DF67FA0828ADF943001F446B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF67FA0728ADF943001F446B /* Product.swift */; };
 		DF6AAD1728929CA5008961FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */; };
 		DF6AAD192892A9D5008961FE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD182892A9D5008961FE /* RegisterViewModel.swift */; };
@@ -53,6 +58,11 @@
 		3E14807D4A1DD20150F1C079 /* Pods-hua_vy_food.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.debug.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.debug.xcconfig"; sourceTree = "<group>"; };
 		D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hua_vy_food.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF122CC928ACFC08001E14EC /* ProductCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategory.swift; sourceTree = "<group>"; };
+		DF12DEEF28AE2B4E00558DF7 /* PopupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupListViewController.swift; sourceTree = "<group>"; };
+		DF12DEF028AE2B4E00558DF7 /* PopupListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupListViewController.xib; sourceTree = "<group>"; };
+		DF12DEF428AE361900558DF7 /* PopupTableViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTableViewTableViewCell.swift; sourceTree = "<group>"; };
+		DF12DEF528AE361900558DF7 /* PopupTableViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupTableViewTableViewCell.xib; sourceTree = "<group>"; };
+		DF12DEF828AE47A600558DF7 /* ReuseableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableCell.swift; sourceTree = "<group>"; };
 		DF67FA0728ADF943001F446B /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DF6AAD182892A9D5008961FE /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
@@ -123,11 +133,31 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DF12DEEE28AE2B3600558DF7 /* PopupList */ = {
+			isa = PBXGroup;
+			children = (
+				DF12DEF328AE35F800558DF7 /* PopupTableViewCell */,
+				DF12DEEF28AE2B4E00558DF7 /* PopupListViewController.swift */,
+				DF12DEF028AE2B4E00558DF7 /* PopupListViewController.xib */,
+			);
+			path = PopupList;
+			sourceTree = "<group>";
+		};
+		DF12DEF328AE35F800558DF7 /* PopupTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DF12DEF428AE361900558DF7 /* PopupTableViewTableViewCell.swift */,
+				DF12DEF528AE361900558DF7 /* PopupTableViewTableViewCell.xib */,
+			);
+			path = PopupTableViewCell;
+			sourceTree = "<group>";
+		};
 		DF6AAD1A2892AAFC008961FE /* Support */ = {
 			isa = PBXGroup;
 			children = (
 				DF6AAD1B2892AB1B008961FE /* ErrorTracker.swift */,
 				DF6AAD202892ABF3008961FE /* ActivityIndicator.swift */,
+				DF12DEF828AE47A600558DF7 /* ReuseableCell.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -199,6 +229,7 @@
 		DF8E7480288EABC50010DFD9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DF12DEEE28AE2B3600558DF7 /* PopupList */,
 				DFBB0D4E28A25D3800EAA349 /* ManagerProduct */,
 				DFB6DABE289E8040008879BF /* UserSetting */,
 				DF7C1A0B28915BFD0023CC11 /* ForgotPassword */,
@@ -383,7 +414,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF12DEF228AE2B4E00558DF7 /* PopupListViewController.xib in Resources */,
 				DF7C1A0F28915C100023CC11 /* ForgotPasswordViewController.xib in Resources */,
+				DF12DEF728AE361900558DF7 /* PopupTableViewTableViewCell.xib in Resources */,
 				DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */,
 				DFB6DAC2289E806C008879BF /* UserSettingViewController.xib in Resources */,
 				DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */,
@@ -445,13 +478,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF12DEF628AE361900558DF7 /* PopupTableViewTableViewCell.swift in Sources */,
 				DFBF41C0288CDB0C00203759 /* AppDelegate.swift in Sources */,
+				DF12DEF928AE47A600558DF7 /* ReuseableCell.swift in Sources */,
 				DF7C1A0E28915C100023CC11 /* ForgotPasswordViewController.swift in Sources */,
 				DF8C81B2289546A400A574CE /* UserSignIn.swift in Sources */,
 				DFB4D0BE289121C300B109C0 /* RegisterViewController.swift in Sources */,
 				DF6AAD192892A9D5008961FE /* RegisterViewModel.swift in Sources */,
 				DF8C81AC2895409F00A574CE /* LoginViewModel.swift in Sources */,
 				DF6AAD1C2892AB1B008961FE /* ErrorTracker.swift in Sources */,
+				DF12DEF128AE2B4E00558DF7 /* PopupListViewController.swift in Sources */,
 				DFBB0D5628A265A600EAA349 /* AddNewViewController.swift in Sources */,
 				DF6AAD212892ABF3008961FE /* ActivityIndicator.swift in Sources */,
 				DF6AAD2C2892B4AA008961FE /* UIViewController+Rx.swift in Sources */,
