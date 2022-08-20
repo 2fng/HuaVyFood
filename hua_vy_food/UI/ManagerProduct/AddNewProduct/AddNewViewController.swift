@@ -203,7 +203,7 @@ extension AddNewViewController: UITextFieldDelegate {
             let characterSet = CharacterSet(charactersIn: string)
             return allowedCharacters.isSuperset(of: characterSet)
         }
-        return false
+        return true
     }
 }
 

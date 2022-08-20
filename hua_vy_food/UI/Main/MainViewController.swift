@@ -34,12 +34,17 @@ final class MainViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        let input = MainViewModel.Input(getCategoriesTrigger: Driver.just(()))
+        let input = MainViewModel.Input(getCategoriesTrigger: Driver.just(()),
+                                        getProductsTrigger: Driver.just(()))
 
         let output = viewModel.transform(input)
 
         output.categories
             .drive(returnProductCategories)
+            .disposed(by: disposeBag)
+
+        output.products
+            .drive(returnProducts)
             .disposed(by: disposeBag)
 
         output.loading
@@ -107,13 +112,20 @@ extension MainViewController {
             vc.categoryCollectionView.reloadData()
         }
     }
+
+    private var returnProducts: Binder<[Product]> {
+        return Binder(self) { vc, products in
+            vc.products = products
+            vc.productCollectionView.reloadData()
+        }
+    }
 }
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case productCollectionView:
-            return 10
+            return products.count
         case categoryCollectionView:
             return categories.count
         default:
@@ -125,7 +137,7 @@ extension MainViewController: UICollectionViewDataSource {
         switch collectionView {
         case productCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
-            cell.configCell(data: Product(id: "", name: "Nem chua", price: 120000, category: ProductCategory(id: "", name: "Đồ mặn"), image: UIImage(named: "imagePlaceholder") ?? UIImage(), imageName: "", imageURL: ""))
+            cell.configCell(data: products[indexPath.item])
             cell.layer.cornerRadius = 5
             cell.shadowView()
             return cell
@@ -141,8 +153,15 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.categorySelectedIndex = indexPath.item
-        categoryCollectionView.reloadData()
+        switch collectionView {
+        case productCollectionView:
+            break
+        case categoryCollectionView:
+            self.categorySelectedIndex = indexPath.item
+            categoryCollectionView.reloadData()
+        default:
+            break
+        }
     }
 }
 

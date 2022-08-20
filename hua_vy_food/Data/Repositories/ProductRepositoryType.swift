@@ -15,6 +15,7 @@ protocol ProductRepositoryType {
     func getProductCategories() -> Observable<[ProductCategory]>
     func addNewCategory(categoryName: String) -> Observable<String>
     func addNewProduct(product: Product) -> Observable<String>
+    func getProducts() -> Observable<[Product]>
 }
 
 final class ProductRepository: ProductRepositoryType {
@@ -94,28 +95,66 @@ final class ProductRepository: ProductRepositoryType {
                     _existProduct.getDocuments { _snapShot, _error in
                         guard let _snapShot = _snapShot else { return }
                         if _snapShot.isEmpty {
-                            database.collection("products").addDocument(data: [
-                                "id": "HVFP\(numberOfProduct)",
-                                "name":  product.name,
-                                "price": product.price,
-                                "categoryID": product.category.id,
-                                "imageName": product.imageName
-                            ]) { error in
-                                if let error = error {
-                                    observer.onError(error)
-                                } else {
-                                    observer.onNext("Thêm mới sản phẩm thành công!")
-                                }
-                            }
+                            var imageURL = ""
                             if let imageData = product.image.pngData() {
                                 imageRef.putData(imageData) { _, error in
                                     if let error = error {
                                         observer.onError(error)
+                                    } else {
+                                        imageRef.downloadURL { url, error in
+                                            imageURL = url?.absoluteString ?? ""
+                                            database.collection("products").addDocument(data: [
+                                                "id": "HVFP\(numberOfProduct)",
+                                                "name":  product.name,
+                                                "price": product.price,
+                                                "categoryID": product.category.id,
+                                                "categoryName": product.category.name,
+                                                "imageName": product.imageName,
+                                                "imageURL": imageURL,
+                                            ]) { error in
+                                                if let error = error {
+                                                    observer.onError(error)
+                                                } else {
+                                                    observer.onNext("Thêm mới sản phẩm thành công!")
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
                         } else {
                             observer.onNext("Sản phẩm đã tồn tại!")
+                        }
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func getProducts() -> Observable<[Product]> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("products").getDocuments { snapShot, error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    if let snapShot = snapShot {
+                        if snapShot.isEmpty {
+                            observer.onNext([])
+                        } else {
+                            var returnProducts = [Product]()
+                            for document in snapShot.documents {
+                                var product = Product()
+                                product.id = document["id"] as? String ?? ""
+                                product.name = document["name"] as? String ?? ""
+                                product.price = document["price"] as? Double ?? 0.0
+                                product.category.id = document["categoryID"] as? String ?? ""
+                                product.category.name = document["categoryName"] as? String ?? ""
+                                product.imageURL = document["imageURL"] as? String ?? ""
+                                returnProducts.append(product)
+                            }
+                            observer.onNext(returnProducts)
                         }
                     }
                 }

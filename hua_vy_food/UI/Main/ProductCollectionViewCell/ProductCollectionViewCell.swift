@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Then
+import SDWebImage
 
 final class ProductCollectionViewCell: UICollectionViewCell, ReuseableCell {
     @IBOutlet private weak var image: UIImageView!
@@ -48,7 +49,8 @@ final class ProductCollectionViewCell: UICollectionViewCell, ReuseableCell {
     }
 
     func configCell(data: Product) {
-        image.image = data.image
+        image.sd_setImage(with: URL(string: data.imageURL),
+                          placeholderImage: UIImage(named: "imagePlaceholder"))
         title.text = data.name
         category.text = data.category.name
         price.text = String(Int(data.price)) + " đ"
