@@ -39,6 +39,7 @@
 		DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D0C22891265C00B109C0 /* UIColor+.swift */; };
 		DFB6019128A8F635009CEA90 /* ProductRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6019028A8F635009CEA90 /* ProductRepositoryType.swift */; };
 		DFB6019328A8F6E6009CEA90 /* AddNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6019228A8F6E6009CEA90 /* AddNewViewModel.swift */; };
+		DFB6620128B09C65005FA68B /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6620028B09C65005FA68B /* UITextField+.swift */; };
 		DFB6DAC1289E806C008879BF /* UserSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6DABF289E806C008879BF /* UserSettingViewController.swift */; };
 		DFB6DAC2289E806C008879BF /* UserSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB6DAC0289E806C008879BF /* UserSettingViewController.xib */; };
 		DFB6DAC4289E83CA008879BF /* UserSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6DAC3289E83CA008879BF /* UserSettingViewModel.swift */; };
@@ -51,6 +52,7 @@
 		DFBF41C9288CDB0E00203759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFBF41C8288CDB0E00203759 /* Assets.xcassets */; };
 		DFBF41CC288CDB0E00203759 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFBF41CA288CDB0E00203759 /* LaunchScreen.storyboard */; };
 		DFC49A5F289C013F00F856FC /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC49A5E289C013F00F856FC /* ForgotPasswordViewModel.swift */; };
+		DFD1902B28B0BAFA00CED2C0 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD1902A28B0BAFA00CED2C0 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +90,7 @@
 		DFB4D0C22891265C00B109C0 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		DFB6019028A8F635009CEA90 /* ProductRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepositoryType.swift; sourceTree = "<group>"; };
 		DFB6019228A8F6E6009CEA90 /* AddNewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewViewModel.swift; sourceTree = "<group>"; };
+		DFB6620028B09C65005FA68B /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		DFB6DABF289E806C008879BF /* UserSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingViewController.swift; sourceTree = "<group>"; };
 		DFB6DAC0289E806C008879BF /* UserSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserSettingViewController.xib; sourceTree = "<group>"; };
 		DFB6DAC3289E83CA008879BF /* UserSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingViewModel.swift; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 		DFBF41CB288CDB0E00203759 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DFBF41CD288CDB0E00203759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFC49A5E289C013F00F856FC /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		DFD1902A28B0BAFA00CED2C0 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,7 @@
 				DF6AAD1B2892AB1B008961FE /* ErrorTracker.swift */,
 				DF6AAD202892ABF3008961FE /* ActivityIndicator.swift */,
 				DF12DEF828AE47A600558DF7 /* ReuseableCell.swift */,
+				DFD1902A28B0BAFA00CED2C0 /* CustomTextField.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				DF6AAD292892B3A4008961FE /* UIView+.swift */,
 				DF6AAD2B2892B4AA008961FE /* UIViewController+Rx.swift */,
 				DFB0880D2894E327002D2AE3 /* UIViewcontroller+.swift */,
+				DFB6620028B09C65005FA68B /* UITextField+.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -501,6 +507,7 @@
 				DFB6019128A8F635009CEA90 /* ProductRepositoryType.swift in Sources */,
 				DF6AAD252892AD6F008961FE /* UserRepositoryType.swift in Sources */,
 				DFA11ED4288EB04C00C8E2E2 /* LoginViewController.swift in Sources */,
+				DFD1902B28B0BAFA00CED2C0 /* CustomTextField.swift in Sources */,
 				DFBB0D5128A25D5400EAA349 /* ManagerProductViewController.swift in Sources */,
 				DF6AAD2A2892B3A4008961FE /* UIView+.swift in Sources */,
 				DFB6019328A8F6E6009CEA90 /* AddNewViewModel.swift in Sources */,
@@ -509,6 +516,7 @@
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
 				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,
 				DF8C81B02895440300A574CE /* UserManager.swift in Sources */,
+				DFB6620128B09C65005FA68B /* UITextField+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
