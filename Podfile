@@ -10,6 +10,7 @@ target 'hua_vy_food' do
   pod 'Firebase/Crashlytics'
   pod 'FirebaseAuth'
   pod 'FirebaseFirestore'
+  pod 'FirebaseStorage'
 
   # Recommended: Add the Firebase pod for Google Analytics
   pod 'Firebase/Analytics'

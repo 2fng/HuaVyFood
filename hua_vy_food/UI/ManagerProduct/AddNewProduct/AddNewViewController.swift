@@ -53,11 +53,11 @@ final class AddNewViewController: UIViewController {
             .disposed(by: disposeBag)
 
         output.addNewCategory
-            .drive(addnewCategoryMessage)
+            .drive(addNewCategoryMessage)
             .disposed(by: disposeBag)
 
         output.addNewProduct
-            .drive()
+            .drive(addNewProductMessage)
             .disposed(by: disposeBag)
 
         output.loading
@@ -77,6 +77,8 @@ final class AddNewViewController: UIViewController {
         categoryTextField.delegate = self
         let tappedOnCategoryTextField = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
         categoryTextField.addGestureRecognizer(tappedOnCategoryTextField)
+
+        priceTextField.keyboardType = .numberPad
 
         saveNewCategoryButton.do {
             $0.isHidden = true
@@ -124,8 +126,7 @@ final class AddNewViewController: UIViewController {
                 saveButton.animationSelect()
             }
             .subscribe(onNext: { [unowned self] in
-                // submitTrigger.onNext(self.product)
-                print(self.product)
+                submitTrigger.onNext(self.product)
             })
             .disposed(by: disposeBag)
         
@@ -162,9 +163,18 @@ extension AddNewViewController {
             vc.productCategories = categories
         }
     }
-    private var addnewCategoryMessage: Binder<String> {
+
+    private var addNewCategoryMessage: Binder<String> {
         return Binder(self) { vc, alertMessage in
             vc.showAlert(message: alertMessage, okButtonOnly: true)
+        }
+    }
+
+    private var addNewProductMessage: Binder<String> {
+        return Binder(self) { vc, alertMessage in
+            vc.showAlert(message: alertMessage, okButtonOnly: true, okCompletion: {
+                vc.navigationController?.popViewController(animated: true)
+            })
         }
     }
 }
@@ -186,6 +196,15 @@ extension AddNewViewController: UITextFieldDelegate {
             return
         }
     }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == priceTextField {
+            let allowedCharacters = CharacterSet.decimalDigits
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet)
+        }
+        return false
+    }
 }
 
 extension AddNewViewController: UIImagePickerControllerDelegate,
@@ -193,6 +212,7 @@ extension AddNewViewController: UIImagePickerControllerDelegate,
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage  {
             productImageView.image = image
+            self.product.image = image
             if let imageURL = info[UIImagePickerController.InfoKey.referenceURL] as? URL {
                 let result = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil)
                 guard let asset = result.firstObject else { return }
