@@ -15,6 +15,7 @@ struct Product {
     var category = ProductCategory()
     var image = UIImage()
     var imageName = ""
+    var imageURL = ""
 }
 
 extension Product: Mappable {
@@ -29,5 +30,6 @@ extension Product: Mappable {
         category <- map["category"]
         image <- map["image"]
         imageName <- map["imageName"]
+        imageURL <- map["imageURL"]
     }
 }

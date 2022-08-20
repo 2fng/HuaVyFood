@@ -50,6 +50,7 @@ extension AddNewViewModel {
                     .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
             }
+        
         let addNewProduct = input.submitTrigger
             .flatMapLatest { product in
                 return self.productRepository.addNewProduct(product: product)

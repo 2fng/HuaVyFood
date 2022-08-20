@@ -24,6 +24,7 @@ extension UIViewController {
 
     func showAlert(message: String,
                    okButtonOnly: Bool = false,
+                   okCompletion: (() -> Void)? = nil,
                    leftCompletion: (() -> Void)? = nil,
                    rightCompletion: (() -> Void)? = nil) {
         let ac = UIAlertController(title: nil,
@@ -33,7 +34,9 @@ extension UIViewController {
             rightCompletion?()
         }
         let closeAction = UIAlertAction(title: "Huỷ", style: .cancel)
-        let okAction = UIAlertAction(title: "Đã hiểu", style: .cancel)
+        let okAction = UIAlertAction(title: "Đã hiểu", style: .cancel) { _ in
+            okCompletion?()
+        }
         if okButtonOnly {
             ac.addAction(okAction)
         } else {

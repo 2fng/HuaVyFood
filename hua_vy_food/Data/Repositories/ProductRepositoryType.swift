@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 protocol ProductRepositoryType {
     func getProductCategories() -> Observable<[ProductCategory]>
@@ -79,7 +80,11 @@ final class ProductRepository: ProductRepositoryType {
     func addNewProduct(product: Product) -> Observable<String> {
         return Observable.create { observer in
             let database = Firestore.firestore()
+            let storage = Storage.storage()
+            let storageRef = storage.reference()
+            let imageRef = storageRef.child("images/\(product.imageName)")
             var numberOfProduct = 0
+
             database.collection("products").getDocuments { snapShot, error in
                 if let error = error {
                     observer.onError(error)
@@ -100,6 +105,13 @@ final class ProductRepository: ProductRepositoryType {
                                     observer.onError(error)
                                 } else {
                                     observer.onNext("Thêm mới sản phẩm thành công!")
+                                }
+                            }
+                            if let imageData = product.image.pngData() {
+                                imageRef.putData(imageData) { _, error in
+                                    if let error = error {
+                                        observer.onError(error)
+                                    }
                                 }
                             }
                         } else {
