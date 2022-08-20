@@ -21,6 +21,7 @@ final class PopupListViewController: UIViewController {
     private let disposeBag = DisposeBag()
 
     private var tableViewContent: [Any] = []
+    private var searchContent: [Any] = []
     private var selectedData: Any?
     var handleDoneButton: ((Any) -> Void)?
 
@@ -37,6 +38,11 @@ final class PopupListViewController: UIViewController {
             $0.dataSource = self
             $0.register(PopupTableViewTableViewCell.nib,
                         forCellReuseIdentifier: PopupTableViewTableViewCell.identifier)
+        }
+
+        searchTextField.do {
+            $0.delegate = self
+            $0.shadowView()
         }
 
         doneButton.do {
@@ -57,6 +63,8 @@ final class PopupListViewController: UIViewController {
             .map { [unowned self] in
                 doneButton.animationSelect()
                 searchTextField.text = nil
+                searchContent = tableViewContent
+                tableView.reloadData()
             }
             .subscribe()
             .disposed(by: disposeBag)
@@ -64,28 +72,45 @@ final class PopupListViewController: UIViewController {
 
     func getData(tableViewData: [Any], selectedData: Any? = nil) {
         self.tableViewContent = tableViewData
+        self.searchContent = tableViewData
         self.selectedData = selectedData
         tableView.reloadData()
     }
 }
 
+extension PopupListViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        searchContent = tableViewContent
+        var _searchContent = [ProductCategory]()
+        _searchContent = searchContent as? [ProductCategory] ?? []
+        if let textFieldText = textField.text,
+           !_searchContent.isEmpty {
+            _searchContent = _searchContent.filter({ content in
+                content.name.uppercased().contains(textFieldText.uppercased())
+            })
+            searchContent = _searchContent
+            tableView.reloadData()
+        }
+    }
+}
+
 extension PopupListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableViewContent.count
+        return searchContent.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PopupTableViewTableViewCell.identifier, for: indexPath) as? PopupTableViewTableViewCell
         guard let cell = cell else { return UITableViewCell() }
         cell.awakeFromNib()
-        cell.configCell(data: tableViewContent[indexPath.row], dataSelected: selectedData)
+        cell.configCell(data: searchContent[indexPath.row], dataSelected: selectedData)
         return cell
     }
 }
 
 extension PopupListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedData = tableViewContent[indexPath.row]
+        selectedData = searchContent[indexPath.row]
         tableView.reloadData()
     }
 }
