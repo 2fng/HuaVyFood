@@ -10,10 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="hua_vy_food" customModuleProvider="target">
             <connections>
-                <outlet property="adminModeSegmentedControl" destination="wMd-vU-1K1" id="8Fz-Ox-8jR"/>
                 <outlet property="burgerMenuButton" destination="sUA-pf-ImP" id="O0z-pN-AIM"/>
+                <outlet property="categoryCollectionView" destination="LM2-qe-d5S" id="0M2-uy-irZ"/>
+                <outlet property="productCollectionView" destination="jxm-Xt-D0C" id="5sA-Zq-klx"/>
+                <outlet property="searchtextField" destination="Zqm-Z8-gvF" id="M70-WM-QP8"/>
                 <outlet property="shoppingCartButton" destination="hcz-GO-ZKq" id="pSS-hI-784"/>
-                <outlet property="tableView" destination="kbI-LS-rjV" id="qlj-UY-dbb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -40,17 +41,40 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="shoppingCartVector" title=" "/>
                 </button>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wMd-vU-1K1">
-                    <rect key="frame" x="126" y="53" width="162" height="33.5"/>
-                    <segments>
-                        <segment title="Admin"/>
-                        <segment title="Home"/>
-                    </segments>
-                </segmentedControl>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kbI-LS-rjV">
-                    <rect key="frame" x="26" y="135.5" width="362" height="726.5"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tìm kiếm sản phẩm..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zqm-Z8-gvF" customClass="CustomTextField" customModule="hua_vy_food" customModuleProvider="target">
+                    <rect key="frame" x="26" y="119" width="362" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="Yza-wj-e9O"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </textField>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="LM2-qe-d5S">
+                    <rect key="frame" x="13" y="189" width="388" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="83Q-31-KXU"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kXm-CA-xrl">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jxm-Xt-D0C">
+                    <rect key="frame" x="13" y="239" width="388" height="623"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </tableView>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4AW-qA-ZYV">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -58,17 +82,18 @@
                 <constraint firstItem="sUA-pf-ImP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="0Jq-uN-Ux9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hcz-GO-ZKq" secondAttribute="trailing" constant="26" id="0p0-eY-nOA"/>
                 <constraint firstItem="sUA-pf-ImP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="3Ty-21-Dmi"/>
-                <constraint firstItem="kbI-LS-rjV" firstAttribute="top" secondItem="wMd-vU-1K1" secondAttribute="bottom" constant="50" id="3py-ZM-83L"/>
-                <constraint firstItem="wMd-vU-1K1" firstAttribute="leading" secondItem="sUA-pf-ImP" secondAttribute="trailing" constant="50" id="HuZ-7h-dn4"/>
-                <constraint firstItem="hcz-GO-ZKq" firstAttribute="leading" secondItem="wMd-vU-1K1" secondAttribute="trailing" constant="50" id="T87-CJ-xEJ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="kbI-LS-rjV" secondAttribute="bottom" id="ZBO-lM-FRU"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kbI-LS-rjV" secondAttribute="trailing" constant="26" id="Znh-Dv-2nx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="jxm-Xt-D0C" secondAttribute="bottom" id="6Oe-hF-tgS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jxm-Xt-D0C" secondAttribute="trailing" constant="13" id="ApQ-ir-Be4"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LM2-qe-d5S" secondAttribute="trailing" constant="13" id="BLg-JY-2G1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zqm-Z8-gvF" secondAttribute="trailing" constant="26" id="KKf-jB-5ti"/>
+                <constraint firstItem="jxm-Xt-D0C" firstAttribute="top" secondItem="LM2-qe-d5S" secondAttribute="bottom" id="MyQ-zL-Ntt"/>
+                <constraint firstItem="jxm-Xt-D0C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="13" id="Nhc-75-HXm"/>
+                <constraint firstItem="LM2-qe-d5S" firstAttribute="top" secondItem="Zqm-Z8-gvF" secondAttribute="bottom" constant="25" id="O6s-7R-bI4"/>
+                <constraint firstItem="Zqm-Z8-gvF" firstAttribute="top" secondItem="sUA-pf-ImP" secondAttribute="bottom" constant="25" id="b0H-2I-dCc"/>
                 <constraint firstItem="hcz-GO-ZKq" firstAttribute="width" secondItem="hcz-GO-ZKq" secondAttribute="height" multiplier="1:1" id="ewL-0q-Suy"/>
+                <constraint firstItem="LM2-qe-d5S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="13" id="i51-sQ-LNd"/>
                 <constraint firstItem="hcz-GO-ZKq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="kMD-w2-dMW"/>
-                <constraint firstItem="kbI-LS-rjV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="mky-km-Xc3"/>
-                <constraint firstItem="wMd-vU-1K1" firstAttribute="centerY" secondItem="hcz-GO-ZKq" secondAttribute="centerY" id="ryt-9m-eEf"/>
-                <constraint firstItem="wMd-vU-1K1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wuG-ON-BYW"/>
-                <constraint firstItem="wMd-vU-1K1" firstAttribute="height" secondItem="hcz-GO-ZKq" secondAttribute="height" multiplier="0.65" id="yhr-hC-2LH"/>
+                <constraint firstItem="Zqm-Z8-gvF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="qmc-kA-bUm"/>
             </constraints>
             <point key="canvasLocation" x="139" y="99"/>
         </view>
