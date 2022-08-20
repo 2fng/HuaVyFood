@@ -18,6 +18,7 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var searchtextField: CustomTextField!
 
     private let disposeBag = DisposeBag()
+    private let viewModel = MainViewModel(productRepository: ProductRepository())
 
     // Variables
     private var searchContent = [Product]()
@@ -28,21 +29,26 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view
-        categories = [ProductCategory(id: "", name: "Đồ mặn"),
-                      ProductCategory(id: "", name: "Đồ ngọt"),
-                      ProductCategory(id: "", name: "Tất cả")]
-        categorySelectedIndex = categories.count - 1
+        bindViewModel()
         setupView()
     }
 
-    private var isAdminMode = false {
-        didSet {
-            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: { [unowned self] in
-                self.productCollectionView.backgroundColor = isAdminMode ? .logoPink : .white
-            }, completion: { _ in
-                self.productCollectionView.reloadData()
-            })
-        }
+    private func bindViewModel() {
+        let input = MainViewModel.Input(getCategoriesTrigger: Driver.just(()))
+
+        let output = viewModel.transform(input)
+
+        output.categories
+            .drive(returnProductCategories)
+            .disposed(by: disposeBag)
+
+        output.loading
+            .drive(rx.isLoading)
+            .disposed(by: disposeBag)
+
+        output.error
+            .drive(rx.error)
+            .disposed(by: disposeBag)
     }
 
     private func setupView() {
@@ -89,6 +95,17 @@ final class MainViewController: UIViewController {
             }
             .subscribe()
             .disposed(by: disposeBag)
+    }
+}
+
+extension MainViewController {
+    private var returnProductCategories: Binder<[ProductCategory]> {
+        return Binder(self) { vc, categories in
+            vc.categories = categories
+            vc.categories.append(ProductCategory(id: "", name: "Tất cả"))
+            vc.categorySelectedIndex = vc.categories.count - 1
+            vc.categoryCollectionView.reloadData()
+        }
     }
 }
 
