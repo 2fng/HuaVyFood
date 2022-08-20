@@ -17,6 +17,8 @@ final class ProductCollectionViewCell: UICollectionViewCell, ReuseableCell {
     @IBOutlet private weak var price: UILabel!
     @IBOutlet private weak var addToCart: UIButton!
 
+    private let disposeBag = DisposeBag()
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -36,6 +38,13 @@ final class ProductCollectionViewCell: UICollectionViewCell, ReuseableCell {
             $0.layer.cornerRadius = 5
             $0.shadowView(color: .logoPink, shadowRadius: 5, cornerRadius: 5)
         }
+
+        addToCart.rx.tap
+            .map { [unowned self] in
+                self.addToCart.animationSelect()
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 
     func configCell(data: Product) {
