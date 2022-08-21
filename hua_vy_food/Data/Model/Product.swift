@@ -16,6 +16,8 @@ struct Product {
     var image = UIImage()
     var imageName = ""
     var imageURL = ""
+    // Not from Firebase
+    var quantity = 0
 }
 
 extension Product: Mappable {

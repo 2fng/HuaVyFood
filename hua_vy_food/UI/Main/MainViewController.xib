@@ -10,11 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="hua_vy_food" customModuleProvider="target">
             <connections>
-                <outlet property="burgerMenuButton" destination="sUA-pf-ImP" id="O0z-pN-AIM"/>
-                <outlet property="categoryCollectionView" destination="LM2-qe-d5S" id="0M2-uy-irZ"/>
-                <outlet property="productCollectionView" destination="jxm-Xt-D0C" id="5sA-Zq-klx"/>
-                <outlet property="searchtextField" destination="Zqm-Z8-gvF" id="M70-WM-QP8"/>
-                <outlet property="shoppingCartButton" destination="hcz-GO-ZKq" id="pSS-hI-784"/>
+                <outlet property="productTableView" destination="QXy-0J-4ZR" id="vmE-hK-1tk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,84 +19,17 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUA-pf-ImP">
-                    <rect key="frame" x="26" y="44" width="50" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="sUA-pf-ImP" secondAttribute="height" multiplier="1:1" id="KAh-1e-lDP"/>
-                        <constraint firstAttribute="width" constant="50" id="SWG-VK-Yv8"/>
-                    </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="burgerVector" title=" "/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcz-GO-ZKq">
-                    <rect key="frame" x="338" y="44" width="50" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="hcz-GO-ZKq" secondAttribute="height" multiplier="1:1" id="6hz-PY-isS"/>
-                        <constraint firstAttribute="width" constant="50" id="tC2-PS-eCN"/>
-                    </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="shoppingCartVector" title=" "/>
-                </button>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tìm kiếm sản phẩm..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zqm-Z8-gvF" customClass="CustomTextField" customModule="hua_vy_food" customModuleProvider="target">
-                    <rect key="frame" x="26" y="119" width="362" height="45"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="45" id="Yza-wj-e9O"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                </textField>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="LM2-qe-d5S">
-                    <rect key="frame" x="13" y="189" width="388" height="50"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="83Q-31-KXU"/>
-                    </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kXm-CA-xrl">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jxm-Xt-D0C">
-                    <rect key="frame" x="13" y="239" width="388" height="623"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4AW-qA-ZYV">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" id="QXy-0J-4ZR">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstItem="sUA-pf-ImP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="0Jq-uN-Ux9"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hcz-GO-ZKq" secondAttribute="trailing" constant="26" id="0p0-eY-nOA"/>
-                <constraint firstItem="sUA-pf-ImP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="3Ty-21-Dmi"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="jxm-Xt-D0C" secondAttribute="bottom" id="6Oe-hF-tgS"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jxm-Xt-D0C" secondAttribute="trailing" constant="13" id="ApQ-ir-Be4"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LM2-qe-d5S" secondAttribute="trailing" constant="13" id="BLg-JY-2G1"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zqm-Z8-gvF" secondAttribute="trailing" constant="26" id="KKf-jB-5ti"/>
-                <constraint firstItem="jxm-Xt-D0C" firstAttribute="top" secondItem="LM2-qe-d5S" secondAttribute="bottom" id="MyQ-zL-Ntt"/>
-                <constraint firstItem="jxm-Xt-D0C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="13" id="Nhc-75-HXm"/>
-                <constraint firstItem="LM2-qe-d5S" firstAttribute="top" secondItem="Zqm-Z8-gvF" secondAttribute="bottom" constant="25" id="O6s-7R-bI4"/>
-                <constraint firstItem="Zqm-Z8-gvF" firstAttribute="top" secondItem="sUA-pf-ImP" secondAttribute="bottom" constant="25" id="b0H-2I-dCc"/>
-                <constraint firstItem="hcz-GO-ZKq" firstAttribute="width" secondItem="hcz-GO-ZKq" secondAttribute="height" multiplier="1:1" id="ewL-0q-Suy"/>
-                <constraint firstItem="LM2-qe-d5S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="13" id="i51-sQ-LNd"/>
-                <constraint firstItem="hcz-GO-ZKq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="kMD-w2-dMW"/>
-                <constraint firstItem="Zqm-Z8-gvF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="qmc-kA-bUm"/>
-            </constraints>
             <point key="canvasLocation" x="139" y="99"/>
         </view>
     </objects>
     <resources>
-        <image name="burgerVector" width="14" height="8"/>
-        <image name="shoppingCartVector" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
