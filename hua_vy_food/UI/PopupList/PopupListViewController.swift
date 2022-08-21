@@ -92,6 +92,11 @@ extension PopupListViewController: UITextFieldDelegate {
             tableView.reloadData()
         }
     }
+
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
 extension PopupListViewController: UITableViewDataSource {

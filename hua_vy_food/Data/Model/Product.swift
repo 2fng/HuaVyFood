@@ -10,6 +10,7 @@ import ObjectMapper
 
 struct Product {
     var id = ""
+    var documentID = ""
     var name = ""
     var price = 0.0
     var category = ProductCategory()

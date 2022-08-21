@@ -12,6 +12,7 @@ import RxCocoa
 
 struct AddNewViewModel {
     let productRepository: ProductRepositoryType
+    var isEditingProduct: Bool
 }
 
 extension AddNewViewModel {
@@ -52,11 +53,18 @@ extension AddNewViewModel {
             }
         
         let addNewProduct = input.submitTrigger
-            .flatMapLatest { product in
-                return self.productRepository.addNewProduct(product: product)
-                    .trackError(errorTracker)
-                    .trackActivity(activityIndicator)
-                    .asDriverOnErrorJustComplete()
+            .flatMapLatest { product -> Driver<String> in
+                if isEditingProduct {
+                    return self.productRepository.updateProduct(product: product)
+                        .trackError(errorTracker)
+                        .trackActivity(activityIndicator)
+                        .asDriverOnErrorJustComplete()
+                } else {
+                    return self.productRepository.addNewProduct(product: product)
+                        .trackError(errorTracker)
+                        .trackActivity(activityIndicator)
+                        .asDriverOnErrorJustComplete()
+                }
             }
 
         return Output(addNewCategory: addNewCategory,

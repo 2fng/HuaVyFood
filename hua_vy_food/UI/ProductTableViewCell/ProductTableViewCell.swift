@@ -24,8 +24,14 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
     @IBOutlet private weak var updateButton: UIButton!
 
     private let disposeBag = DisposeBag()
+
+    // Variables
     private var product = Product()
     private var isAdmin = false
+
+    // Callbacks
+    var handleRemoveButton: ((String) -> Void)?
+    var handleUpdateButton: ((Product) -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,12 +58,12 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
 
         addItem.do {
             $0.layer.cornerRadius = 5
-            $0.shadowView(color: .logoPink, shadowRadius: 5, shadowOpacity: 0.05, cornerRadius: 5)
+            $0.shadowView(color: .logoPink, shadowRadius: 5, shadowOpacity: 0.3, cornerRadius: 5)
         }
 
         subtractItem.do {
             $0.layer.cornerRadius = 5
-            $0.shadowView(color: .gray, shadowRadius: 5, shadowOpacity: 0.05, cornerRadius: 5)
+            $0.shadowView(color: .gray, shadowRadius: 5, shadowOpacity: 0.3, cornerRadius: 5)
             $0.isHidden = product.quantity >= 1 ? false : true
         }
 
@@ -72,7 +78,7 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
         updateButton.do {
             $0.isHidden = !isAdmin
             $0.layer.cornerRadius = 5
-            $0.shadowView(shadowRadius: 5, cornerRadius: 5)
+            $0.shadowView(shadowRadius: 5, shadowOpacity: 0.3, cornerRadius: 5)
         }
 
         addItem.rx.tap
@@ -104,6 +110,7 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
         removeButton.rx.tap
             .map { [unowned self] in
                 self.removeButton.animationSelect()
+                handleRemoveButton?(product.documentID)
             }
             .subscribe()
             .disposed(by: disposeBag)
@@ -111,6 +118,7 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
         updateButton.rx.tap
             .map { [unowned self] in
                 self.updateButton.animationSelect()
+                handleUpdateButton?(product)
             }
             .subscribe()
             .disposed(by: disposeBag)
@@ -134,7 +142,8 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
         formatter.locale = Locale.current
         formatter.numberStyle = .currency
         if let string = formatter.string(from: data.price as NSNumber) {
-            productPrice.text = string
+            let priceString = String(string.dropFirst()) + "đ"
+            productPrice.text = priceString
         } else {
             productPrice.text = "Không có giá trị"
         }
