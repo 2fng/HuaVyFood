@@ -37,4 +37,16 @@ extension UIView {
             $0.masksToBounds = false
         }
     }
+
+    func isVisible() -> Bool {
+        func isVisible(inView: UIView?) -> Bool {
+            guard let inView = inView else { return true }
+            let viewFrame = inView.convert(self.bounds, from: self)
+            if viewFrame.intersects(inView.bounds) {
+                return isVisible(inView: inView.superview)
+            }
+            return false
+        }
+        return isVisible(inView: self.superview)
+    }
 }

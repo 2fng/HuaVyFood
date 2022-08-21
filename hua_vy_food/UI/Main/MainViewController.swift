@@ -11,16 +11,16 @@ import RxCocoa
 import Then
 
 final class MainViewController: UIViewController {
-    @IBOutlet private weak var burgerMenuButton: UIButton!
-    @IBOutlet private weak var shoppingCartButton: UIButton!
-    @IBOutlet private weak var productCollectionView: UICollectionView!
-    @IBOutlet private weak var categoryCollectionView: UICollectionView!
-    @IBOutlet private weak var searchtextField: CustomTextField!
+    @IBOutlet private weak var productTableView: UITableView!
 
-    private let disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     private let viewModel = MainViewModel(productRepository: ProductRepository())
 
+    // Triggers
+    let reloadTrigger = PublishSubject<Void>()
+
     // Variables
+    private let refreshControl = UIRefreshControl()
     private var searchContent = [Product]()
     private var products = [Product]()
     private var categories = [ProductCategory]()
@@ -33,9 +33,17 @@ final class MainViewController: UIViewController {
         setupView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+
     private func bindViewModel() {
-        let input = MainViewModel.Input(getCategoriesTrigger: Driver.just(()),
-                                        getProductsTrigger: Driver.just(()))
+        let input = MainViewModel.Input(getCategoriesTrigger: reloadTrigger.asDriverOnErrorJustComplete(),
+                                        getProductsTrigger: reloadTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -54,141 +62,108 @@ final class MainViewController: UIViewController {
         output.error
             .drive(rx.error)
             .disposed(by: disposeBag)
+
+        reloadTrigger.onNext(())
     }
 
     private func setupView() {
         self.navigationItem.backButtonTitle = "Quay lại"
         hideKeyboardWhenTappedAround()
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
 
-        productCollectionView.do {
-            $0.delegate = self
-            $0.dataSource = self
-            $0.register(ProductCollectionViewCell.nib, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
-        }
-
-        categoryCollectionView.do {
-            $0.semanticContentAttribute = .forceRightToLeft
-            $0.delegate = self
-            $0.dataSource = self
-            $0.register(CategoryCollectionViewCell.nib, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
-        }
-        
-        burgerMenuButton.do {
-            $0.layer.cornerRadius = 15
-            $0.backgroundColor = .white
-            $0.shadowView(color: .lightGray, cornerRadius: 15)
-        }
-
-        shoppingCartButton.do {
-            $0.layer.cornerRadius = 15
-            $0.backgroundColor = .white
-            $0.shadowView(color: .lightGray, cornerRadius: 15)
-        }
-
-        burgerMenuButton.rx.tap
-            .map { [unowned self] in
-                burgerMenuButton.animationSelect()
-                let vc = UserSettingViewController(nibName: "UserSettingViewController", bundle: nil)
-                navigationController?.pushViewController(vc, animated: true)
-            }
-            .subscribe()
+        productTableView.rx
+            .setDelegate(self)
             .disposed(by: disposeBag)
 
-        shoppingCartButton.rx.tap
-            .map { [unowned self] in
-                shoppingCartButton.animationSelect()
-            }
-            .subscribe()
-            .disposed(by: disposeBag)
+        productTableView.do {
+            $0.addSubview(refreshControl)
+            $0.rowHeight = UITableView.automaticDimension
+            $0.delegate = self
+            $0.dataSource = self
+            $0.separatorStyle = .none
+            $0.register(HeaderTableViewCell.nib, forCellReuseIdentifier: HeaderTableViewCell.identifier)
+            $0.register(ProductTableViewCell.nib, forCellReuseIdentifier: ProductTableViewCell.identifier)
+        }
+    }
+
+    @objc func refresh(_ sender: AnyObject) {
+       // Code to refresh table view
+        reloadTrigger.onNext(())
+        refreshControl.endRefreshing()
     }
 }
 
+// MARK: Binder
 extension MainViewController {
     private var returnProductCategories: Binder<[ProductCategory]> {
         return Binder(self) { vc, categories in
             vc.categories = categories
             vc.categories.append(ProductCategory(id: "", name: "Tất cả"))
             vc.categorySelectedIndex = vc.categories.count - 1
-            vc.categoryCollectionView.reloadData()
+            vc.productTableView.reloadData()
         }
     }
 
     private var returnProducts: Binder<[Product]> {
         return Binder(self) { vc, products in
             vc.products = products
-            vc.productCollectionView.reloadData()
+            vc.searchContent = products
+            vc.productTableView.reloadData()
         }
     }
 }
 
-extension MainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView {
-        case productCollectionView:
-            return products.count
-        case categoryCollectionView:
-            return categories.count
-        default:
-            return 0
-        }
+// MARK: TableView
+extension MainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchContent.count + 1
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView {
-        case productCollectionView:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
-            cell.configCell(data: products[indexPath.item])
-            cell.layer.cornerRadius = 5
-            cell.shadowView()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HeaderTableViewCell.identifier) as? HeaderTableViewCell
+            else { return UITableViewCell() }
+            cell.selectionStyle = .none
+            cell.configCell(category: categories, categorySelectedIndex: categorySelectedIndex)
+            cell.handleBurgerMenuTapped = {
+                let vc = UserSettingViewController(nibName: "UserSettingViewController", bundle: nil)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            cell.handleCategoryTapped = { [unowned self] categoryID, selectedCategoryIndex in
+                self.categorySelectedIndex = selectedCategoryIndex
+                if categoryID.isEmpty {
+                    self.searchContent = self.products
+                } else {
+                    self.searchContent = self.products.filter { product in
+                        product.category.id == categoryID
+                    }
+                }
+                self.productTableView.reloadData()
+                cell.configCell(category: self.categories,
+                                categorySelectedIndex: self.categorySelectedIndex)
+            }
+            cell.handleSearch = { [unowned self] searchText in
+                if searchText.isEmpty {
+                    self.searchContent = self.products
+                } else {
+                    self.searchContent = self.products.filter { product in
+                        product.name.uppercased().contains(searchText) ||
+                        product.category.name.uppercased().contains(searchText)
+                    }
+                }
+                self.productTableView.reloadData()
+            }
             return cell
-        case categoryCollectionView:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
-            cell.configCell(data: categories[indexPath.item], isSelected: indexPath.item == categorySelectedIndex)
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier) as? ProductTableViewCell
+            else { return UITableViewCell() }
+            cell.selectionStyle = .none
+            cell.configCell(data: searchContent[indexPath.row - 1])
             return cell
-        default:
-            return UICollectionViewCell()
         }
     }
 }
 
-extension MainViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch collectionView {
-        case productCollectionView:
-            break
-        case categoryCollectionView:
-            self.categorySelectedIndex = indexPath.item
-            categoryCollectionView.reloadData()
-        default:
-            break
-        }
-    }
-}
-
-extension MainViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch collectionView {
-        case productCollectionView:
-            let width = productCollectionView.bounds.width / 2.2
-            let height = CGFloat(300)
-            return CGSize(width: width, height: height)
-        case categoryCollectionView:
-            let width = categoryCollectionView.bounds.width / 6
-            let height = categoryCollectionView.bounds.height
-            return CGSize(width: width, height: height)
-        default:
-            return CGSize()
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        switch collectionView {
-        case productCollectionView:
-            return UIEdgeInsets(top: 15, left: 10, bottom: 0, right: 10)
-        case categoryCollectionView:
-            return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        default:
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        }
-    }
+extension MainViewController: UITableViewDelegate {
+    
 }

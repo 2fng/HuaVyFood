@@ -14,6 +14,10 @@
 		DF12DEF628AE361900558DF7 /* PopupTableViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF12DEF428AE361900558DF7 /* PopupTableViewTableViewCell.swift */; };
 		DF12DEF728AE361900558DF7 /* PopupTableViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF12DEF528AE361900558DF7 /* PopupTableViewTableViewCell.xib */; };
 		DF12DEF928AE47A600558DF7 /* ReuseableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF12DEF828AE47A600558DF7 /* ReuseableCell.swift */; };
+		DF55E68228B21F3300B05776 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF55E68028B21F3300B05776 /* ProductTableViewCell.swift */; };
+		DF55E68328B21F3300B05776 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF55E68128B21F3300B05776 /* ProductTableViewCell.xib */; };
+		DF55E68A28B22E8D00B05776 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF55E68828B22E8D00B05776 /* HeaderTableViewCell.swift */; };
+		DF55E68B28B22E8D00B05776 /* HeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF55E68928B22E8D00B05776 /* HeaderTableViewCell.xib */; };
 		DF67FA0828ADF943001F446B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF67FA0728ADF943001F446B /* Product.swift */; };
 		DF68816928B0FBB2007DC4D1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF68816828B0FBB2007DC4D1 /* MainViewModel.swift */; };
 		DF6AAD1728929CA5008961FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */; };
@@ -26,8 +30,6 @@
 		DF6AAD2C2892B4AA008961FE /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD2B2892B4AA008961FE /* UIViewController+Rx.swift */; };
 		DF7C1A0E28915C100023CC11 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7C1A0C28915C100023CC11 /* ForgotPasswordViewController.swift */; };
 		DF7C1A0F28915C100023CC11 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF7C1A0D28915C100023CC11 /* ForgotPasswordViewController.xib */; };
-		DF8874D928B0D85B00B407C7 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8874D728B0D85B00B407C7 /* ProductCollectionViewCell.swift */; };
-		DF8874DA28B0D85B00B407C7 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8874D828B0D85B00B407C7 /* ProductCollectionViewCell.xib */; };
 		DF8874DD28B0E89500B407C7 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8874DB28B0E89500B407C7 /* CategoryCollectionViewCell.swift */; };
 		DF8874DE28B0E89500B407C7 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8874DC28B0E89500B407C7 /* CategoryCollectionViewCell.xib */; };
 		DF8C81AC2895409F00A574CE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8C81AB2895409F00A574CE /* LoginViewModel.swift */; };
@@ -70,6 +72,10 @@
 		DF12DEF428AE361900558DF7 /* PopupTableViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTableViewTableViewCell.swift; sourceTree = "<group>"; };
 		DF12DEF528AE361900558DF7 /* PopupTableViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupTableViewTableViewCell.xib; sourceTree = "<group>"; };
 		DF12DEF828AE47A600558DF7 /* ReuseableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableCell.swift; sourceTree = "<group>"; };
+		DF55E68028B21F3300B05776 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		DF55E68128B21F3300B05776 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
+		DF55E68828B22E8D00B05776 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
+		DF55E68928B22E8D00B05776 /* HeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderTableViewCell.xib; sourceTree = "<group>"; };
 		DF67FA0728ADF943001F446B /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		DF68816828B0FBB2007DC4D1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -82,8 +88,6 @@
 		DF6AAD2B2892B4AA008961FE /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		DF7C1A0C28915C100023CC11 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		DF7C1A0D28915C100023CC11 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
-		DF8874D728B0D85B00B407C7 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
-		DF8874D828B0D85B00B407C7 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
 		DF8874DB28B0E89500B407C7 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF8874DC28B0E89500B407C7 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		DF8C81AB2895409F00A574CE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -166,6 +170,24 @@
 			path = PopupTableViewCell;
 			sourceTree = "<group>";
 		};
+		DF55E67F28B21F1A00B05776 /* ProductTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DF55E68028B21F3300B05776 /* ProductTableViewCell.swift */,
+				DF55E68128B21F3300B05776 /* ProductTableViewCell.xib */,
+			);
+			path = ProductTableViewCell;
+			sourceTree = "<group>";
+		};
+		DF55E68728B22E6A00B05776 /* TableViewHeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+				DF55E68828B22E8D00B05776 /* HeaderTableViewCell.swift */,
+				DF55E68928B22E8D00B05776 /* HeaderTableViewCell.xib */,
+			);
+			path = TableViewHeaderCell;
+			sourceTree = "<group>";
+		};
 		DF6AAD1A2892AAFC008961FE /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,15 +256,6 @@
 			path = CategoryCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		DF8874D628B0D82000B407C7 /* ProductCollectionViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				DF8874D728B0D85B00B407C7 /* ProductCollectionViewCell.swift */,
-				DF8874D828B0D85B00B407C7 /* ProductCollectionViewCell.xib */,
-			);
-			path = ProductCollectionViewCell;
-			sourceTree = "<group>";
-		};
 		DF8C81AD289543B200A574CE /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +275,7 @@
 		DF8E7480288EABC50010DFD9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DF55E67F28B21F1A00B05776 /* ProductTableViewCell */,
 				DF12DEEE28AE2B3600558DF7 /* PopupList */,
 				DFBB0D4E28A25D3800EAA349 /* ManagerProduct */,
 				DFB6DABE289E8040008879BF /* UserSetting */,
@@ -276,7 +290,7 @@
 		DF8E7481288EABD10010DFD9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				DF8874D628B0D82000B407C7 /* ProductCollectionViewCell */,
+				DF55E68728B22E6A00B05776 /* TableViewHeaderCell */,
 				DF8874D128B0D63900B407C7 /* CategoryCollectionViewCell */,
 				DF8E7486288EAC190010DFD9 /* MainViewController.swift */,
 				DF8E7487288EAC190010DFD9 /* MainViewController.xib */,
@@ -454,8 +468,8 @@
 				DF12DEF228AE2B4E00558DF7 /* PopupListViewController.xib in Resources */,
 				DF7C1A0F28915C100023CC11 /* ForgotPasswordViewController.xib in Resources */,
 				DF12DEF728AE361900558DF7 /* PopupTableViewTableViewCell.xib in Resources */,
+				DF55E68328B21F3300B05776 /* ProductTableViewCell.xib in Resources */,
 				DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */,
-				DF8874DA28B0D85B00B407C7 /* ProductCollectionViewCell.xib in Resources */,
 				DFB6DAC2289E806C008879BF /* UserSettingViewController.xib in Resources */,
 				DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */,
 				DFBF41CC288CDB0E00203759 /* LaunchScreen.storyboard in Resources */,
@@ -464,6 +478,7 @@
 				DFBF41C9288CDB0E00203759 /* Assets.xcassets in Resources */,
 				DFBB0D5228A25D5400EAA349 /* ManagerProductViewController.xib in Resources */,
 				DF8E7489288EAC190010DFD9 /* MainViewController.xib in Resources */,
+				DF55E68B28B22E8D00B05776 /* HeaderTableViewCell.xib in Resources */,
 				DF6AAD1728929CA5008961FE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,6 +534,7 @@
 			files = (
 				DF12DEF628AE361900558DF7 /* PopupTableViewTableViewCell.swift in Sources */,
 				DFBF41C0288CDB0C00203759 /* AppDelegate.swift in Sources */,
+				DF55E68A28B22E8D00B05776 /* HeaderTableViewCell.swift in Sources */,
 				DF12DEF928AE47A600558DF7 /* ReuseableCell.swift in Sources */,
 				DF7C1A0E28915C100023CC11 /* ForgotPasswordViewController.swift in Sources */,
 				DF8C81B2289546A400A574CE /* UserSignIn.swift in Sources */,
@@ -546,11 +562,11 @@
 				DF8874DD28B0E89500B407C7 /* CategoryCollectionViewCell.swift in Sources */,
 				DFB6019328A8F6E6009CEA90 /* AddNewViewModel.swift in Sources */,
 				DF122CCA28ACFC08001E14EC /* ProductCategory.swift in Sources */,
+				DF55E68228B21F3300B05776 /* ProductTableViewCell.swift in Sources */,
 				DFC49A5F289C013F00F856FC /* ForgotPasswordViewModel.swift in Sources */,
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
 				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,
 				DF8C81B02895440300A574CE /* UserManager.swift in Sources */,
-				DF8874D928B0D85B00B407C7 /* ProductCollectionViewCell.swift in Sources */,
 				DFB6620128B09C65005FA68B /* UITextField+.swift in Sources */,
 				DF68816928B0FBB2007DC4D1 /* MainViewModel.swift in Sources */,
 			);
