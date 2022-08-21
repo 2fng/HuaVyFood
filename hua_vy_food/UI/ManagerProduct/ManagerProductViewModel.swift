@@ -1,8 +1,8 @@
 //
-//  MainViewModel.swift
+//  ManagerProductViewModel.swift
 //  hua_vy_food
 //
-//  Created by Hua Son Tung on 20/08/2022.
+//  Created by Hua Son Tung on 21/08/2022.
 //
 
 import Foundation
@@ -10,11 +10,11 @@ import Then
 import RxSwift
 import RxCocoa
 
-struct MainViewModel {
+struct ManagerProductViewModel {
     let productRepository: ProductRepositoryType
 }
 
-extension MainViewModel {
+extension ManagerProductViewModel {
     struct Input {
         let getCategoriesTrigger: Driver<Void>
         let getProductsTrigger: Driver<Void>

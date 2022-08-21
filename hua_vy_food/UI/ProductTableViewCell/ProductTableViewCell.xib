@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -71,6 +72,26 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sul-JI-cIS">
+                                <rect key="frame" x="302.5" y="76" width="90.5" height="33"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90.5" id="EeR-jb-ukR"/>
+                                    <constraint firstAttribute="height" constant="33" id="LaN-SS-Ib7"/>
+                                </constraints>
+                                <color key="tintColor" red="0.93333333330000001" green="0.57254901960000004" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Cập nhật">
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KF1-4y-GTE">
+                                <rect key="frame" x="360" y="10" width="33" height="33"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -79,10 +100,14 @@
                             <constraint firstItem="7gZ-Ss-Ily" firstAttribute="leading" secondItem="Pck-E1-2We" secondAttribute="trailing" constant="10" id="5bc-1D-gel"/>
                             <constraint firstAttribute="trailing" secondItem="bnh-pb-I0Z" secondAttribute="trailing" constant="10" id="8nA-jP-C6u"/>
                             <constraint firstItem="mQF-x5-tkD" firstAttribute="height" secondItem="h6v-R1-3p2" secondAttribute="height" id="8zA-zF-lUQ"/>
+                            <constraint firstAttribute="trailing" secondItem="KF1-4y-GTE" secondAttribute="trailing" constant="15" id="9NI-rB-poS"/>
                             <constraint firstAttribute="trailing" secondItem="y59-Ua-MAf" secondAttribute="trailing" constant="10" id="AkW-8D-PPb"/>
                             <constraint firstItem="h6v-R1-3p2" firstAttribute="top" secondItem="bnh-pb-I0Z" secondAttribute="bottom" constant="30" id="Aw4-zy-Byt"/>
+                            <constraint firstItem="KF1-4y-GTE" firstAttribute="top" secondItem="V3t-WS-QMf" secondAttribute="top" constant="10" id="BkY-Nw-Nyz"/>
                             <constraint firstItem="bnh-pb-I0Z" firstAttribute="leading" secondItem="Pck-E1-2We" secondAttribute="trailing" constant="10" id="Cnz-52-AWs"/>
+                            <constraint firstAttribute="bottom" secondItem="sul-JI-cIS" secondAttribute="bottom" constant="10" id="GMU-eI-A1h"/>
                             <constraint firstAttribute="bottom" secondItem="h6v-R1-3p2" secondAttribute="bottom" constant="10" id="IDK-A0-OLo"/>
+                            <constraint firstItem="KF1-4y-GTE" firstAttribute="width" secondItem="KF1-4y-GTE" secondAttribute="height" multiplier="1:1" id="IMH-78-2Pl"/>
                             <constraint firstItem="Pck-E1-2We" firstAttribute="leading" secondItem="V3t-WS-QMf" secondAttribute="leading" constant="5" id="JYM-BM-T4g"/>
                             <constraint firstAttribute="bottom" secondItem="mQF-x5-tkD" secondAttribute="bottom" constant="10" id="K5d-Li-zzZ"/>
                             <constraint firstItem="Pck-E1-2We" firstAttribute="top" secondItem="V3t-WS-QMf" secondAttribute="top" constant="5" id="KfH-4k-3zx"/>
@@ -91,6 +116,8 @@
                             <constraint firstItem="bnh-pb-I0Z" firstAttribute="top" secondItem="y59-Ua-MAf" secondAttribute="bottom" constant="5" id="Y10-cf-NYh"/>
                             <constraint firstAttribute="trailing" secondItem="h6v-R1-3p2" secondAttribute="trailing" constant="15" id="afL-0t-q0N"/>
                             <constraint firstItem="BOn-Kx-98I" firstAttribute="width" secondItem="BOn-Kx-98I" secondAttribute="height" multiplier="1:1" id="eUc-lC-e29"/>
+                            <constraint firstItem="KF1-4y-GTE" firstAttribute="height" secondItem="sul-JI-cIS" secondAttribute="height" id="kUX-H8-AKD"/>
+                            <constraint firstAttribute="trailing" secondItem="sul-JI-cIS" secondAttribute="trailing" constant="15" id="l56-78-3FD"/>
                             <constraint firstItem="mQF-x5-tkD" firstAttribute="leading" secondItem="BOn-Kx-98I" secondAttribute="trailing" constant="10" id="mMQ-Hu-5rt"/>
                             <constraint firstItem="y59-Ua-MAf" firstAttribute="top" secondItem="V3t-WS-QMf" secondAttribute="top" constant="10" id="n6G-hW-7Ry"/>
                             <constraint firstItem="y59-Ua-MAf" firstAttribute="leading" secondItem="Pck-E1-2We" secondAttribute="trailing" constant="10" id="tiI-Ku-HKu"/>
@@ -113,7 +140,9 @@
                 <outlet property="productImageView" destination="Pck-E1-2We" id="q4Z-rb-QoN"/>
                 <outlet property="productPrice" destination="7gZ-Ss-Ily" id="Ym7-c8-8Es"/>
                 <outlet property="productTitle" destination="y59-Ua-MAf" id="a1p-nV-Kma"/>
+                <outlet property="removeButton" destination="KF1-4y-GTE" id="7aY-Md-SuF"/>
                 <outlet property="subtractItem" destination="BOn-Kx-98I" id="2T6-pQ-MgE"/>
+                <outlet property="updateButton" destination="sul-JI-cIS" id="Lb6-6o-ne2"/>
                 <outlet property="viewContainer" destination="V3t-WS-QMf" id="6hc-lG-eNR"/>
             </connections>
             <point key="canvasLocation" x="215.94202898550725" y="143.63839285714286"/>
@@ -122,5 +151,9 @@
     <resources>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

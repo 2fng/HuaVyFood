@@ -17,7 +17,7 @@ final class MainViewController: UIViewController {
     private let viewModel = MainViewModel(productRepository: ProductRepository())
 
     // Triggers
-    let reloadTrigger = PublishSubject<Void>()
+    private let reloadTrigger = PublishSubject<Void>()
 
     // Variables
     private let refreshControl = UIRefreshControl()

@@ -20,9 +20,12 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
     @IBOutlet private weak var addItem: UIButton!
     @IBOutlet private weak var subtractItem: UIButton!
     @IBOutlet private weak var numberOfItemTextField: UITextField!
+    @IBOutlet private weak var removeButton: UIButton!
+    @IBOutlet private weak var updateButton: UIButton!
 
     private let disposeBag = DisposeBag()
     private var product = Product()
+    private var isAdmin = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -62,6 +65,16 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
             $0.isHidden = product.quantity >= 1 ? false : true
         }
 
+        removeButton.do {
+            $0.isHidden = !isAdmin
+        }
+
+        updateButton.do {
+            $0.isHidden = !isAdmin
+            $0.layer.cornerRadius = 5
+            $0.shadowView(shadowRadius: 5, cornerRadius: 5)
+        }
+
         addItem.rx.tap
             .map { [unowned self] in
                 self.addItem.animationSelect()
@@ -87,12 +100,29 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
             }
             .subscribe()
             .disposed(by: disposeBag)
+
+        removeButton.rx.tap
+            .map { [unowned self] in
+                self.removeButton.animationSelect()
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+
+        updateButton.rx.tap
+            .map { [unowned self] in
+                self.updateButton.animationSelect()
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 
     func configCell(data: Product, isAdmin: Bool = false) {
+        self.isAdmin = isAdmin
         addItem.isHidden = isAdmin
         subtractItem.isHidden = isAdmin ? true : product.quantity >= 1 ? false : true
         numberOfItemTextField.isHidden = isAdmin ? true : product.quantity >= 1 ? false : true
+        updateButton.isHidden = !isAdmin
+        removeButton.isHidden = !isAdmin
         self.product = data
         productImageView.sd_setImage(with: URL(string: data.imageURL),
                           placeholderImage: UIImage(named: "imagePlaceholder"))
