@@ -19,6 +19,7 @@
                 <outlet property="productImageView" destination="ydd-HZ-Vdq" id="XdA-M0-OJg"/>
                 <outlet property="saveButton" destination="XVk-on-Tla" id="ofS-8b-pev"/>
                 <outlet property="saveNewCategoryButton" destination="1bm-qp-Jw1" id="su4-MT-PsC"/>
+                <outlet property="titleLabel" destination="RNG-Kn-Ls0" id="UnK-Lk-dSH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

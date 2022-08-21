@@ -18,11 +18,13 @@ extension ManagerProductViewModel {
     struct Input {
         let getCategoriesTrigger: Driver<Void>
         let getProductsTrigger: Driver<Void>
+        let deleteProductTrigger: Driver<String>
     }
 
     struct Output {
         let categories: Driver<[ProductCategory]>
         let products: Driver<[Product]>
+        let deleteProduct: Driver<String>
         let loading: Driver<Bool>
         let error: Driver<Error>
     }
@@ -47,8 +49,17 @@ extension ManagerProductViewModel {
                     .asDriverOnErrorJustComplete()
             }
 
+        let deleteProduct = input.deleteProductTrigger
+            .flatMapLatest { documentID in
+                return self.productRepository.deleteProduct(documentID: documentID)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+
         return Output(categories: productCategories,
                       products: products,
+                      deleteProduct: deleteProduct,
                       loading: activityIndicator.asDriver(),
                       error: errorTracker.asDriver())
     }

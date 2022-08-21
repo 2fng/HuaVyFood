@@ -10,8 +10,10 @@ import RxSwift
 import RxCocoa
 import Then
 import Photos
+import SDWebImage
 
 final class AddNewViewController: UIViewController {
+    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var priceTextField: UITextField!
     @IBOutlet private weak var categoryStackView: UIStackView!
@@ -23,10 +25,11 @@ final class AddNewViewController: UIViewController {
     @IBOutlet private weak var productImageLabelTopConstraints: NSLayoutConstraint!
 
     private let disposeBag = DisposeBag()
-    private let viewModel = AddNewViewModel(productRepository: ProductRepository())
+    private var viewModel = AddNewViewModel(productRepository: ProductRepository(), isEditingProduct: false)
     private let submitTrigger = PublishSubject<Product>()
 
     // Variables
+    private var isEditingProduct = false
     private var product = Product()
     private var productCategories = [ProductCategory]()
     private var imageName = ""
@@ -80,6 +83,16 @@ final class AddNewViewController: UIViewController {
 
         priceTextField.keyboardType = .numberPad
 
+        // Edit scenario
+        if isEditingProduct {
+            nameTextField.text = product.name
+            priceTextField.text = String(product.price)
+            categoryTextField.text = product.category.name
+            productImageView.sd_setImage(with: URL(string: product.imageURL),
+                                          placeholderImage: UIImage(named: "imagePlaceholder"))
+            titleLabel.text = "Cập nhật thông tin sản phẩm"
+        }
+
         saveNewCategoryButton.do {
             $0.isHidden = true
             $0.layer.cornerRadius = 5
@@ -132,7 +145,13 @@ final class AddNewViewController: UIViewController {
         
     }
 
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+    func setEditValue(product: Product, isEditingProduct: Bool) {
+        self.product = product
+        self.isEditingProduct = isEditingProduct
+        self.viewModel.isEditingProduct = isEditingProduct
+    }
+
+    @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         let _ = tapGestureRecognizer.view as? UIImageView
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
@@ -141,7 +160,7 @@ final class AddNewViewController: UIViewController {
         present(vc, animated: true)
     }
 
-    @objc func categoryTapped() {
+    @objc private func categoryTapped() {
         let vc = PopupListViewController()
         vc.modalPresentationStyle = .overFullScreen
         vc.modalTransitionStyle = .crossDissolve
@@ -173,7 +192,9 @@ extension AddNewViewController {
     private var addNewProductMessage: Binder<String> {
         return Binder(self) { vc, alertMessage in
             vc.showAlert(message: alertMessage, okButtonOnly: true, okCompletion: {
-                vc.navigationController?.popViewController(animated: true)
+                if !(alertMessage == "Các trường thông tin phải được điền đầy đủ!") {
+                    vc.navigationController?.popViewController(animated: true)
+                }
             })
         }
     }
@@ -203,6 +224,11 @@ extension AddNewViewController: UITextFieldDelegate {
             let characterSet = CharacterSet(charactersIn: string)
             return allowedCharacters.isSuperset(of: characterSet)
         }
+        return true
+    }
+
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
 }

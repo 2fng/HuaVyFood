@@ -19,11 +19,16 @@ final class ManagerProductViewController: UIViewController {
 
     // Triggers
     private let reloadTrigger = PublishSubject<Void>()
+    private let deleteTrigger = PublishSubject<String>()
 
     // Variables
     private var products = [Product]()
     private var categories = [ProductCategory]()
     private let refreshControl = UIRefreshControl()
+
+    override func viewWillAppear(_ animated: Bool) {
+        reloadTrigger.onNext(())
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +62,8 @@ final class ManagerProductViewController: UIViewController {
         floatingButton.rx.tap
             .map { [unowned self] in
                 floatingButton.animationSelect()
-                navigationController?.pushViewController(AddNewViewController(), animated: true)
+                let vc = AddNewViewController()
+                navigationController?.pushViewController(vc, animated: true)
             }
             .subscribe()
             .disposed(by: disposeBag)
@@ -65,7 +71,7 @@ final class ManagerProductViewController: UIViewController {
 
     private func bindViewModel() {
         let input = ManagerProductViewModel.Input(getCategoriesTrigger: reloadTrigger.asDriverOnErrorJustComplete(),
-                                        getProductsTrigger: reloadTrigger.asDriverOnErrorJustComplete())
+                                                  getProductsTrigger: reloadTrigger.asDriverOnErrorJustComplete(), deleteProductTrigger: deleteTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -75,6 +81,10 @@ final class ManagerProductViewController: UIViewController {
 
         output.products
             .drive(returnProducts)
+            .disposed(by: disposeBag)
+
+        output.deleteProduct
+            .drive(deleteProductMessage)
             .disposed(by: disposeBag)
 
         output.loading
@@ -110,6 +120,16 @@ extension ManagerProductViewController {
             vc.tableView.reloadData()
         }
     }
+
+    private var deleteProductMessage: Binder<String> {
+        return Binder(self) { vc, message in
+            vc.showAlert(message: message,
+                         okButtonOnly: true,
+                         okCompletion: {
+                vc.reloadTrigger.onNext(())
+            })
+        }
+    }
 }
 
 extension ManagerProductViewController: UITableViewDataSource {
@@ -122,6 +142,18 @@ extension ManagerProductViewController: UITableViewDataSource {
         else { return UITableViewCell() }
         cell.selectionStyle = .none
         cell.configCell(data: products[indexPath.row], isAdmin: true)
+        cell.handleRemoveButton = { [unowned self] documentID in
+            self.showAlert(message: "Xác nhận xoá sản phẩm",
+                           rightCompletion: {
+                self.deleteTrigger.onNext(documentID)
+            })
+        }
+        cell.handleUpdateButton = { [unowned self] product in
+            let vc = AddNewViewController()
+            vc.awakeFromNib()
+            vc.setEditValue(product: product, isEditingProduct: true)
+            navigationController?.pushViewController(vc, animated: true)
+        }
         return cell
     }
 }

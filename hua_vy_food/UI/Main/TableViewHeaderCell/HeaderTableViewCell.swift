@@ -93,6 +93,11 @@ extension HeaderTableViewCell: UITextFieldDelegate {
         guard let textFieldText = textField.text else { return }
         handleSearch?(textFieldText.uppercased())
     }
+
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
 // MARK: CollectionView

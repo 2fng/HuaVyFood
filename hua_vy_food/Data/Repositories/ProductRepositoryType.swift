@@ -16,6 +16,8 @@ protocol ProductRepositoryType {
     func addNewCategory(categoryName: String) -> Observable<String>
     func addNewProduct(product: Product) -> Observable<String>
     func getProducts() -> Observable<[Product]>
+    func deleteProduct(documentID: String) -> Observable<String>
+    func updateProduct(product: Product) -> Observable<String>
 }
 
 final class ProductRepository: ProductRepositoryType {
@@ -53,23 +55,27 @@ final class ProductRepository: ProductRepositoryType {
                 if let error = error {
                     observer.onError(error)
                 } else {
-                    numberOfCategory = snapShot?.count ?? 0
-                    let _existCategory = database.collection("categories").whereField("name", isEqualTo: categoryName)
-                    _existCategory.getDocuments { _snapShot, _error in
-                        guard let _snapShot = _snapShot else { return }
-                        if _snapShot.isEmpty {
-                            database.collection("categories").addDocument(data: [
-                                "id": "HVFC\(numberOfCategory)",
-                                "name":  categoryName
-                            ]) { error in
-                                if let error = error {
-                                    observer.onError(error)
-                                } else {
-                                    observer.onNext("Thêm mới thể loại thành công!")
+                    if categoryName.isEmpty {
+                        observer.onNext("Tên thể loại không được để trống")
+                    } else {
+                        numberOfCategory = snapShot?.count ?? 0
+                        let _existCategory = database.collection("categories").whereField("name", isEqualTo: categoryName)
+                        _existCategory.getDocuments { _snapShot, _error in
+                            guard let _snapShot = _snapShot else { return }
+                            if _snapShot.isEmpty {
+                                database.collection("categories").addDocument(data: [
+                                    "id": "HVFC\(numberOfCategory)",
+                                    "name":  categoryName
+                                ]) { error in
+                                    if let error = error {
+                                        observer.onError(error)
+                                    } else {
+                                        observer.onNext("Thêm mới thể loại thành công!")
+                                    }
                                 }
+                            } else {
+                                observer.onNext("Thể loại đã tồn tại!")
                             }
-                        } else {
-                            observer.onNext("Thể loại đã tồn tại!")
                         }
                     }
                 }
@@ -85,6 +91,13 @@ final class ProductRepository: ProductRepositoryType {
             let storageRef = storage.reference()
             let imageRef = storageRef.child("images/\(product.imageName)")
             var numberOfProduct = 0
+
+            if product.name.isEmpty ||
+                product.price <= 0 ||
+                product.category.name.isEmpty ||
+                product.image == UIImage() {
+                observer.onNext("Các trường thông tin phải được điền đầy đủ!")
+            }
 
             database.collection("products").getDocuments { snapShot, error in
                 if let error = error {
@@ -147,6 +160,7 @@ final class ProductRepository: ProductRepositoryType {
                             for document in snapShot.documents {
                                 var product = Product()
                                 product.id = document["id"] as? String ?? ""
+                                product.documentID = document.documentID
                                 product.name = document["name"] as? String ?? ""
                                 product.price = document["price"] as? Double ?? 0.0
                                 product.category.id = document["categoryID"] as? String ?? ""
@@ -155,6 +169,57 @@ final class ProductRepository: ProductRepositoryType {
                                 returnProducts.append(product)
                             }
                             observer.onNext(returnProducts)
+                        }
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func deleteProduct(documentID: String) -> Observable<String> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("products").document(documentID).delete { error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    observer.onNext("Xoá thành công!")
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func updateProduct(product: Product) -> Observable<String> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            let storage = Storage.storage()
+            let storageRef = storage.reference()
+            let imageRef = storageRef.child("images/\(product.imageName)")
+            var imageURL = ""
+            if let imageData = product.image.pngData() {
+                
+                imageRef.putData(imageData) { _, error in
+                    if let error = error {
+                        observer.onError(error)
+                    } else {
+                        imageRef.downloadURL { url, error in
+                            imageURL = url?.absoluteString ?? ""
+                            database.collection("products").document(product.documentID).setData([
+                                "name":  product.name,
+                                "price": product.price,
+                                "categoryID": product.category.id,
+                                "categoryName": product.category.name,
+                                "imageName": product.imageName,
+                                "imageURL": imageURL,
+                            ]) { error in
+                                if let error = error {
+                                    observer.onError(error)
+                                } else {
+                                    observer.onNext("Cập nhật sản phẩm thành công!")
+                                }
+                            }
                         }
                     }
                 }
