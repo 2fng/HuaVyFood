@@ -90,6 +90,7 @@ final class AddNewViewController: UIViewController {
             categoryTextField.text = product.category.name
             productImageView.sd_setImage(with: URL(string: product.imageURL),
                                           placeholderImage: UIImage(named: "imagePlaceholder"))
+            product.image = productImageView.image ?? UIImage()
             titleLabel.text = "Cập nhật thông tin sản phẩm"
         }
 

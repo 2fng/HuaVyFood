@@ -199,7 +199,6 @@ final class ProductRepository: ProductRepositoryType {
             let imageRef = storageRef.child("images/\(product.imageName)")
             var imageURL = ""
             if let imageData = product.image.pngData() {
-                
                 imageRef.putData(imageData) { _, error in
                     if let error = error {
                         observer.onError(error)
@@ -223,6 +222,8 @@ final class ProductRepository: ProductRepositoryType {
                         }
                     }
                 }
+            } else {
+                observer.onNext("Cập nhật không thành công!")
             }
             return Disposables.create()
         }
