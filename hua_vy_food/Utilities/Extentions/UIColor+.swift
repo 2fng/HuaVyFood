@@ -37,7 +37,7 @@ extension UIColor {
         return color
     }
 
-    static let logoPink = UIColor.hex("#EE9278")
+    static let logoPink = UIColor.hex("#FC8C84")
     static let primaryDark = UIColor.hex("#DF3A2D")
     static let whiteTransparent50 = UIColor.hex("#8Cffffff")
 }
