@@ -15,6 +15,8 @@ final class HeaderTableViewCell: UITableViewCell, ReuseableCell {
     @IBOutlet private weak var cartButton: UIButton!
     @IBOutlet private weak var searchTextField: CustomTextField!
     @IBOutlet private weak var categoryCollectionView: UICollectionView!
+    @IBOutlet private weak var bannerMaskView: UIView!
+    @IBOutlet private weak var bannerImageView: UIImageView!
 
     private var disposeBag = DisposeBag()
 
@@ -52,6 +54,14 @@ final class HeaderTableViewCell: UITableViewCell, ReuseableCell {
             $0.layer.cornerRadius = 15
             $0.backgroundColor = .white
             $0.shadowView(color: .lightGray, cornerRadius: 15)
+        }
+
+        bannerImageView.do {
+            $0.layer.cornerRadius = 15
+        }
+
+        bannerMaskView.do {
+            $0.layer.cornerRadius = 15
         }
 
         searchTextField.do {
