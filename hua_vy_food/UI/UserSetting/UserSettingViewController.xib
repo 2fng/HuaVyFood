@@ -33,7 +33,7 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rnj-vZ-sgK">
                                     <rect key="frame" x="0.0" y="5" width="368" height="1"/>
-                                    <color key="backgroundColor" red="0.93333333330000001" green="0.57254901960000004" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="jKS-Ci-fRM"/>
                                     </constraints>
@@ -45,7 +45,7 @@
                                         <constraint firstAttribute="width" constant="80" id="gyr-hg-eHy"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
-                                    <color key="textColor" red="0.93333333330000001" green="0.57254901960000004" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1j-bp-Kyn">
@@ -103,7 +103,7 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YA7-qD-rJ3">
                                     <rect key="frame" x="0.0" y="5" width="368" height="1"/>
-                                    <color key="backgroundColor" red="0.93333333330000001" green="0.57254901960000004" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="ese-Cs-MRx"/>
                                     </constraints>
@@ -115,7 +115,7 @@
                                         <constraint firstAttribute="width" constant="120" id="Tfa-4W-KLg"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
-                                    <color key="textColor" red="0.93333333330000001" green="0.57254901960000004" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zna-yW-Zmw">
@@ -145,7 +145,7 @@
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7x-An-f1j">
                     <rect key="frame" x="23" y="780" width="368" height="50"/>
-                    <color key="backgroundColor" red="0.93333333330000001" green="0.57254901960000004" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="FaH-Lt-qAz"/>
                     </constraints>
