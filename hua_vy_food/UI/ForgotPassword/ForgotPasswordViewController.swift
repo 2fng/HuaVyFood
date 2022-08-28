@@ -32,7 +32,11 @@ final class ForgotPasswordViewController: UIViewController {
 
         output.submit
             .drive(onNext: { [weak self] _ in
-                self?.navigationController?.setViewControllers([LoginViewController()], animated: true)
+                self?.showAlert(message: "Email đặt lại mật khẩu đã được gửi tới bạn!",
+                                okButtonOnly: true,
+                                okCompletion: {
+                    self?.navigationController?.setViewControllers([LoginViewController()], animated: true)
+                })
             })
             .disposed(by: disposeBag)
 
