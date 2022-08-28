@@ -44,7 +44,11 @@ final class RegisterViewController: UIViewController {
 
         output.register
             .drive(onNext: { [weak self] _ in
-                self?.navigationController?.setViewControllers([MainViewController()], animated: true)
+                self?.showAlert(message: "Đăng ký tài khoản thành công!",
+                                okButtonOnly: true,
+                                okCompletion: {
+                    self?.navigationController?.setViewControllers([MainViewController()], animated: true)
+                })
             })
             .disposed(by: disposeBag)
 
