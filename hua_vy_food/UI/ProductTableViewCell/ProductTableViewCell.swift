@@ -49,7 +49,7 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
         viewContainer.do {
             $0.backgroundColor = .white
             $0.layer.cornerRadius = 5
-            $0.shadowView(color: .black, shadowRadius: 5, shadowOpacity: 0.1, cornerRadius: 5)
+            $0.shadowView(color: .black, shadowRadius: 5, shadowOpacity: 0.05, cornerRadius: 5)
         }
 
         productImageView.do {

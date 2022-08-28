@@ -124,7 +124,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" red="0.93725490196078431" green="0.95294117647058818" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="V3t-WS-QMf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="3iK-pn-cFe"/>
                     <constraint firstAttribute="trailing" secondItem="V3t-WS-QMf" secondAttribute="trailing" constant="10" id="SPj-vK-4KB"/>
