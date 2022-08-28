@@ -16,7 +16,7 @@ final class UserSettingViewController: UIViewController {
     @IBOutlet private weak var adminViewContainer: UIView!
     @IBOutlet private weak var adminOrderButton: UIButton!
     @IBOutlet private weak var adminProductButton: UIButton!
-    @IBOutlet private weak var adminAccountButton: UIButton!
+    @IBOutlet private weak var adminCategoryButton: UIButton!
     @IBOutlet private weak var adminResponseButton: UIButton!
     // User
     @IBOutlet private weak var userViewContainer: UIView!
@@ -56,7 +56,7 @@ final class UserSettingViewController: UIViewController {
     private func setupView() {
         self.navigationItem.backButtonTitle = "Quay lại"
         self.navigationController?.navigationBar.tintColor = UIColor.logoPink
-        let adminButtons = [adminOrderButton, adminAccountButton, adminProductButton, adminResponseButton]
+        let adminButtons = [adminOrderButton, adminCategoryButton, adminProductButton, adminResponseButton]
         adminViewContainer.isHidden = !UserManager.shared.getUserIsAdmin()
         
         logOutButton.do {
