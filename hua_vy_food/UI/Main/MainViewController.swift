@@ -12,6 +12,8 @@ import Then
 
 final class MainViewController: UIViewController {
     @IBOutlet private weak var productTableView: UITableView!
+    @IBOutlet private weak var bottomCartViewContainer: UIView!
+    @IBOutlet weak var testLabel: UILabel!
 
     private var disposeBag = DisposeBag()
     private let viewModel = MainViewModel(productRepository: ProductRepository())
@@ -25,6 +27,7 @@ final class MainViewController: UIViewController {
     private var products = [Product]()
     private var categories = [ProductCategory]()
     private var categorySelectedIndex = 0
+    private var cartItems = [Product]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +71,7 @@ final class MainViewController: UIViewController {
 
     private func setupView() {
         self.navigationItem.backButtonTitle = "Quay lại"
+        bottomCartViewContainer.isHidden = true
         hideKeyboardWhenTappedAround()
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
 
@@ -159,11 +163,35 @@ extension MainViewController: UITableViewDataSource {
             else { return UITableViewCell() }
             cell.selectionStyle = .none
             cell.configCell(data: searchContent[indexPath.row - 1])
+            cell.handleAdjustItemQuantity = { [unowned self] product in
+                if let index = cartItems.firstIndex(where: { cartProduct in
+                    cartProduct.id == product.id
+                }) {
+                    if product.quantity > 0 {
+                        cartItems[index] = product
+                    } else {
+                        cartItems.remove(at: index)
+                    }
+                } else {
+                    cartItems.append(product)
+                }
+                testLabel.text = String(cartItems.count)
+            }
             return cell
         }
     }
 }
 
 extension MainViewController: UITableViewDelegate {
-    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        UIView.animate(withDuration: 0.5) { [unowned self] in
+            self.bottomCartViewContainer.isHidden = scrollView.contentOffset.y >= 50 ? false : true
+        }
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        UIView.animate(withDuration: 0.5) { [unowned self] in
+            self.bottomCartViewContainer.isHidden = scrollView.contentOffset.y >= 50 ? false : true
+        }
+    }
 }

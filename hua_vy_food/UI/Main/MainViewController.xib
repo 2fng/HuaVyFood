@@ -4,12 +4,15 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="hua_vy_food" customModuleProvider="target">
             <connections>
-                <outlet property="productTableView" destination="QXy-0J-4ZR" id="vmE-hK-1tk"/>
+                <outlet property="bottomCartViewContainer" destination="Qob-ST-h4f" id="kyC-5E-hmt"/>
+                <outlet property="productTableView" destination="KDP-aG-knL" id="GgJ-d9-8Jv"/>
+                <outlet property="testLabel" destination="Xzi-d0-V1B" id="0tl-q5-zti"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,15 +21,59 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" id="QXy-0J-4ZR">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.93725490196078431" green="0.95294117647058818" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
-                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4is-Ys-BXM">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wvy-vP-SZm">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KDP-aG-knL">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                                    <color key="backgroundColor" red="0.93725490199999995" green="0.95294117649999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </tableView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qob-ST-h4f">
+                                    <rect key="frame" x="0.0" y="768" width="414" height="50"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xzi-d0-V1B">
+                                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                    <constraints>
+                                        <constraint firstItem="Xzi-d0-V1B" firstAttribute="leading" secondItem="Qob-ST-h4f" secondAttribute="leading" id="NzN-8r-tKx"/>
+                                        <constraint firstItem="Xzi-d0-V1B" firstAttribute="top" secondItem="Qob-ST-h4f" secondAttribute="top" id="fte-Rf-Bwe"/>
+                                        <constraint firstAttribute="height" constant="50" id="nYb-d2-OZw"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.95294117649999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="wvy-vP-SZm" secondAttribute="bottom" id="5bY-tq-jWJ"/>
+                        <constraint firstAttribute="trailing" secondItem="wvy-vP-SZm" secondAttribute="trailing" id="9AX-NU-c07"/>
+                        <constraint firstItem="wvy-vP-SZm" firstAttribute="top" secondItem="4is-Ys-BXM" secondAttribute="top" id="dOM-jo-OrA"/>
+                        <constraint firstItem="wvy-vP-SZm" firstAttribute="leading" secondItem="4is-Ys-BXM" secondAttribute="leading" id="gTe-UZ-6Ps"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.93725490196078431" green="0.95294117647058818" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4is-Ys-BXM" secondAttribute="trailing" id="Jvz-wP-AM5"/>
+                <constraint firstItem="4is-Ys-BXM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fbD-VG-7Va"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="4is-Ys-BXM" secondAttribute="bottom" id="mbO-Pk-0d9"/>
+                <constraint firstItem="4is-Ys-BXM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="z5T-1Q-AJP"/>
+            </constraints>
             <point key="canvasLocation" x="139" y="99"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

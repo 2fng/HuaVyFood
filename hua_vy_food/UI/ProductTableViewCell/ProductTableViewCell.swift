@@ -32,6 +32,7 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
     // Callbacks
     var handleRemoveButton: ((String) -> Void)?
     var handleUpdateButton: ((Product) -> Void)?
+    var handleAdjustItemQuantity: ((Product) -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -90,6 +91,7 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
                     subtractItem.isHidden = product.quantity >= 1 ? false : true
                     numberOfItemTextField.isHidden = product.quantity >= 1 ? false : true
                 }
+                handleAdjustItemQuantity?(product)
             }
             .subscribe()
             .disposed(by: disposeBag)
@@ -103,6 +105,7 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
                     subtractItem.isHidden = product.quantity >= 1 ? false : true
                     numberOfItemTextField.isHidden = product.quantity >= 1 ? false : true
                 }
+                handleAdjustItemQuantity?(product)
             }
             .subscribe()
             .disposed(by: disposeBag)
