@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0ACE6AACA6824CDFEE40C7FF /* Pods_hua_vy_food.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */; };
+		DF031A6128C03EA8008960CD /* ImageSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF031A5F28C03EA8008960CD /* ImageSliderCollectionViewCell.swift */; };
+		DF031A6228C03EA8008960CD /* ImageSliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF031A6028C03EA8008960CD /* ImageSliderCollectionViewCell.xib */; };
 		DF122CCA28ACFC08001E14EC /* ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF122CC928ACFC08001E14EC /* ProductCategory.swift */; };
 		DF12DEF128AE2B4E00558DF7 /* PopupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF12DEEF28AE2B4E00558DF7 /* PopupListViewController.swift */; };
 		DF12DEF228AE2B4E00558DF7 /* PopupListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF12DEF028AE2B4E00558DF7 /* PopupListViewController.xib */; };
@@ -67,6 +69,8 @@
 		1A41161FAF4EAA2374DEDB2A /* Pods-hua_vy_food.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.release.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.release.xcconfig"; sourceTree = "<group>"; };
 		3E14807D4A1DD20150F1C079 /* Pods-hua_vy_food.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.debug.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.debug.xcconfig"; sourceTree = "<group>"; };
 		D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hua_vy_food.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF031A5F28C03EA8008960CD /* ImageSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderCollectionViewCell.swift; sourceTree = "<group>"; };
+		DF031A6028C03EA8008960CD /* ImageSliderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSliderCollectionViewCell.xib; sourceTree = "<group>"; };
 		DF122CC928ACFC08001E14EC /* ProductCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategory.swift; sourceTree = "<group>"; };
 		DF12DEEF28AE2B4E00558DF7 /* PopupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupListViewController.swift; sourceTree = "<group>"; };
 		DF12DEF028AE2B4E00558DF7 /* PopupListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupListViewController.xib; sourceTree = "<group>"; };
@@ -151,6 +155,15 @@
 				1A41161FAF4EAA2374DEDB2A /* Pods-hua_vy_food.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		DF031A5E28C03E28008960CD /* ImageSliderCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				DF031A5F28C03EA8008960CD /* ImageSliderCollectionViewCell.swift */,
+				DF031A6028C03EA8008960CD /* ImageSliderCollectionViewCell.xib */,
+			);
+			path = ImageSliderCollectionView;
 			sourceTree = "<group>";
 		};
 		DF12DEEE28AE2B3600558DF7 /* PopupList */ = {
@@ -292,6 +305,7 @@
 		DF8E7481288EABD10010DFD9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				DF031A5E28C03E28008960CD /* ImageSliderCollectionView */,
 				DF55E68728B22E6A00B05776 /* TableViewHeaderCell */,
 				DF8874D128B0D63900B407C7 /* CategoryCollectionViewCell */,
 				DF8E7486288EAC190010DFD9 /* MainViewController.swift */,
@@ -481,6 +495,7 @@
 				DFBF41C9288CDB0E00203759 /* Assets.xcassets in Resources */,
 				DFBB0D5228A25D5400EAA349 /* ManagerProductViewController.xib in Resources */,
 				DF8E7489288EAC190010DFD9 /* MainViewController.xib in Resources */,
+				DF031A6228C03EA8008960CD /* ImageSliderCollectionViewCell.xib in Resources */,
 				DF55E68B28B22E8D00B05776 /* HeaderTableViewCell.xib in Resources */,
 				DF6AAD1728929CA5008961FE /* GoogleService-Info.plist in Resources */,
 			);
@@ -539,6 +554,7 @@
 				DFBF41C0288CDB0C00203759 /* AppDelegate.swift in Sources */,
 				DF55E68A28B22E8D00B05776 /* HeaderTableViewCell.swift in Sources */,
 				DF12DEF928AE47A600558DF7 /* ReuseableCell.swift in Sources */,
+				DF031A6128C03EA8008960CD /* ImageSliderCollectionViewCell.swift in Sources */,
 				DF7C1A0E28915C100023CC11 /* ForgotPasswordViewController.swift in Sources */,
 				DF8C81B2289546A400A574CE /* UserSignIn.swift in Sources */,
 				DFB4D0BE289121C300B109C0 /* RegisterViewController.swift in Sources */,
