@@ -4,15 +4,16 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="hua_vy_food" customModuleProvider="target">
             <connections>
                 <outlet property="bottomCartViewContainer" destination="Qob-ST-h4f" id="kyC-5E-hmt"/>
+                <outlet property="cartQuantityLabel" destination="IXk-72-dkv" id="KuE-aB-gSE"/>
+                <outlet property="cartTotalPriceLabel" destination="Cce-cJ-TU4" id="AXy-wm-q2P"/>
+                <outlet property="checkoutButton" destination="wxg-bJ-y6N" id="zRD-wa-Jxm"/>
                 <outlet property="productTableView" destination="KDP-aG-knL" id="GgJ-d9-8Jv"/>
-                <outlet property="testLabel" destination="Xzi-d0-V1B" id="0tl-q5-zti"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,18 +35,68 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qob-ST-h4f">
                                     <rect key="frame" x="0.0" y="768" width="414" height="50"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xzi-d0-V1B">
-                                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cartIconBottom" translatesAutoresizingMaskIntoConstraints="NO" id="7wI-jZ-Oij">
+                                            <rect key="frame" x="20" y="10" width="30" height="30"/>
+                                            <color key="tintColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="0Ls-g6-OhN"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXk-72-dkv" customClass="PaddingLabel" customModule="hua_vy_food" customModuleProvider="target">
+                                            <rect key="frame" x="50" y="5" width="16" height="16"/>
+                                            <color key="backgroundColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="uF7-Sd-AMT"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="wf8-c6-8mY"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxg-bJ-y6N">
+                                            <rect key="frame" x="264" y="0.0" width="150" height="50"/>
+                                            <color key="backgroundColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="150" id="dfs-Dd-b5g"/>
+                                            </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Thanh toán"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120.000 vnđ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cce-cJ-TU4">
+                                            <rect key="frame" x="158.5" y="15.5" width="90.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                    <color key="backgroundColor" red="0.93725490199999995" green="0.95294117649999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="Xzi-d0-V1B" firstAttribute="leading" secondItem="Qob-ST-h4f" secondAttribute="leading" id="NzN-8r-tKx"/>
-                                        <constraint firstItem="Xzi-d0-V1B" firstAttribute="top" secondItem="Qob-ST-h4f" secondAttribute="top" id="fte-Rf-Bwe"/>
+                                        <constraint firstItem="7wI-jZ-Oij" firstAttribute="leading" secondItem="Qob-ST-h4f" secondAttribute="leading" constant="20" id="0DB-yx-vbz"/>
+                                        <constraint firstItem="IXk-72-dkv" firstAttribute="top" secondItem="Qob-ST-h4f" secondAttribute="top" constant="5" id="AB3-K8-CyJ"/>
+                                        <constraint firstItem="wxg-bJ-y6N" firstAttribute="top" secondItem="Qob-ST-h4f" secondAttribute="top" id="Bvm-8m-rTk"/>
+                                        <constraint firstAttribute="trailing" secondItem="wxg-bJ-y6N" secondAttribute="trailing" id="CLV-tK-5ax"/>
+                                        <constraint firstItem="Cce-cJ-TU4" firstAttribute="centerY" secondItem="Qob-ST-h4f" secondAttribute="centerY" id="W2n-Xf-wJn"/>
+                                        <constraint firstItem="7wI-jZ-Oij" firstAttribute="top" secondItem="Qob-ST-h4f" secondAttribute="top" constant="10" id="hNt-72-FWK"/>
                                         <constraint firstAttribute="height" constant="50" id="nYb-d2-OZw"/>
+                                        <constraint firstItem="IXk-72-dkv" firstAttribute="leading" secondItem="7wI-jZ-Oij" secondAttribute="trailing" id="oT8-Er-md1"/>
+                                        <constraint firstAttribute="bottom" secondItem="wxg-bJ-y6N" secondAttribute="bottom" id="qE2-rI-fx4"/>
+                                        <constraint firstItem="wxg-bJ-y6N" firstAttribute="leading" secondItem="Cce-cJ-TU4" secondAttribute="trailing" constant="15" id="s3t-pG-UKl"/>
+                                        <constraint firstAttribute="bottom" secondItem="7wI-jZ-Oij" secondAttribute="bottom" constant="10" id="yZq-4x-sjr"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -72,8 +123,6 @@
         </view>
     </objects>
     <resources>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="cartIconBottom" width="64" height="68"/>
     </resources>
 </document>

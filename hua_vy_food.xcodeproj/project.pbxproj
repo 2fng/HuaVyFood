@@ -10,6 +10,7 @@
 		0ACE6AACA6824CDFEE40C7FF /* Pods_hua_vy_food.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */; };
 		DF031A6128C03EA8008960CD /* ImageSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF031A5F28C03EA8008960CD /* ImageSliderCollectionViewCell.swift */; };
 		DF031A6228C03EA8008960CD /* ImageSliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF031A6028C03EA8008960CD /* ImageSliderCollectionViewCell.xib */; };
+		DF031A6628C09528008960CD /* UILabelPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF031A6528C09528008960CD /* UILabelPadding.swift */; };
 		DF122CCA28ACFC08001E14EC /* ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF122CC928ACFC08001E14EC /* ProductCategory.swift */; };
 		DF12DEF128AE2B4E00558DF7 /* PopupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF12DEEF28AE2B4E00558DF7 /* PopupListViewController.swift */; };
 		DF12DEF228AE2B4E00558DF7 /* PopupListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF12DEF028AE2B4E00558DF7 /* PopupListViewController.xib */; };
@@ -71,6 +72,7 @@
 		D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hua_vy_food.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF031A5F28C03EA8008960CD /* ImageSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF031A6028C03EA8008960CD /* ImageSliderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSliderCollectionViewCell.xib; sourceTree = "<group>"; };
+		DF031A6528C09528008960CD /* UILabelPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelPadding.swift; sourceTree = "<group>"; };
 		DF122CC928ACFC08001E14EC /* ProductCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategory.swift; sourceTree = "<group>"; };
 		DF12DEEF28AE2B4E00558DF7 /* PopupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupListViewController.swift; sourceTree = "<group>"; };
 		DF12DEF028AE2B4E00558DF7 /* PopupListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupListViewController.xib; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				DF6AAD202892ABF3008961FE /* ActivityIndicator.swift */,
 				DF12DEF828AE47A600558DF7 /* ReuseableCell.swift */,
 				DFD1902A28B0BAFA00CED2C0 /* CustomTextField.swift */,
+				DF031A6528C09528008960CD /* UILabelPadding.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				DFC49A5F289C013F00F856FC /* ForgotPasswordViewModel.swift in Sources */,
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
 				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,
+				DF031A6628C09528008960CD /* UILabelPadding.swift in Sources */,
 				DF8C81B02895440300A574CE /* UserManager.swift in Sources */,
 				DFB6620128B09C65005FA68B /* UITextField+.swift in Sources */,
 				DF68816928B0FBB2007DC4D1 /* MainViewModel.swift in Sources */,

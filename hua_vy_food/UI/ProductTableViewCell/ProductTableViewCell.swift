@@ -130,8 +130,6 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
     func configCell(data: Product, isAdmin: Bool = false) {
         self.isAdmin = isAdmin
         addItem.isHidden = isAdmin
-        subtractItem.isHidden = isAdmin ? true : product.quantity >= 1 ? false : true
-        numberOfItemTextField.isHidden = isAdmin ? true : product.quantity >= 1 ? false : true
         updateButton.isHidden = !isAdmin
         removeButton.isHidden = !isAdmin
         self.product = data
