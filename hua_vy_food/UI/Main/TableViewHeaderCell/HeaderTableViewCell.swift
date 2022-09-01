@@ -15,13 +15,17 @@ final class HeaderTableViewCell: UITableViewCell, ReuseableCell {
     @IBOutlet private weak var cartButton: UIButton!
     @IBOutlet private weak var searchTextField: CustomTextField!
     @IBOutlet private weak var categoryCollectionView: UICollectionView!
-    @IBOutlet private weak var bannerMaskView: UIView!
-    @IBOutlet private weak var bannerImageView: UIImageView!
+    @IBOutlet private weak var imageSliderCollectionView: UICollectionView!
 
     private var disposeBag = DisposeBag()
 
     // Variables
     private var categories = [ProductCategory]()
+    private var imageSliderContent = [UIImage(named: "saleOffBanner"),
+                                      UIImage(named: "phanHoiBanner"),
+                                      UIImage(named: "freeshipBanner")]
+    var timer = Timer()
+    var counter = 0
     private var categorySelectedIndex = 0
 
     // Callbacks
@@ -37,6 +41,15 @@ final class HeaderTableViewCell: UITableViewCell, ReuseableCell {
     }
 
     private func setupView() {
+        timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(handleSlidingEffect), userInfo: nil, repeats: true)
+
+        imageSliderCollectionView.do {
+            $0.layer.cornerRadius = 15
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(ImageSliderCollectionViewCell.nib, forCellWithReuseIdentifier: ImageSliderCollectionViewCell.identifier)
+        }
+
         categoryCollectionView.do {
             $0.semanticContentAttribute = .forceRightToLeft
             $0.delegate = self
@@ -54,14 +67,6 @@ final class HeaderTableViewCell: UITableViewCell, ReuseableCell {
             $0.layer.cornerRadius = 15
             $0.backgroundColor = .white
             $0.shadowView(color: .lightGray, cornerRadius: 15)
-        }
-
-        bannerImageView.do {
-            $0.layer.cornerRadius = 15
-        }
-
-        bannerMaskView.do {
-            $0.layer.cornerRadius = 15
         }
 
         searchTextField.do {
@@ -91,6 +96,19 @@ final class HeaderTableViewCell: UITableViewCell, ReuseableCell {
         categoryCollectionView.reloadData()
     }
 
+    @objc private func handleSlidingEffect() {
+        if counter < imageSliderContent.count {
+            let indexPath = IndexPath(item: counter, section: 0)
+            imageSliderCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            counter += 1
+        } else {
+            counter = 0
+            let indexPath = IndexPath(item: counter, section: 0)
+            imageSliderCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            counter += 1
+        }
+    }
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -113,32 +131,50 @@ extension HeaderTableViewCell: UITextFieldDelegate {
 // MARK: CollectionView
 extension HeaderTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == imageSliderCollectionView {
+            return imageSliderContent.count
+        }
         return categories.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
-        cell.configCell(data: categories[indexPath.item], isSelected: indexPath.item == categorySelectedIndex)
-        return cell
+        if collectionView == imageSliderCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageSliderCollectionViewCell.identifier, for: indexPath) as? ImageSliderCollectionViewCell else { return UICollectionViewCell() }
+            cell.configCell(image: imageSliderContent[indexPath.item] ?? UIImage())
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
+            cell.configCell(data: categories[indexPath.item],
+                            isSelected: indexPath.item == categorySelectedIndex)
+            return cell
+        }
     }
 }
 
 extension HeaderTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        categorySelectedIndex = indexPath.item
-        handleCategoryTapped?(categories[indexPath.item].id, categorySelectedIndex)
-        categoryCollectionView.reloadData()
+        if collectionView == categoryCollectionView {
+            categorySelectedIndex = indexPath.item
+            handleCategoryTapped?(categories[indexPath.item].id, categorySelectedIndex)
+            categoryCollectionView.reloadData()
+        }
     }
 }
 
 extension HeaderTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = categoryCollectionView.bounds.width / 6
-        let height = categoryCollectionView.bounds.height
-        return CGSize(width: width, height: height)
+        if collectionView == categoryCollectionView {
+            let width = categoryCollectionView.bounds.width / 6
+            let height = categoryCollectionView.bounds.height
+            return CGSize(width: width, height: height)
+        }
+        return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        if collectionView == categoryCollectionView {
+            return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        }
+        return UIEdgeInsets.zero
     }
 }
