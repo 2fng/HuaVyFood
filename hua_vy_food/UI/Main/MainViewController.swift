@@ -13,7 +13,9 @@ import Then
 final class MainViewController: UIViewController {
     @IBOutlet private weak var productTableView: UITableView!
     @IBOutlet private weak var bottomCartViewContainer: UIView!
-    @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet private weak var cartQuantityLabel: UILabel!
+    @IBOutlet private weak var cartTotalPriceLabel: UILabel!
+    @IBOutlet private weak var checkoutButton: UIButton!
 
     private var disposeBag = DisposeBag()
     private let viewModel = MainViewModel(productRepository: ProductRepository())
@@ -28,6 +30,7 @@ final class MainViewController: UIViewController {
     private var categories = [ProductCategory]()
     private var categorySelectedIndex = 0
     private var cartItems = [Product]()
+    private var totalCart = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +90,11 @@ final class MainViewController: UIViewController {
             $0.separatorStyle = .none
             $0.register(HeaderTableViewCell.nib, forCellReuseIdentifier: HeaderTableViewCell.identifier)
             $0.register(ProductTableViewCell.nib, forCellReuseIdentifier: ProductTableViewCell.identifier)
+        }
+
+        cartQuantityLabel.do {
+            $0.clipsToBounds = true
+            $0.layer.cornerRadius = 8
         }
     }
 
@@ -168,14 +176,20 @@ extension MainViewController: UITableViewDataSource {
                     cartProduct.id == product.id
                 }) {
                     if product.quantity > 0 {
+                        totalCart -= (cartItems[index].price * Double(cartItems[index].quantity))
                         cartItems[index] = product
+                        totalCart += (cartItems[index].price * Double(cartItems[index].quantity))
                     } else {
+                        totalCart -= (cartItems[index].price * Double(cartItems[index].quantity))
                         cartItems.remove(at: index)
                     }
+                    searchContent[index] = product
                 } else {
                     cartItems.append(product)
+                    totalCart += (product.price * Double(product.quantity))
                 }
-                testLabel.text = String(cartItems.count)
+                cartTotalPriceLabel.text = String(totalCart)
+                cartQuantityLabel.text = String(cartItems.count)
             }
             return cell
         }
