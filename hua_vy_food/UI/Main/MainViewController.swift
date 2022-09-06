@@ -29,8 +29,7 @@ final class MainViewController: UIViewController {
     private var products = [Product]()
     private var categories = [ProductCategory]()
     private var categorySelectedIndex = 0
-    private var cartItems = [Product]()
-    private var totalCart = 0.0
+    private var cart = Cart()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +95,13 @@ final class MainViewController: UIViewController {
             $0.clipsToBounds = true
             $0.layer.cornerRadius = 8
         }
+
+        checkoutButton.rx.tap
+            .map { [unowned self] in
+                print("Cart: \(cart)")
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 
     @objc func refresh(_ sender: AnyObject) {
@@ -172,24 +178,24 @@ extension MainViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             cell.configCell(data: searchContent[indexPath.row - 1])
             cell.handleAdjustItemQuantity = { [unowned self] product in
-                if let index = cartItems.firstIndex(where: { cartProduct in
+                if let index = cart.items.firstIndex(where: { cartProduct in
                     cartProduct.id == product.id
                 }) {
                     if product.quantity > 0 {
-                        totalCart -= (cartItems[index].price * Double(cartItems[index].quantity))
-                        cartItems[index] = product
-                        totalCart += (cartItems[index].price * Double(cartItems[index].quantity))
+                        cart.totalValue -= (cart.items[index].price * Double(cart.items[index].quantity))
+                        cart.items[index] = product
+                        cart.totalValue += (cart.items[index].price * Double(cart.items[index].quantity))
                     } else {
-                        totalCart -= (cartItems[index].price * Double(cartItems[index].quantity))
-                        cartItems.remove(at: index)
+                        cart.totalValue -= (cart.items[index].price * Double(cart.items[index].quantity))
+                        cart.items.remove(at: index)
                     }
                     searchContent[index] = product
                 } else {
-                    cartItems.append(product)
-                    totalCart += (product.price * Double(product.quantity))
+                    cart.items.append(product)
+                    cart.totalValue += (product.price * Double(product.quantity))
                 }
-                cartTotalPriceLabel.text = String(totalCart)
-                cartQuantityLabel.text = String(cartItems.count)
+                cartTotalPriceLabel.text = cart.totalValue > 0 ? String(cart.totalValue) : ""
+                cartQuantityLabel.text = String(cart.items.count)
             }
             return cell
         }
