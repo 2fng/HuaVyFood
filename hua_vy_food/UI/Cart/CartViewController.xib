@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartViewController" customModule="hua_vy_food" customModuleProvider="target">
             <connections>
+                <outlet property="checkoutButton" destination="SIm-je-wo7" id="neT-aS-G2i"/>
                 <outlet property="tableView" destination="FVe-Zp-CFp" id="5bh-0z-S6h"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,19 +20,42 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="FVe-Zp-CFp">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="738"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIm-je-wo7">
+                    <rect key="frame" x="23" y="797" width="368" height="50"/>
+                    <color key="backgroundColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="jbe-ui-X86"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <attributedString key="attributedTitle">
+                            <fragment content="Thanh toán">
+                                <attributes>
+                                    <font key="NSFont" size="16" name="Helvetica-Bold"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </buttonConfiguration>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="FVe-Zp-CFp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="JT6-SW-I86"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FVe-Zp-CFp" secondAttribute="trailing" id="K4P-Wb-qsP"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FVe-Zp-CFp" secondAttribute="bottom" id="RrY-DH-PI2"/>
+                <constraint firstItem="SIm-je-wo7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="OiC-5H-Nwa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SIm-je-wo7" secondAttribute="trailing" constant="23" id="VvI-Op-m7F"/>
                 <constraint firstItem="FVe-Zp-CFp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="fqp-aG-ahW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SIm-je-wo7" secondAttribute="bottom" constant="15" id="n8A-lf-0SL"/>
+                <constraint firstItem="SIm-je-wo7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rqT-2U-vIQ"/>
+                <constraint firstItem="SIm-je-wo7" firstAttribute="top" secondItem="FVe-Zp-CFp" secondAttribute="bottom" constant="15" id="umi-2U-W1L"/>
             </constraints>
-            <point key="canvasLocation" x="132" y="115"/>
+            <point key="canvasLocation" x="131.8840579710145" y="114.50892857142857"/>
         </view>
     </objects>
 </document>
