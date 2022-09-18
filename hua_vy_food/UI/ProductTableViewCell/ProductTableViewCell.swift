@@ -48,9 +48,8 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
 
     private func setupView() {
         viewContainer.do {
-            $0.backgroundColor = .white
+            $0.backgroundColor = .clear
             $0.layer.cornerRadius = 5
-            $0.shadowView(color: .black, shadowRadius: 5, shadowOpacity: 0.05, cornerRadius: 5)
         }
 
         productImageView.do {
@@ -65,11 +64,6 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
         subtractItem.do {
             $0.layer.cornerRadius = 5
             $0.shadowView(color: .gray, shadowRadius: 5, shadowOpacity: 0.3, cornerRadius: 5)
-            $0.isHidden = product.quantity >= 1 ? false : true
-        }
-
-        numberOfItemTextField.do {
-            $0.isHidden = product.quantity >= 1 ? false : true
         }
 
         removeButton.do {
@@ -137,6 +131,13 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
                           placeholderImage: UIImage(named: "imagePlaceholder"))
         productTitle.text = data.name
         productCategory.text = data.category.name
+
+        numberOfItemTextField.do {
+            $0.isHidden = product.quantity >= 1 ? false : true
+            $0.text = String(product.quantity)
+        }
+
+        subtractItem.isHidden = product.quantity >= 1 ? false : true
 
         // Price's logic
         let formatter = NumberFormatter()

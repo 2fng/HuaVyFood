@@ -9,6 +9,7 @@ import Foundation
 import ObjectMapper
 
 struct Cart {
+    var documentID = ""
     var uid = ""
     var id = ""
     var items = [Product]()

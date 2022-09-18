@@ -18,10 +18,12 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var checkoutButton: UIButton!
 
     private var disposeBag = DisposeBag()
-    private let viewModel = MainViewModel(productRepository: ProductRepository())
+    private let viewModel = MainViewModel(productRepository: ProductRepository(),
+                                          cartRepository: CartRepository())
 
     // Triggers
     private let reloadTrigger = PublishSubject<Void>()
+    private let updateCartTrigger = PublishSubject<Cart>()
 
     // Variables
     private let refreshControl = UIRefreshControl()
@@ -39,6 +41,7 @@ final class MainViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        reloadTrigger.onNext(())
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
@@ -48,7 +51,9 @@ final class MainViewController: UIViewController {
 
     private func bindViewModel() {
         let input = MainViewModel.Input(getCategoriesTrigger: reloadTrigger.asDriverOnErrorJustComplete(),
-                                        getProductsTrigger: reloadTrigger.asDriverOnErrorJustComplete())
+                                        getProductsTrigger: reloadTrigger.asDriverOnErrorJustComplete(),
+                                        getCart: reloadTrigger.asDriverOnErrorJustComplete(),
+                                        updateCartTrigger: updateCartTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -58,6 +63,14 @@ final class MainViewController: UIViewController {
 
         output.products
             .drive(returnProducts)
+            .disposed(by: disposeBag)
+
+        output.cart
+            .drive(returnCart)
+            .disposed(by: disposeBag)
+
+        output.updateCart
+            .drive(updateCartMessage)
             .disposed(by: disposeBag)
 
         output.loading
@@ -73,6 +86,7 @@ final class MainViewController: UIViewController {
 
     private func setupView() {
         self.navigationItem.backButtonTitle = "Quay lại"
+        self.navigationController?.navigationBar.tintColor = UIColor.logoPink
         bottomCartViewContainer.isHidden = true
         hideKeyboardWhenTappedAround()
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
@@ -98,7 +112,12 @@ final class MainViewController: UIViewController {
 
         checkoutButton.rx.tap
             .map { [unowned self] in
-                print("Cart: \(cart)")
+                checkoutButton.animationSelect()
+                let vc = CartViewController(nibName: "CartViewController", bundle: nil)
+                vc.awakeFromNib()
+                vc.configCart(cart: cart)
+                updateCartTrigger.onNext(cart)
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             .subscribe()
             .disposed(by: disposeBag)
@@ -125,8 +144,40 @@ extension MainViewController {
     private var returnProducts: Binder<[Product]> {
         return Binder(self) { vc, products in
             vc.products = products
-            vc.searchContent = products
+            vc.searchContent = vc.products
+            for item in vc.cart.items {
+                if let index = vc.searchContent.firstIndex(where: { product in
+                    return item.id == product.id
+                }) {
+                    vc.searchContent[index].quantity = item.quantity
+                }
+            }
+            vc.cartTotalPriceLabel.text = vc.cart.totalValue > 0 ? String(vc.cart.totalValue) : ""
+            vc.cartQuantityLabel.text = String(vc.cart.items.count)
             vc.productTableView.reloadData()
+        }
+    }
+
+    private var returnCart: Binder<Cart> {
+        return Binder(self) { vc, cart in
+            vc.cart = cart
+            vc.cart.uid = UserManager.shared.getUserID()
+            for item in vc.cart.items {
+                if let index = vc.searchContent.firstIndex(where: { product in
+                    return item.id == product.id
+                }) {
+                    vc.searchContent[index].quantity = item.quantity
+                }
+            }
+            vc.cartTotalPriceLabel.text = vc.cart.totalValue > 0 ? String(vc.cart.totalValue) : ""
+            vc.cartQuantityLabel.text = String(vc.cart.items.count)
+            vc.productTableView.reloadData()
+        }
+    }
+
+    private var updateCartMessage: Binder<String> {
+        return Binder(self) { vc, message in
+            print("Update cart message: \n\(message)")
         }
     }
 }
@@ -145,6 +196,13 @@ extension MainViewController: UITableViewDataSource {
             cell.configCell(category: categories, categorySelectedIndex: categorySelectedIndex)
             cell.handleBurgerMenuTapped = {
                 let vc = UserSettingViewController(nibName: "UserSettingViewController", bundle: nil)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            cell.handleCartTapped = { [unowned self] in
+                let vc = CartViewController(nibName: "CartViewController", bundle: nil)
+                vc.awakeFromNib()
+                vc.configCart(cart: cart)
+                updateCartTrigger.onNext(cart)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.handleCategoryTapped = { [unowned self] categoryID, selectedCategoryIndex in
@@ -178,24 +236,33 @@ extension MainViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             cell.configCell(data: searchContent[indexPath.row - 1])
             cell.handleAdjustItemQuantity = { [unowned self] product in
-                if let index = cart.items.firstIndex(where: { cartProduct in
-                    cartProduct.id == product.id
+                if let index = searchContent.firstIndex(where: { cartProduct in
+                    return cartProduct.id == product.id
                 }) {
                     if product.quantity > 0 {
-                        cart.totalValue -= (cart.items[index].price * Double(cart.items[index].quantity))
-                        cart.items[index] = product
-                        cart.totalValue += (cart.items[index].price * Double(cart.items[index].quantity))
+                        cart.totalValue -= (product.price * Double(product.quantity))
+                        if let cartIndex = cart.items.firstIndex(where: { cartProduct in
+                            cartProduct.id == product.id
+                        }) {
+                            cart.items[cartIndex] = product
+                        } else {
+                            cart.items.append(product)
+                        }
+                        cart.totalValue += (product.price * Double(product.quantity))
                     } else {
-                        cart.totalValue -= (cart.items[index].price * Double(cart.items[index].quantity))
-                        cart.items.remove(at: index)
+                        cart.totalValue -= (product.price * Double(product.quantity))
+                        if let cartIndex = cart.items.firstIndex(where: { cartProduct in
+                            cartProduct.id == product.id
+                        }) {
+                            cart.items.remove(at: cartIndex)
+                        }
                     }
                     searchContent[index] = product
-                } else {
-                    cart.items.append(product)
-                    cart.totalValue += (product.price * Double(product.quantity))
                 }
+
                 cartTotalPriceLabel.text = cart.totalValue > 0 ? String(cart.totalValue) : ""
                 cartQuantityLabel.text = String(cart.items.count)
+                tableView.reloadData()
             }
             return cell
         }
@@ -204,13 +271,13 @@ extension MainViewController: UITableViewDataSource {
 
 extension MainViewController: UITableViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        UIView.animate(withDuration: 0.5) { [unowned self] in
+        UIView.animate(withDuration: 0.0) { [unowned self] in
             self.bottomCartViewContainer.isHidden = scrollView.contentOffset.y >= 50 ? false : true
         }
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        UIView.animate(withDuration: 0.5) { [unowned self] in
+        UIView.animate(withDuration: 0.0) { [unowned self] in
             self.bottomCartViewContainer.isHidden = scrollView.contentOffset.y >= 50 ? false : true
         }
     }

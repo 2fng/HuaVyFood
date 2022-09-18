@@ -166,6 +166,7 @@ final class ProductRepository: ProductRepositoryType {
                                 product.category.id = document["categoryID"] as? String ?? ""
                                 product.category.name = document["categoryName"] as? String ?? ""
                                 product.imageURL = document["imageURL"] as? String ?? ""
+                                product.imageName = document["imageName"] as? String ?? ""
                                 returnProducts.append(product)
                             }
                             observer.onNext(returnProducts)
