@@ -24,6 +24,7 @@
 		DF55E68D28B24BEF00B05776 /* ManagerProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF55E68C28B24BEF00B05776 /* ManagerProductViewModel.swift */; };
 		DF67FA0828ADF943001F446B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF67FA0728ADF943001F446B /* Product.swift */; };
 		DF68816928B0FBB2007DC4D1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF68816828B0FBB2007DC4D1 /* MainViewModel.swift */; };
+		DF6A459F28D6C13A006D2848 /* CartRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6A459E28D6C13A006D2848 /* CartRepositoryType.swift */; };
 		DF6AAD1728929CA5008961FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */; };
 		DF6AAD192892A9D5008961FE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD182892A9D5008961FE /* RegisterViewModel.swift */; };
 		DF6AAD1C2892AB1B008961FE /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD1B2892AB1B008961FE /* ErrorTracker.swift */; };
@@ -32,6 +33,8 @@
 		DF6AAD252892AD6F008961FE /* UserRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD242892AD6F008961FE /* UserRepositoryType.swift */; };
 		DF6AAD2A2892B3A4008961FE /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD292892B3A4008961FE /* UIView+.swift */; };
 		DF6AAD2C2892B4AA008961FE /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6AAD2B2892B4AA008961FE /* UIViewController+Rx.swift */; };
+		DF6B216928CC4CCF008A8E8B /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B216728CC4CCF008A8E8B /* CartViewController.swift */; };
+		DF6B216A28CC4CCF008A8E8B /* CartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF6B216828CC4CCF008A8E8B /* CartViewController.xib */; };
 		DF7C1A0E28915C100023CC11 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7C1A0C28915C100023CC11 /* ForgotPasswordViewController.swift */; };
 		DF7C1A0F28915C100023CC11 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF7C1A0D28915C100023CC11 /* ForgotPasswordViewController.xib */; };
 		DF8874DD28B0E89500B407C7 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8874DB28B0E89500B407C7 /* CategoryCollectionViewCell.swift */; };
@@ -87,6 +90,7 @@
 		DF55E68C28B24BEF00B05776 /* ManagerProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerProductViewModel.swift; sourceTree = "<group>"; };
 		DF67FA0728ADF943001F446B /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		DF68816828B0FBB2007DC4D1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		DF6A459E28D6C13A006D2848 /* CartRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartRepositoryType.swift; sourceTree = "<group>"; };
 		DF6AAD1628929CA5008961FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DF6AAD182892A9D5008961FE /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		DF6AAD1B2892AB1B008961FE /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 		DF6AAD242892AD6F008961FE /* UserRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryType.swift; sourceTree = "<group>"; };
 		DF6AAD292892B3A4008961FE /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		DF6AAD2B2892B4AA008961FE /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		DF6B216728CC4CCF008A8E8B /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		DF6B216828CC4CCF008A8E8B /* CartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartViewController.xib; sourceTree = "<group>"; };
 		DF7C1A0C28915C100023CC11 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		DF7C1A0D28915C100023CC11 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		DF8874DB28B0E89500B407C7 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -243,6 +249,7 @@
 			children = (
 				DF6AAD242892AD6F008961FE /* UserRepositoryType.swift */,
 				DFB6019028A8F635009CEA90 /* ProductRepositoryType.swift */,
+				DF6A459E28D6C13A006D2848 /* CartRepositoryType.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -256,6 +263,15 @@
 				DF9E532B28C7553400FD7B1A /* Cart.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		DF6B216628CC4CA5008A8E8B /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				DF6B216728CC4CCF008A8E8B /* CartViewController.swift */,
+				DF6B216828CC4CCF008A8E8B /* CartViewController.xib */,
+			);
+			path = Cart;
 			sourceTree = "<group>";
 		};
 		DF7C1A0B28915BFD0023CC11 /* ForgotPassword */ = {
@@ -296,6 +312,7 @@
 		DF8E7480288EABC50010DFD9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DF6B216628CC4CA5008A8E8B /* Cart */,
 				DF55E67F28B21F1A00B05776 /* ProductTableViewCell */,
 				DF12DEEE28AE2B3600558DF7 /* PopupList */,
 				DFBB0D4E28A25D3800EAA349 /* ManagerProduct */,
@@ -490,6 +507,7 @@
 			files = (
 				DF12DEF228AE2B4E00558DF7 /* PopupListViewController.xib in Resources */,
 				DF7C1A0F28915C100023CC11 /* ForgotPasswordViewController.xib in Resources */,
+				DF6B216A28CC4CCF008A8E8B /* CartViewController.xib in Resources */,
 				DF12DEF728AE361900558DF7 /* PopupTableViewTableViewCell.xib in Resources */,
 				DF55E68328B21F3300B05776 /* ProductTableViewCell.xib in Resources */,
 				DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */,
@@ -572,6 +590,7 @@
 				DF6AAD212892ABF3008961FE /* ActivityIndicator.swift in Sources */,
 				DF6AAD2C2892B4AA008961FE /* UIViewController+Rx.swift in Sources */,
 				DF8C81B428954C1F00A574CE /* SharedSequenceConvertibleType+.swift in Sources */,
+				DF6B216928CC4CCF008A8E8B /* CartViewController.swift in Sources */,
 				DFBF41C2288CDB0C00203759 /* SceneDelegate.swift in Sources */,
 				DFB0880E2894E327002D2AE3 /* UIViewcontroller+.swift in Sources */,
 				DF67FA0828ADF943001F446B /* Product.swift in Sources */,
@@ -594,6 +613,7 @@
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
 				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,
 				DF031A6628C09528008960CD /* UILabelPadding.swift in Sources */,
+				DF6A459F28D6C13A006D2848 /* CartRepositoryType.swift in Sources */,
 				DF8C81B02895440300A574CE /* UserManager.swift in Sources */,
 				DFB6620128B09C65005FA68B /* UITextField+.swift in Sources */,
 				DF68816928B0FBB2007DC4D1 /* MainViewModel.swift in Sources */,

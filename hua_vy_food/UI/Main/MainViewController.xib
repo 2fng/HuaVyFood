@@ -30,7 +30,7 @@
                             <subviews>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KDP-aG-knL">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
-                                    <color key="backgroundColor" red="0.93725490199999995" green="0.95294117649999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qob-ST-h4f">
                                     <rect key="frame" x="0.0" y="768" width="414" height="50"/>
@@ -84,7 +84,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.93725490199999995" green="0.95294117649999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="7wI-jZ-Oij" firstAttribute="leading" secondItem="Qob-ST-h4f" secondAttribute="leading" constant="20" id="0DB-yx-vbz"/>
                                         <constraint firstItem="IXk-72-dkv" firstAttribute="top" secondItem="Qob-ST-h4f" secondAttribute="top" constant="5" id="AB3-K8-CyJ"/>
@@ -102,7 +102,7 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" red="0.93725490199999995" green="0.95294117649999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="wvy-vP-SZm" secondAttribute="bottom" id="5bY-tq-jWJ"/>
                         <constraint firstAttribute="trailing" secondItem="wvy-vP-SZm" secondAttribute="trailing" id="9AX-NU-c07"/>
@@ -112,7 +112,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" red="0.93725490196078431" green="0.95294117647058818" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4is-Ys-BXM" secondAttribute="trailing" id="Jvz-wP-AM5"/>
                 <constraint firstItem="4is-Ys-BXM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fbD-VG-7Va"/>
