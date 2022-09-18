@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jEH-uC-Hfp">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="740"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6q-Ck-fgw">
@@ -43,7 +43,7 @@
                 <constraint firstItem="V6q-Ck-fgw" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="-23" id="ZGw-Lk-Lwl"/>
                 <constraint firstItem="jEH-uC-Hfp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cdt-c8-xKb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jEH-uC-Hfp" secondAttribute="trailing" id="dPv-I3-baI"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="jEH-uC-Hfp" secondAttribute="bottom" id="ga2-I6-OZq"/>
+                <constraint firstItem="V6q-Ck-fgw" firstAttribute="top" secondItem="jEH-uC-Hfp" secondAttribute="bottom" constant="5" id="ga2-I6-OZq"/>
             </constraints>
             <point key="canvasLocation" x="132" y="115"/>
         </view>
