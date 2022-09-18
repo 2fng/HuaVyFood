@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Then
+import CoreMIDI
 
 final class MainViewController: UIViewController {
     @IBOutlet private weak var productTableView: UITableView!
@@ -150,6 +151,7 @@ extension MainViewController {
                     return item.id == product.id
                 }) {
                     vc.searchContent[index].quantity = item.quantity
+                    vc.products[index].quantity = item.quantity
                 }
             }
             vc.cartTotalPriceLabel.text = vc.cart.totalValue > 0 ? String(vc.cart.totalValue) : ""
@@ -167,6 +169,7 @@ extension MainViewController {
                     return item.id == product.id
                 }) {
                     vc.searchContent[index].quantity = item.quantity
+                    vc.products[index].quantity = item.quantity
                 }
             }
             vc.cartTotalPriceLabel.text = vc.cart.totalValue > 0 ? String(vc.cart.totalValue) : ""
@@ -258,6 +261,11 @@ extension MainViewController: UITableViewDataSource {
                         }
                     }
                     searchContent[index] = product
+                    if let productsIndex = products.firstIndex(where: { productContent in
+                        productContent.id == product.id
+                    }) {
+                        products[productsIndex] = product
+                    }
                 }
 
                 cartTotalPriceLabel.text = cart.totalValue > 0 ? String(cart.totalValue) : ""

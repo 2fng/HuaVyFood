@@ -63,7 +63,7 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
 
         subtractItem.do {
             $0.layer.cornerRadius = 5
-            $0.shadowView(color: .gray, shadowRadius: 5, shadowOpacity: 0.3, cornerRadius: 5)
+            $0.shadowView(color: .gray, shadowRadius: 5, shadowOpacity: 0.1, cornerRadius: 5)
         }
 
         removeButton.do {
