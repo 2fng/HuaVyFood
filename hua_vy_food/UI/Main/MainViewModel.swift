@@ -64,7 +64,6 @@ extension MainViewModel {
             .flatMapLatest { cart in
                 return self.cartRepository.updateCart(cart: cart)
                     .trackError(errorTracker)
-                    .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
             }
 
