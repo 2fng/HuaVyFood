@@ -22,6 +22,8 @@
 		DF55E68A28B22E8D00B05776 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF55E68828B22E8D00B05776 /* HeaderTableViewCell.swift */; };
 		DF55E68B28B22E8D00B05776 /* HeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF55E68928B22E8D00B05776 /* HeaderTableViewCell.xib */; };
 		DF55E68D28B24BEF00B05776 /* ManagerProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF55E68C28B24BEF00B05776 /* ManagerProductViewModel.swift */; };
+		DF5EF7D028D8AEB100281FDF /* CartBottomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5EF7CE28D8AEB100281FDF /* CartBottomTableViewCell.swift */; };
+		DF5EF7D128D8AEB100281FDF /* CartBottomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5EF7CF28D8AEB100281FDF /* CartBottomTableViewCell.xib */; };
 		DF67FA0828ADF943001F446B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF67FA0728ADF943001F446B /* Product.swift */; };
 		DF68816928B0FBB2007DC4D1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF68816828B0FBB2007DC4D1 /* MainViewModel.swift */; };
 		DF6A459F28D6C13A006D2848 /* CartRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6A459E28D6C13A006D2848 /* CartRepositoryType.swift */; };
@@ -89,6 +91,8 @@
 		DF55E68828B22E8D00B05776 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DF55E68928B22E8D00B05776 /* HeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderTableViewCell.xib; sourceTree = "<group>"; };
 		DF55E68C28B24BEF00B05776 /* ManagerProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerProductViewModel.swift; sourceTree = "<group>"; };
+		DF5EF7CE28D8AEB100281FDF /* CartBottomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartBottomTableViewCell.swift; sourceTree = "<group>"; };
+		DF5EF7CF28D8AEB100281FDF /* CartBottomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartBottomTableViewCell.xib; sourceTree = "<group>"; };
 		DF67FA0728ADF943001F446B /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		DF68816828B0FBB2007DC4D1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		DF6A459E28D6C13A006D2848 /* CartRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartRepositoryType.swift; sourceTree = "<group>"; };
@@ -215,6 +219,15 @@
 			path = TableViewHeaderCell;
 			sourceTree = "<group>";
 		};
+		DF5EF7CD28D8AE9200281FDF /* CartBottomViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DF5EF7CE28D8AEB100281FDF /* CartBottomTableViewCell.swift */,
+				DF5EF7CF28D8AEB100281FDF /* CartBottomTableViewCell.xib */,
+			);
+			path = CartBottomViewCell;
+			sourceTree = "<group>";
+		};
 		DF6AAD1A2892AAFC008961FE /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +283,7 @@
 		DF6B216628CC4CA5008A8E8B /* Cart */ = {
 			isa = PBXGroup;
 			children = (
+				DF5EF7CD28D8AE9200281FDF /* CartBottomViewCell */,
 				DF6B216728CC4CCF008A8E8B /* CartViewController.swift */,
 				DF6B216828CC4CCF008A8E8B /* CartViewController.xib */,
 				DF6A45A028D74CBF006D2848 /* CartViewModel.swift */,
@@ -512,6 +526,7 @@
 				DF7C1A0F28915C100023CC11 /* ForgotPasswordViewController.xib in Resources */,
 				DF6B216A28CC4CCF008A8E8B /* CartViewController.xib in Resources */,
 				DF12DEF728AE361900558DF7 /* PopupTableViewTableViewCell.xib in Resources */,
+				DF5EF7D128D8AEB100281FDF /* CartBottomTableViewCell.xib in Resources */,
 				DF55E68328B21F3300B05776 /* ProductTableViewCell.xib in Resources */,
 				DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */,
 				DFB6DAC2289E806C008879BF /* UserSettingViewController.xib in Resources */,
@@ -594,6 +609,7 @@
 				DF6AAD2C2892B4AA008961FE /* UIViewController+Rx.swift in Sources */,
 				DF8C81B428954C1F00A574CE /* SharedSequenceConvertibleType+.swift in Sources */,
 				DF6B216928CC4CCF008A8E8B /* CartViewController.swift in Sources */,
+				DF5EF7D028D8AEB100281FDF /* CartBottomTableViewCell.swift in Sources */,
 				DFBF41C2288CDB0C00203759 /* SceneDelegate.swift in Sources */,
 				DFB0880E2894E327002D2AE3 /* UIViewcontroller+.swift in Sources */,
 				DF67FA0828ADF943001F446B /* Product.swift in Sources */,

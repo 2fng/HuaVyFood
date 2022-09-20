@@ -117,7 +117,6 @@ final class MainViewController: UIViewController {
                 let vc = CartViewController(nibName: "CartViewController", bundle: nil)
                 vc.awakeFromNib()
                 vc.configCart(cart: cart)
-                updateCartTrigger.onNext(cart)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             .subscribe()
@@ -155,7 +154,11 @@ extension MainViewController {
                 }
             }
             vc.cartTotalPriceLabel.text = vc.cart.totalValue > 0 ? String(vc.cart.totalValue) : ""
-            vc.cartQuantityLabel.text = String(vc.cart.items.count)
+            var cartQuantity = 0
+            for item in vc.cart.items {
+                cartQuantity += item.quantity
+            }
+            vc.cartQuantityLabel.text = String(cartQuantity)
             vc.productTableView.reloadData()
         }
     }
@@ -173,14 +176,20 @@ extension MainViewController {
                 }
             }
             vc.cartTotalPriceLabel.text = vc.cart.totalValue > 0 ? String(vc.cart.totalValue) : ""
-            vc.cartQuantityLabel.text = String(vc.cart.items.count)
+            vc.cart.totalValue = 0
+            var cartQuantity = 0
+            for item in vc.cart.items {
+                cartQuantity += item.quantity
+                vc.cart.totalValue += (item.price * Double(item.quantity))
+            }
+            vc.cartQuantityLabel.text = String(cartQuantity)
             vc.productTableView.reloadData()
         }
     }
 
     private var updateCartMessage: Binder<String> {
         return Binder(self) { vc, message in
-            print("Update cart message: \n\(message)")
+            
         }
     }
 }
@@ -205,7 +214,6 @@ extension MainViewController: UITableViewDataSource {
                 let vc = CartViewController(nibName: "CartViewController", bundle: nil)
                 vc.awakeFromNib()
                 vc.configCart(cart: cart)
-                updateCartTrigger.onNext(cart)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.handleCategoryTapped = { [unowned self] categoryID, selectedCategoryIndex in
@@ -243,7 +251,6 @@ extension MainViewController: UITableViewDataSource {
                     return cartProduct.id == product.id
                 }) {
                     if product.quantity > 0 {
-                        cart.totalValue -= (product.price * Double(product.quantity))
                         if let cartIndex = cart.items.firstIndex(where: { cartProduct in
                             cartProduct.id == product.id
                         }) {
@@ -251,14 +258,16 @@ extension MainViewController: UITableViewDataSource {
                         } else {
                             cart.items.append(product)
                         }
-                        cart.totalValue += (product.price * Double(product.quantity))
                     } else {
-                        cart.totalValue -= (product.price * Double(product.quantity))
                         if let cartIndex = cart.items.firstIndex(where: { cartProduct in
                             cartProduct.id == product.id
                         }) {
                             cart.items.remove(at: cartIndex)
                         }
+                    }
+                    cart.totalValue = 0
+                    for item in cart.items {
+                        cart.totalValue += (item.price * Double(item.quantity))
                     }
                     searchContent[index] = product
                     if let productsIndex = products.firstIndex(where: { productContent in
@@ -269,7 +278,12 @@ extension MainViewController: UITableViewDataSource {
                 }
 
                 cartTotalPriceLabel.text = cart.totalValue > 0 ? String(cart.totalValue) : ""
-                cartQuantityLabel.text = String(cart.items.count)
+                var cartQuantity = 0
+                for item in cart.items {
+                    cartQuantity += item.quantity
+                }
+                cartQuantityLabel.text = String(cartQuantity)
+                updateCartTrigger.onNext(cart)
                 tableView.reloadData()
             }
             return cell
