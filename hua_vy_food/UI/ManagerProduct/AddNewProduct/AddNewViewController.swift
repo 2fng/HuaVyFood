@@ -121,6 +121,11 @@ final class AddNewViewController: UIViewController {
             .map { [unowned self] in
                 addNewCategoryButton.animationSelect()
                 UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: { [unowned self] in
+                    if self.saveNewCategoryButton.isHidden {
+                        categoryTextField.removeGestureRecognizer(tappedOnCategoryTextField)
+                    } else {
+                        categoryTextField.addGestureRecognizer(tappedOnCategoryTextField)
+                    }
                     self.addNewCategoryButton.setImage(self.saveNewCategoryButton.isHidden ?
                                                        UIImage(systemName: "xmark") : UIImage(systemName: "plus"),
                                                        for: .normal)

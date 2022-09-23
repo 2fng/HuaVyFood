@@ -15,6 +15,7 @@ protocol UserRepositoryType {
     func login(email: String, password: String) -> Observable<UserSignIn?>
     func forgotPassword(email: String) -> Observable<Void>
     func logout() -> Observable<Void>
+    func addNewShippingInfoProfile(profile: UserShippingInfo) -> Observable<Void>
 }
 
 final class UserRepository: UserRepositoryType {
@@ -95,6 +96,13 @@ final class UserRepository: UserRepositoryType {
             } catch {
                 observer.onError(error)
             }
+            return Disposables.create()
+        }
+    }
+
+    func addNewShippingInfoProfile(profile: UserShippingInfo) -> Observable<Void> {
+        return Observable.create { observer in
+            print(profile)
             return Disposables.create()
         }
     }
