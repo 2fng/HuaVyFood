@@ -46,6 +46,10 @@
 		DF8C81B02895440300A574CE /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8C81AF2895440300A574CE /* UserManager.swift */; };
 		DF8C81B2289546A400A574CE /* UserSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8C81B1289546A400A574CE /* UserSignIn.swift */; };
 		DF8C81B428954C1F00A574CE /* SharedSequenceConvertibleType+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8C81B328954C1F00A574CE /* SharedSequenceConvertibleType+.swift */; };
+		DF8DF80F28DC992B0075C4D5 /* AddNewShippingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8DF80D28DC992B0075C4D5 /* AddNewShippingInfoViewController.swift */; };
+		DF8DF81028DC992B0075C4D5 /* AddNewShippingInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8DF80E28DC992B0075C4D5 /* AddNewShippingInfoViewController.xib */; };
+		DF8DF81228DC9FCB0075C4D5 /* AddNewShippingInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8DF81128DC9FCB0075C4D5 /* AddNewShippingInfoViewModel.swift */; };
+		DF8DF81428DCA02B0075C4D5 /* UserShippingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8DF81328DCA02B0075C4D5 /* UserShippingInfo.swift */; };
 		DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8E7486288EAC190010DFD9 /* MainViewController.swift */; };
 		DF8E7489288EAC190010DFD9 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8E7487288EAC190010DFD9 /* MainViewController.xib */; };
 		DF9E532C28C7553400FD7B1A /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9E532B28C7553400FD7B1A /* Cart.swift */; };
@@ -115,6 +119,10 @@
 		DF8C81AF2895440300A574CE /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		DF8C81B1289546A400A574CE /* UserSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignIn.swift; sourceTree = "<group>"; };
 		DF8C81B328954C1F00A574CE /* SharedSequenceConvertibleType+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SharedSequenceConvertibleType+.swift"; sourceTree = "<group>"; };
+		DF8DF80D28DC992B0075C4D5 /* AddNewShippingInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewShippingInfoViewController.swift; sourceTree = "<group>"; };
+		DF8DF80E28DC992B0075C4D5 /* AddNewShippingInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddNewShippingInfoViewController.xib; sourceTree = "<group>"; };
+		DF8DF81128DC9FCB0075C4D5 /* AddNewShippingInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewShippingInfoViewModel.swift; sourceTree = "<group>"; };
+		DF8DF81328DCA02B0075C4D5 /* UserShippingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShippingInfo.swift; sourceTree = "<group>"; };
 		DF8E7486288EAC190010DFD9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		DF8E7487288EAC190010DFD9 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		DF9E532B28C7553400FD7B1A /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
@@ -276,6 +284,7 @@
 				DF122CC928ACFC08001E14EC /* ProductCategory.swift */,
 				DF67FA0728ADF943001F446B /* Product.swift */,
 				DF9E532B28C7553400FD7B1A /* Cart.swift */,
+				DF8DF81328DCA02B0075C4D5 /* UserShippingInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,9 +335,20 @@
 			path = Local;
 			sourceTree = "<group>";
 		};
+		DF8DF80C28DC98EA0075C4D5 /* AddNewShippingInfo */ = {
+			isa = PBXGroup;
+			children = (
+				DF8DF80D28DC992B0075C4D5 /* AddNewShippingInfoViewController.swift */,
+				DF8DF80E28DC992B0075C4D5 /* AddNewShippingInfoViewController.xib */,
+				DF8DF81128DC9FCB0075C4D5 /* AddNewShippingInfoViewModel.swift */,
+			);
+			path = AddNewShippingInfo;
+			sourceTree = "<group>";
+		};
 		DF8E7480288EABC50010DFD9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DF8DF80C28DC98EA0075C4D5 /* AddNewShippingInfo */,
 				DF6B216628CC4CA5008A8E8B /* Cart */,
 				DF55E67F28B21F1A00B05776 /* ProductTableViewCell */,
 				DF12DEEE28AE2B3600558DF7 /* PopupList */,
@@ -529,6 +549,7 @@
 				DF5EF7D128D8AEB100281FDF /* CartBottomTableViewCell.xib in Resources */,
 				DF55E68328B21F3300B05776 /* ProductTableViewCell.xib in Resources */,
 				DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */,
+				DF8DF81028DC992B0075C4D5 /* AddNewShippingInfoViewController.xib in Resources */,
 				DFB6DAC2289E806C008879BF /* UserSettingViewController.xib in Resources */,
 				DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */,
 				DFBF41CC288CDB0E00203759 /* LaunchScreen.storyboard in Resources */,
@@ -609,6 +630,7 @@
 				DF6AAD2C2892B4AA008961FE /* UIViewController+Rx.swift in Sources */,
 				DF8C81B428954C1F00A574CE /* SharedSequenceConvertibleType+.swift in Sources */,
 				DF6B216928CC4CCF008A8E8B /* CartViewController.swift in Sources */,
+				DF8DF80F28DC992B0075C4D5 /* AddNewShippingInfoViewController.swift in Sources */,
 				DF5EF7D028D8AEB100281FDF /* CartBottomTableViewCell.swift in Sources */,
 				DFBF41C2288CDB0C00203759 /* SceneDelegate.swift in Sources */,
 				DFB0880E2894E327002D2AE3 /* UIViewcontroller+.swift in Sources */,
@@ -619,7 +641,9 @@
 				DFB6019128A8F635009CEA90 /* ProductRepositoryType.swift in Sources */,
 				DF6AAD252892AD6F008961FE /* UserRepositoryType.swift in Sources */,
 				DFA11ED4288EB04C00C8E2E2 /* LoginViewController.swift in Sources */,
+				DF8DF81228DC9FCB0075C4D5 /* AddNewShippingInfoViewModel.swift in Sources */,
 				DF55E68D28B24BEF00B05776 /* ManagerProductViewModel.swift in Sources */,
+				DF8DF81428DCA02B0075C4D5 /* UserShippingInfo.swift in Sources */,
 				DFD1902B28B0BAFA00CED2C0 /* CustomTextField.swift in Sources */,
 				DFBB0D5128A25D5400EAA349 /* ManagerProductViewController.swift in Sources */,
 				DF9E532C28C7553400FD7B1A /* Cart.swift in Sources */,

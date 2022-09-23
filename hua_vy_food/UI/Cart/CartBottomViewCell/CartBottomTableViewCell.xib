@@ -9,11 +9,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="283" id="KGk-i7-Jjw" customClass="CartBottomTableViewCell" customModule="hua_vy_food" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="342" height="283"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="463" id="KGk-i7-Jjw" customClass="CartBottomTableViewCell" customModule="hua_vy_food" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="342" height="463"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="342" height="283"/>
+                <rect key="frame" x="0.0" y="0.0" width="342" height="463"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Thêm mã giảm giá" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S2H-1n-4t1" customClass="CustomTextField" customModule="hua_vy_food" customModuleProvider="target">
@@ -92,16 +92,63 @@
                         <color key="textColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9s0-cf-FdK">
+                        <rect key="frame" x="20" y="271" width="302" height="151"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thông tin giao hàng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLM-3c-YaL">
+                                <rect key="frame" x="10" y="10" width="282" height="19.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hứa Sơn Tùng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqZ-EP-u3f">
+                                <rect key="frame" x="10" y="49.5" width="282" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0969556699" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5y-LO-u2e">
+                                <rect key="frame" x="10" y="76" width="282" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="504, Cầu thang 1, K2, Thành Công, Ba Đình, Hà Nội" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO8-SA-j3f">
+                                <rect key="frame" x="10" y="102.5" width="282" height="33"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.95294117649999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="PLM-3c-YaL" firstAttribute="leading" secondItem="9s0-cf-FdK" secondAttribute="leading" constant="10" id="2TP-88-Upb"/>
+                            <constraint firstItem="e5y-LO-u2e" firstAttribute="top" secondItem="RqZ-EP-u3f" secondAttribute="bottom" constant="10" id="8xS-ul-1hV"/>
+                            <constraint firstAttribute="trailing" secondItem="RqZ-EP-u3f" secondAttribute="trailing" constant="10" id="HBD-7E-OaJ"/>
+                            <constraint firstItem="e5y-LO-u2e" firstAttribute="leading" secondItem="9s0-cf-FdK" secondAttribute="leading" constant="10" id="HRO-Lo-rde"/>
+                            <constraint firstAttribute="height" constant="151" id="OUG-dt-mrd"/>
+                            <constraint firstAttribute="trailing" secondItem="e5y-LO-u2e" secondAttribute="trailing" constant="10" id="Slr-bD-BIb"/>
+                            <constraint firstAttribute="trailing" secondItem="PLM-3c-YaL" secondAttribute="trailing" constant="10" id="f1P-r0-C8V"/>
+                            <constraint firstItem="PLM-3c-YaL" firstAttribute="top" secondItem="9s0-cf-FdK" secondAttribute="top" constant="10" id="i7v-Au-crM"/>
+                            <constraint firstItem="RqZ-EP-u3f" firstAttribute="leading" secondItem="9s0-cf-FdK" secondAttribute="leading" constant="10" id="iNa-re-Yjt"/>
+                            <constraint firstItem="GO8-SA-j3f" firstAttribute="leading" secondItem="9s0-cf-FdK" secondAttribute="leading" constant="10" id="jkb-wj-OCp"/>
+                            <constraint firstItem="GO8-SA-j3f" firstAttribute="top" secondItem="e5y-LO-u2e" secondAttribute="bottom" constant="10" id="rcG-cI-8uM"/>
+                            <constraint firstAttribute="trailing" secondItem="GO8-SA-j3f" secondAttribute="trailing" constant="10" id="wpM-vX-iJ3"/>
+                            <constraint firstItem="RqZ-EP-u3f" firstAttribute="top" secondItem="PLM-3c-YaL" secondAttribute="bottom" constant="20" id="zO0-99-bib"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ywA-ne-YPQ" firstAttribute="centerY" secondItem="P0X-cM-LQo" secondAttribute="centerY" id="3Ll-le-DSN"/>
                     <constraint firstItem="NUv-h8-iqg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="3sa-27-ExO"/>
                     <constraint firstItem="NUv-h8-iqg" firstAttribute="top" secondItem="e6f-Jv-JTf" secondAttribute="bottom" constant="18" id="5Xy-Ir-JHQ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="9s0-cf-FdK" secondAttribute="bottom" constant="30" id="6It-SS-7aa"/>
                     <constraint firstAttribute="trailingMargin" secondItem="JiS-Ug-sE6" secondAttribute="trailing" id="855-A7-UFN"/>
                     <constraint firstItem="fV6-ar-1Is" firstAttribute="top" secondItem="S2H-1n-4t1" secondAttribute="top" constant="8" id="8cu-Ty-shx"/>
                     <constraint firstItem="e6f-Jv-JTf" firstAttribute="top" secondItem="GiP-GM-oX6" secondAttribute="bottom" constant="13" id="Dw6-HO-Kto"/>
                     <constraint firstItem="z6s-Pb-sim" firstAttribute="top" secondItem="e6f-Jv-JTf" secondAttribute="bottom" constant="18" id="Gbe-Vb-pOF"/>
                     <constraint firstAttribute="trailing" secondItem="e6f-Jv-JTf" secondAttribute="trailing" id="Mzc-6c-IYa"/>
+                    <constraint firstItem="9s0-cf-FdK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Q0V-B3-zgi"/>
                     <constraint firstItem="S2H-1n-4t1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="RBA-1a-OWR"/>
                     <constraint firstItem="P0X-cM-LQo" firstAttribute="top" secondItem="S2H-1n-4t1" secondAttribute="bottom" constant="30" id="RDR-8N-EGx"/>
                     <constraint firstItem="GiP-GM-oX6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="TJ9-vy-O85"/>
@@ -109,15 +156,16 @@
                     <constraint firstAttribute="trailing" secondItem="z6s-Pb-sim" secondAttribute="trailing" constant="22" id="Y99-xJ-v0C"/>
                     <constraint firstAttribute="trailing" secondItem="S2H-1n-4t1" secondAttribute="trailing" constant="20" id="aP1-Ga-HOb"/>
                     <constraint firstItem="eMa-KI-Z7n" firstAttribute="top" secondItem="JiS-Ug-sE6" secondAttribute="bottom" constant="18" id="bVm-xb-IzT"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="NUv-h8-iqg" secondAttribute="bottom" constant="31" id="dB7-sh-TZR"/>
                     <constraint firstItem="JiS-Ug-sE6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="dK6-tL-MbL"/>
                     <constraint firstItem="e6f-Jv-JTf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dra-kF-eA5"/>
                     <constraint firstItem="S2H-1n-4t1" firstAttribute="trailing" secondItem="fV6-ar-1Is" secondAttribute="trailing" constant="8" id="hCq-3q-Tb6"/>
+                    <constraint firstItem="9s0-cf-FdK" firstAttribute="top" secondItem="NUv-h8-iqg" secondAttribute="bottom" constant="30" id="hpg-w8-zZU"/>
                     <constraint firstItem="GiP-GM-oX6" firstAttribute="top" secondItem="JiS-Ug-sE6" secondAttribute="bottom" constant="18" id="ifd-UW-rG7"/>
                     <constraint firstItem="S2H-1n-4t1" firstAttribute="bottom" secondItem="fV6-ar-1Is" secondAttribute="bottom" constant="8" id="lGV-YF-1Zj"/>
                     <constraint firstItem="S2H-1n-4t1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="m3A-Ag-FTZ"/>
                     <constraint firstAttribute="trailing" secondItem="eMa-KI-Z7n" secondAttribute="trailing" constant="22" id="mel-cB-par"/>
                     <constraint firstItem="P0X-cM-LQo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="oEG-vU-tA6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="9s0-cf-FdK" secondAttribute="trailing" id="r2S-pV-exw"/>
                     <constraint firstItem="JiS-Ug-sE6" firstAttribute="top" secondItem="P0X-cM-LQo" secondAttribute="bottom" constant="13" id="w6K-zW-2MA"/>
                 </constraints>
             </tableViewCellContentView>
@@ -127,12 +175,16 @@
                 <outlet property="couponSubmitButton" destination="fV6-ar-1Is" id="25L-Ne-Ry5"/>
                 <outlet property="couponTextField" destination="S2H-1n-4t1" id="oQ6-F5-7Cf"/>
                 <outlet property="couponValue" destination="eMa-KI-Z7n" id="C4p-mI-7pr"/>
+                <outlet property="shippingInfoAddressLabel" destination="GO8-SA-j3f" id="qfu-Cg-6F8"/>
+                <outlet property="shippingInfoNameLabel" destination="RqZ-EP-u3f" id="DpR-pk-hi3"/>
+                <outlet property="shippingInfoPhoneLabel" destination="e5y-LO-u2e" id="MWt-r0-ZV1"/>
+                <outlet property="shippingInfoViewContainer" destination="9s0-cf-FdK" id="lUe-Xo-gNQ"/>
                 <outlet property="totalLabel" destination="NUv-h8-iqg" id="dC2-QZ-wzS"/>
                 <outlet property="totalPriceBeforeLabel" destination="P0X-cM-LQo" id="s4l-yI-JBo"/>
                 <outlet property="totalPriceBeforeValue" destination="ywA-ne-YPQ" id="z0X-1C-4MF"/>
                 <outlet property="totalValue" destination="z6s-Pb-sim" id="krG-Nr-nUu"/>
             </connections>
-            <point key="canvasLocation" x="153.62318840579712" y="178.45982142857142"/>
+            <point key="canvasLocation" x="153.62318840579712" y="238.72767857142856"/>
         </tableViewCell>
     </objects>
 </document>

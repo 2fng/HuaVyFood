@@ -19,8 +19,15 @@ final class CartBottomTableViewCell: UITableViewCell, ReuseableCell {
     @IBOutlet private weak var couponValue: UILabel!
     @IBOutlet private weak var totalLabel: UILabel!
     @IBOutlet private weak var totalValue: UILabel!
+    @IBOutlet private weak var shippingInfoViewContainer: UIView!
+    @IBOutlet private weak var shippingInfoNameLabel: UILabel!
+    @IBOutlet private weak var shippingInfoPhoneLabel: UILabel!
+    @IBOutlet private weak var shippingInfoAddressLabel: UILabel!
 
+    private let disposeBag = DisposeBag()
     private var couponPrice: Double = 0
+
+    var handleNavigateToCreateShippingInfo: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +36,8 @@ final class CartBottomTableViewCell: UITableViewCell, ReuseableCell {
     }
 
     private func configView() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(shippingInfoTapped))
+
         couponTextField.do {
             let textFieldHeight = $0.frame.height / 2
             $0.layer.borderWidth = 1
@@ -40,11 +49,27 @@ final class CartBottomTableViewCell: UITableViewCell, ReuseableCell {
             let textFieldHeight = $0.frame.height / 2
             $0.layer.cornerRadius = textFieldHeight
         }
+
+        shippingInfoViewContainer.do {
+            $0.layer.cornerRadius = 15
+            $0.addGestureRecognizer(tapGestureRecognizer)
+        }
+
+        couponSubmitButton.rx.tap
+            .map { [unowned self] in
+                couponSubmitButton.animationSelect()
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 
     func configCell(cart: Cart) {
         totalPriceBeforeValue.text = convertToPrice(value: cart.totalValue)
         totalValue.text = convertToPrice(value: cart.totalValue - couponPrice)
+    }
+
+    @objc private func shippingInfoTapped() {
+        handleNavigateToCreateShippingInfo?()
     }
 
     private func convertToPrice(value: Double) -> String {

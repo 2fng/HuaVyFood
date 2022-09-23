@@ -115,6 +115,9 @@ extension CartViewController: UITableViewDataSource {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CartBottomTableViewCell.identifier) as? CartBottomTableViewCell else { return UITableViewCell() }
             cell.configCell(cart: cart)
+            cell.handleNavigateToCreateShippingInfo = {
+                self.navigationController?.pushViewController(AddNewShippingInfoViewController(), animated: true)
+            }
             return cell
         }
     }
