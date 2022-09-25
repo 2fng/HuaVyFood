@@ -12,15 +12,18 @@ import RxCocoa
 
 struct CartViewModel {
     let cartRepository: CartRepositoryType
+    let userRepository: UserRepositoryType
 }
 
 extension CartViewModel {
     struct Input {
         let updateCartTrigger: Driver<Cart>
+        let userShippingInfoTrigger: Driver<Void>
     }
 
     struct Output {
         let updateCart: Driver<String>
+        let userShippingInfo: Driver<UserShippingInfo>
         let loading: Driver<Bool>
         let error: Driver<Error>
     }
@@ -36,7 +39,16 @@ extension CartViewModel {
                     .asDriverOnErrorJustComplete()
             }
 
+        let userShippingInfo = input.userShippingInfoTrigger
+            .flatMapLatest { _ in
+                return self.userRepository.getUserShippingInfo()
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+
         return Output(updateCart: updateCart,
+                      userShippingInfo: userShippingInfo,
                       loading: activityIndicator.asDriver(),
                       error: errorTracker.asDriver())
     }

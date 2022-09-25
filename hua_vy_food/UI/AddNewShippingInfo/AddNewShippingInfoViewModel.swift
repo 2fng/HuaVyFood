@@ -20,7 +20,7 @@ extension AddNewShippingInfoViewModel {
     }
 
     struct Output {
-        let updateUserShippingInfo: Driver<Void>
+        let updateUserShippingInfo: Driver<String>
         let loading: Driver<Bool>
         let error: Driver<Error>
     }

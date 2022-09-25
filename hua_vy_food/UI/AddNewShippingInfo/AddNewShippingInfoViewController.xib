@@ -10,6 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewShippingInfoViewController" customModule="hua_vy_food" customModuleProvider="target">
             <connections>
+                <outlet property="addressTextField" destination="j2Q-iK-ukq" id="1xq-sG-N8T"/>
+                <outlet property="nameTextField" destination="TST-BK-V4a" id="JyC-Nx-lwa"/>
+                <outlet property="numberTextField" destination="mBY-W5-Avp" id="J3M-ko-3tI"/>
+                <outlet property="submitButton" destination="tVV-kg-Lx8" id="n0Z-9e-czL"/>
+                <outlet property="titleTextField" destination="oES-ai-Kbc" id="Se4-id-Bqf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

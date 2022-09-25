@@ -15,16 +15,23 @@ final class CartViewController: UIViewController {
     @IBOutlet private weak var checkoutButton: UIButton!
 
     private var cart = Cart()
+    private var userShippingInfo = UserShippingInfo()
     private var disposeBag = DisposeBag()
-    private let viewModel = CartViewModel(cartRepository: CartRepository())
+    private let viewModel = CartViewModel(cartRepository: CartRepository(),
+                                          userRepository: UserRepository())
 
     // Triggers
     private let updateCartTrigger = PublishSubject<Cart>()
+    private let getUserShippingInfoTrigger = PublishSubject<Void>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
         configView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        getUserShippingInfoTrigger.onNext(())
     }
 
     func configCart(cart: Cart) {
@@ -55,12 +62,17 @@ final class CartViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        let input = CartViewModel.Input(updateCartTrigger: updateCartTrigger.asDriverOnErrorJustComplete())
+        let input = CartViewModel.Input(updateCartTrigger: updateCartTrigger.asDriverOnErrorJustComplete(),
+                                        userShippingInfoTrigger: getUserShippingInfoTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
         output.updateCart
             .drive(updateCartMessage)
+            .disposed(by: disposeBag)
+
+        output.userShippingInfo
+            .drive(userShippingInfoBinder)
             .disposed(by: disposeBag)
 
         output.loading
@@ -70,6 +82,8 @@ final class CartViewController: UIViewController {
         output.error
             .drive(rx.error)
             .disposed(by: disposeBag)
+
+        getUserShippingInfoTrigger.onNext(())
     }
 }
 
@@ -78,6 +92,13 @@ extension CartViewController {
     private var updateCartMessage: Binder<String> {
         return Binder(self) { vc, message in
             
+        }
+    }
+
+    private var userShippingInfoBinder: Binder<UserShippingInfo> {
+        return Binder(self) { vc, returnUserShippingInfo in
+            vc.userShippingInfo = returnUserShippingInfo
+            vc.tableView.reloadData()
         }
     }
 }
@@ -114,7 +135,7 @@ extension CartViewController: UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CartBottomTableViewCell.identifier) as? CartBottomTableViewCell else { return UITableViewCell() }
-            cell.configCell(cart: cart)
+            cell.configCell(cart: cart, userShippingInfo: userShippingInfo)
             cell.handleNavigateToCreateShippingInfo = {
                 self.navigationController?.pushViewController(AddNewShippingInfoViewController(), animated: true)
             }
