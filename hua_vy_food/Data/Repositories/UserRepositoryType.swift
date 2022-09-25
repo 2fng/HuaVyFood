@@ -15,7 +15,8 @@ protocol UserRepositoryType {
     func login(email: String, password: String) -> Observable<UserSignIn?>
     func forgotPassword(email: String) -> Observable<Void>
     func logout() -> Observable<Void>
-    func addNewShippingInfoProfile(profile: UserShippingInfo) -> Observable<Void>
+    func addNewShippingInfoProfile(profile: UserShippingInfo) -> Observable<String>
+    func getUserShippingInfo() -> Observable<UserShippingInfo>
 }
 
 final class UserRepository: UserRepositoryType {
@@ -100,9 +101,74 @@ final class UserRepository: UserRepositoryType {
         }
     }
 
-    func addNewShippingInfoProfile(profile: UserShippingInfo) -> Observable<Void> {
+    func addNewShippingInfoProfile(profile: UserShippingInfo) -> Observable<String> {
         return Observable.create { observer in
-            print(profile)
+            let database = Firestore.firestore()
+            database.collection("userShippingInfo").whereField("uid", isEqualTo: profile.uid)
+                .getDocuments { snapshot, error in
+                    if error != nil {
+                        print("Error:: \(String(describing: error))")
+                    } else {
+                        if let snapshot = snapshot {
+                            if snapshot.documents.isEmpty {
+                                database.collection("userShippingInfo").addDocument(data: [
+                                    "uid" : profile.uid,
+                                    "profileName": profile.profileName,
+                                    "fullName": profile.fullName,
+                                    "mobileNumber": profile.mobileNumber,
+                                    "address": profile.address
+                                ]) { error in
+                                    if error != nil {
+                                        print("Error: \(String(describing: error))")
+                                        observer.onError(error!)
+                                    } else {
+                                        observer.onNext("Thêm mới thông tin giao hàng thành công!")
+                                    }
+                                }
+                            } else {
+                                database.collection("userShippingInfo").document(snapshot.documents.first?.documentID ?? "")
+                                    .updateData(["profileName": profile.profileName,
+                                                 "fullName": profile.fullName,
+                                                 "mobileNumber": profile.mobileNumber,
+                                                 "address": profile.address]) { error in
+                                        if error != nil {
+                                            print("Error: \(String(describing: error))")
+                                            observer.onError(error!)
+                                        } else {
+                                            observer.onNext("Cập nhật thông tin giao hàng thành công!")
+                                        }
+                                    }
+                            }
+                        }
+                    }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func getUserShippingInfo() -> Observable<UserShippingInfo> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            let currentUID = UserManager.shared.getUserID()
+            database.collection("userShippingInfo").whereField("uid", isEqualTo: currentUID)
+                .getDocuments { snapshot, error in
+                    if error != nil {
+                        print("Error:: \(String(describing: error))")
+                        observer.onError(error!)
+                    } else {
+                        if let snapshot = snapshot {
+                            let userShippingInfo = snapshot.documents.map { document in
+                                return UserShippingInfo(id: document["id"] as? String ?? "",
+                                                        uid: document["uid"] as? String ?? "",
+                                                        profileName: document["profileName"] as? String ?? "",
+                                                        fullName: document["fullName"] as? String ?? "",
+                                                        mobileNumber: document["mobileNumber"] as? String ?? "",
+                                                        address: document["address"] as? String ?? "")
+                            }
+                            observer.onNext(userShippingInfo.first ?? UserShippingInfo())
+                        }
+                    }
+                }
             return Disposables.create()
         }
     }

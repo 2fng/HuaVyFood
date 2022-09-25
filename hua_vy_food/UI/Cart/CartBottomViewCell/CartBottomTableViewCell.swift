@@ -39,15 +39,13 @@ final class CartBottomTableViewCell: UITableViewCell, ReuseableCell {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(shippingInfoTapped))
 
         couponTextField.do {
-            let textFieldHeight = $0.frame.height / 2
             $0.layer.borderWidth = 1
             $0.layer.borderColor = UIColor.hex("#EEEEEE").cgColor
-            $0.layer.cornerRadius = textFieldHeight
+            $0.layer.cornerRadius = 5
         }
 
         couponSubmitButton.do {
-            let textFieldHeight = $0.frame.height / 2
-            $0.layer.cornerRadius = textFieldHeight
+            $0.layer.cornerRadius = 5
         }
 
         shippingInfoViewContainer.do {
@@ -63,9 +61,12 @@ final class CartBottomTableViewCell: UITableViewCell, ReuseableCell {
             .disposed(by: disposeBag)
     }
 
-    func configCell(cart: Cart) {
+    func configCell(cart: Cart, userShippingInfo: UserShippingInfo) {
         totalPriceBeforeValue.text = convertToPrice(value: cart.totalValue)
         totalValue.text = convertToPrice(value: cart.totalValue - couponPrice)
+        shippingInfoNameLabel.text = userShippingInfo.fullName.isEmpty ? "Không có dữ liệu tên" : userShippingInfo.fullName
+        shippingInfoPhoneLabel.text = userShippingInfo.mobileNumber.isEmpty ? "Không có dữ liệu số điện thoại" : userShippingInfo.mobileNumber
+        shippingInfoAddressLabel.text = userShippingInfo.address.isEmpty ? "Không có dữ liệu địa chỉ" : userShippingInfo.address
     }
 
     @objc private func shippingInfoTapped() {
