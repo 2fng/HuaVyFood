@@ -14,6 +14,7 @@ import FirebaseStorage
 protocol CartRepositoryType {
     func getCart() -> Observable<Cart>
     func updateCart(cart: Cart) -> Observable<String>
+    func getPaymentMethod() -> Observable<[PaymentMethod]>
 }
 
 final class CartRepository: CartRepositoryType {
@@ -114,6 +115,33 @@ final class CartRepository: CartRepositoryType {
                             }
                         }
                         observer.onNext("Cập nhật thành công!")
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func getPaymentMethod() -> Observable<[PaymentMethod]> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("paymentMethods").getDocuments { snapshot, error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    if let snapShot = snapshot {
+                        if snapShot.isEmpty {
+                            observer.onNext([PaymentMethod()])
+                        } else {
+                            var returnPaymentMethods: [PaymentMethod] = []
+                            for document in snapShot.documents {
+                                var method = PaymentMethod()
+                                method.id = document["id"] as? String ?? ""
+                                method.name = document["name"] as? String ?? ""
+                                returnPaymentMethods.append(method)
+                            }
+                            observer.onNext(returnPaymentMethods)
+                        }
                     }
                 }
             }

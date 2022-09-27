@@ -55,6 +55,7 @@
 		DF9E532C28C7553400FD7B1A /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9E532B28C7553400FD7B1A /* Cart.swift */; };
 		DFA11ED4288EB04C00C8E2E2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA11ED2288EB04C00C8E2E2 /* LoginViewController.swift */; };
 		DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFA11ED3288EB04C00C8E2E2 /* LoginViewController.xib */; };
+		DFADA40128E1F09600C47425 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFADA40028E1F09600C47425 /* PaymentMethod.swift */; };
 		DFB0880E2894E327002D2AE3 /* UIViewcontroller+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB0880D2894E327002D2AE3 /* UIViewcontroller+.swift */; };
 		DFB4D0BE289121C300B109C0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */; };
 		DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */; };
@@ -128,6 +129,7 @@
 		DF9E532B28C7553400FD7B1A /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		DFA11ED2288EB04C00C8E2E2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DFA11ED3288EB04C00C8E2E2 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		DFADA40028E1F09600C47425 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		DFB0880D2894E327002D2AE3 /* UIViewcontroller+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewcontroller+.swift"; sourceTree = "<group>"; };
 		DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				DF67FA0728ADF943001F446B /* Product.swift */,
 				DF9E532B28C7553400FD7B1A /* Cart.swift */,
 				DF8DF81328DCA02B0075C4D5 /* UserShippingInfo.swift */,
+				DFADA40028E1F09600C47425 /* PaymentMethod.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,
 				DF031A6628C09528008960CD /* UILabelPadding.swift in Sources */,
 				DF6A459F28D6C13A006D2848 /* CartRepositoryType.swift in Sources */,
+				DFADA40128E1F09600C47425 /* PaymentMethod.swift in Sources */,
 				DF8C81B02895440300A574CE /* UserManager.swift in Sources */,
 				DFB6620128B09C65005FA68B /* UITextField+.swift in Sources */,
 				DF68816928B0FBB2007DC4D1 /* MainViewModel.swift in Sources */,

@@ -19,11 +19,13 @@ extension CartViewModel {
     struct Input {
         let updateCartTrigger: Driver<Cart>
         let userShippingInfoTrigger: Driver<Void>
+        let getPaymentMethodTrigger: Driver<Void>
     }
 
     struct Output {
         let updateCart: Driver<String>
         let userShippingInfo: Driver<UserShippingInfo>
+        let paymentMethods: Driver<[PaymentMethod]>
         let loading: Driver<Bool>
         let error: Driver<Error>
     }
@@ -47,8 +49,17 @@ extension CartViewModel {
                     .asDriverOnErrorJustComplete()
             }
 
+        let paymentMethods = input.getPaymentMethodTrigger
+            .flatMapLatest { _ in
+                return self.cartRepository.getPaymentMethod()
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+
         return Output(updateCart: updateCart,
                       userShippingInfo: userShippingInfo,
+                      paymentMethods: paymentMethods,
                       loading: activityIndicator.asDriver(),
                       error: errorTracker.asDriver())
     }
