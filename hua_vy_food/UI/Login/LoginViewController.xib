@@ -93,6 +93,7 @@
                     <rect key="frame" x="177" y="664.5" width="60" height="18"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="18" id="1rn-T5-4xW"/>
                         <constraint firstAttribute="width" constant="60" id="oIk-zj-3Xp"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
@@ -132,6 +133,7 @@
                 <constraint firstItem="jTu-Ys-NoR" firstAttribute="top" secondItem="CUc-98-L1F" secondAttribute="bottom" constant="23" id="CY1-L4-CoL"/>
                 <constraint firstItem="lvO-EO-vXm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="FFk-7M-6cg"/>
                 <constraint firstItem="mrL-u2-oTU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="100" id="Flm-DG-MmR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="jTu-Ys-NoR" secondAttribute="bottom" constant="46.5" id="JmT-fR-0yS"/>
                 <constraint firstItem="Nj8-ar-XBF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="JqM-LH-BOi"/>
                 <constraint firstItem="lvO-EO-vXm" firstAttribute="bottom" secondItem="7wd-ZL-Sqy" secondAttribute="bottom" id="JvU-Dv-rSD"/>
                 <constraint firstItem="lvO-EO-vXm" firstAttribute="trailing" secondItem="7wd-ZL-Sqy" secondAttribute="trailing" id="K26-0E-vvF"/>

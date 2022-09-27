@@ -23,11 +23,15 @@ final class CartBottomTableViewCell: UITableViewCell, ReuseableCell {
     @IBOutlet private weak var shippingInfoNameLabel: UILabel!
     @IBOutlet private weak var shippingInfoPhoneLabel: UILabel!
     @IBOutlet private weak var shippingInfoAddressLabel: UILabel!
+    @IBOutlet private weak var paymentMethodContainer: UIView!
+    @IBOutlet private weak var paymentMethodTextField: UITextField!
 
     private let disposeBag = DisposeBag()
     private var couponPrice: Double = 0
+    private var currentPaymentMethod = PaymentMethod()
 
     var handleNavigateToCreateShippingInfo: (() -> Void)?
+    var handleChoosingPaymentMethod: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,6 +41,8 @@ final class CartBottomTableViewCell: UITableViewCell, ReuseableCell {
 
     private func configView() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(shippingInfoTapped))
+        let tappedOnPayMentMethodTextField = UITapGestureRecognizer(target: self, action: #selector(paymentMethodTextFieldTapped))
+        paymentMethodTextField.addGestureRecognizer(tappedOnPayMentMethodTextField)
 
         couponTextField.do {
             $0.layer.borderWidth = 1
@@ -53,6 +59,10 @@ final class CartBottomTableViewCell: UITableViewCell, ReuseableCell {
             $0.addGestureRecognizer(tapGestureRecognizer)
         }
 
+        paymentMethodContainer.do {
+            $0.layer.cornerRadius = 15
+        }
+
         couponSubmitButton.rx.tap
             .map { [unowned self] in
                 couponSubmitButton.animationSelect()
@@ -61,16 +71,22 @@ final class CartBottomTableViewCell: UITableViewCell, ReuseableCell {
             .disposed(by: disposeBag)
     }
 
-    func configCell(cart: Cart, userShippingInfo: UserShippingInfo) {
+    func configCell(cart: Cart, userShippingInfo: UserShippingInfo, paymentMethod: PaymentMethod) {
+        currentPaymentMethod = paymentMethod
         totalPriceBeforeValue.text = convertToPrice(value: cart.totalValue)
         totalValue.text = convertToPrice(value: cart.totalValue - couponPrice)
         shippingInfoNameLabel.text = userShippingInfo.fullName.isEmpty ? "Không có dữ liệu tên" : userShippingInfo.fullName
         shippingInfoPhoneLabel.text = userShippingInfo.mobileNumber.isEmpty ? "Không có dữ liệu số điện thoại" : userShippingInfo.mobileNumber
         shippingInfoAddressLabel.text = userShippingInfo.address.isEmpty ? "Không có dữ liệu địa chỉ" : userShippingInfo.address
+        paymentMethodTextField.text = "\(String(describing: currentPaymentMethod.name))"
     }
 
     @objc private func shippingInfoTapped() {
         handleNavigateToCreateShippingInfo?()
+    }
+
+    @objc private func paymentMethodTextFieldTapped() {
+        handleChoosingPaymentMethod?()
     }
 
     private func convertToPrice(value: Double) -> String {

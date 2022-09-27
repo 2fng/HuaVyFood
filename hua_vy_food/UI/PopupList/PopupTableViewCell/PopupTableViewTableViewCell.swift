@@ -32,6 +32,14 @@ final class PopupTableViewTableViewCell: UITableViewCell, ReuseableCell {
             } else {
                 checkMarkImage.isHidden = true
             }
+        } else if let data = data as? PaymentMethod {
+            titleLabel.text = data.name
+            if dataSelected != nil,
+                let dataSelected = dataSelected as? PaymentMethod {
+                checkMarkImage.isHidden = data.id == dataSelected.id ? false : true
+            } else {
+                checkMarkImage.isHidden = true
+            }
         }
     }
 }
