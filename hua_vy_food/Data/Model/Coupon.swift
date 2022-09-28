@@ -1,20 +1,20 @@
 //
-//  PaymentMethod.swift
+//  Coupon.swift
 //  hua_vy_food
 //
-//  Created by Hua Son Tung on 26/09/2022.
+//  Created by Hua Son Tung on 28/09/2022.
 //
 
 import Foundation
 import ObjectMapper
 
-struct PaymentMethod {
+struct Coupon {
     var id = ""
     var name = ""
-    var paymentDetail = ""
+    var value = 0
 }
 
-extension PaymentMethod: Mappable {
+extension Coupon: Mappable {
     init?(map: Map) {
         self.init()
     }
@@ -22,6 +22,6 @@ extension PaymentMethod: Mappable {
     mutating func mapping(map: Map) {
         id <- map["id"]
         name <- map["name"]
-        paymentDetail <- map["paymentDetail"]
+        value <- map["value"]
     }
 }

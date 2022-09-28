@@ -17,6 +17,7 @@
 		DF12DEF628AE361900558DF7 /* PopupTableViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF12DEF428AE361900558DF7 /* PopupTableViewTableViewCell.swift */; };
 		DF12DEF728AE361900558DF7 /* PopupTableViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF12DEF528AE361900558DF7 /* PopupTableViewTableViewCell.xib */; };
 		DF12DEF928AE47A600558DF7 /* ReuseableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF12DEF828AE47A600558DF7 /* ReuseableCell.swift */; };
+		DF22A10328E3F25000778083 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF22A10228E3F25000778083 /* Coupon.swift */; };
 		DF55E68228B21F3300B05776 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF55E68028B21F3300B05776 /* ProductTableViewCell.swift */; };
 		DF55E68328B21F3300B05776 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF55E68128B21F3300B05776 /* ProductTableViewCell.xib */; };
 		DF55E68A28B22E8D00B05776 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF55E68828B22E8D00B05776 /* HeaderTableViewCell.swift */; };
@@ -91,6 +92,7 @@
 		DF12DEF428AE361900558DF7 /* PopupTableViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTableViewTableViewCell.swift; sourceTree = "<group>"; };
 		DF12DEF528AE361900558DF7 /* PopupTableViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupTableViewTableViewCell.xib; sourceTree = "<group>"; };
 		DF12DEF828AE47A600558DF7 /* ReuseableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableCell.swift; sourceTree = "<group>"; };
+		DF22A10228E3F25000778083 /* Coupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
 		DF55E68028B21F3300B05776 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		DF55E68128B21F3300B05776 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		DF55E68828B22E8D00B05776 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				DF9E532B28C7553400FD7B1A /* Cart.swift */,
 				DF8DF81328DCA02B0075C4D5 /* UserShippingInfo.swift */,
 				DFADA40028E1F09600C47425 /* PaymentMethod.swift */,
+				DF22A10228E3F25000778083 /* Coupon.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				DFBB0D5128A25D5400EAA349 /* ManagerProductViewController.swift in Sources */,
 				DF9E532C28C7553400FD7B1A /* Cart.swift in Sources */,
 				DF6AAD2A2892B3A4008961FE /* UIView+.swift in Sources */,
+				DF22A10328E3F25000778083 /* Coupon.swift in Sources */,
 				DF8874DD28B0E89500B407C7 /* CategoryCollectionViewCell.swift in Sources */,
 				DF6A45A128D74CBF006D2848 /* CartViewModel.swift in Sources */,
 				DFB6019328A8F6E6009CEA90 /* AddNewViewModel.swift in Sources */,

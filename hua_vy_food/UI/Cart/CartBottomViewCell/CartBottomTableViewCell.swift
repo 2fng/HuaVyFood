@@ -27,11 +27,13 @@ final class CartBottomTableViewCell: UITableViewCell, ReuseableCell {
     @IBOutlet private weak var paymentMethodTextField: UITextField!
 
     private let disposeBag = DisposeBag()
-    private var couponPrice: Double = 0
+    private var cartTotalValue = 0.0
+    private var discountValue = 0
     private var currentPaymentMethod = PaymentMethod()
 
     var handleNavigateToCreateShippingInfo: (() -> Void)?
     var handleChoosingPaymentMethod: (() -> Void)?
+    var handleSubmitCoupon: ((String) -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,15 +68,22 @@ final class CartBottomTableViewCell: UITableViewCell, ReuseableCell {
         couponSubmitButton.rx.tap
             .map { [unowned self] in
                 couponSubmitButton.animationSelect()
+                discountValue = 0
+                couponValue.text = convertToPrice(value: Double(discountValue))
+                totalValue.text = convertToPrice(value: cartTotalValue - Double(discountValue))
+                handleSubmitCoupon?(couponTextField.text?.uppercased() ?? "")
             }
             .subscribe()
             .disposed(by: disposeBag)
     }
 
-    func configCell(cart: Cart, userShippingInfo: UserShippingInfo, paymentMethod: PaymentMethod) {
+    func configCell(cart: Cart, userShippingInfo: UserShippingInfo, paymentMethod: PaymentMethod, discountValue: Int) {
         currentPaymentMethod = paymentMethod
+        self.discountValue = discountValue
+        self.cartTotalValue = cart.totalValue
+        couponValue.text = convertToPrice(value: Double(discountValue))
         totalPriceBeforeValue.text = convertToPrice(value: cart.totalValue)
-        totalValue.text = convertToPrice(value: cart.totalValue - couponPrice)
+        totalValue.text = convertToPrice(value: cart.totalValue - Double(discountValue))
         shippingInfoNameLabel.text = userShippingInfo.fullName.isEmpty ? "Không có dữ liệu tên" : userShippingInfo.fullName
         shippingInfoPhoneLabel.text = userShippingInfo.mobileNumber.isEmpty ? "Không có dữ liệu số điện thoại" : userShippingInfo.mobileNumber
         shippingInfoAddressLabel.text = userShippingInfo.address.isEmpty ? "Không có dữ liệu địa chỉ" : userShippingInfo.address
