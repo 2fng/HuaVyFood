@@ -18,12 +18,13 @@ final class CartViewController: UIViewController {
     private let viewModel = CartViewModel(cartRepository: CartRepository(),
                                           userRepository: UserRepository())
     // Variables
+    private var order = Order()
     private var cart = Cart()
     private var userShippingInfo = UserShippingInfo()
     private var paymentMethods = [PaymentMethod]()
     private var currentPaymentMethod = PaymentMethod(id: "HVFPM01", name: "Thanh toán khi nhận hàng")
     private var coupons = [Coupon]()
-    private var discountValue = 0
+    private var couponUsed: Coupon?
 
 
     // Triggers
@@ -31,6 +32,7 @@ final class CartViewController: UIViewController {
     private let getUserShippingInfoTrigger = PublishSubject<Void>()
     private let getPaymentMethodsTrigger = PublishSubject<Void>()
     private let getCouponsTrigger = PublishSubject<Void>()
+    private let checkoutTrigger = PublishSubject<Order>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,19 +67,37 @@ final class CartViewController: UIViewController {
         checkoutButton.rx.tap
             .map { [unowned self] in
                 checkoutButton.animationSelect()
-                if currentPaymentMethod.id != "HVFPM01" {
-                    let checkoutMessage = "Vui lòng thanh toán hoá đơn thông qua phương thức \n\(currentPaymentMethod.name)\n \(currentPaymentMethod.paymentDetail) \nNội dung chuyển khoản:\n <Họ và tên> <Ngày mua>"
-                    showAlert(message: checkoutMessage, okButtonOnly: true, okCompletion: {
-                        print(currentPaymentMethod)
-                        print(discountValue)
-                        print(userShippingInfo)
-                        print(cart)
-                    })
+                order.userShippingInfo = userShippingInfo
+                order.paymentMethod = currentPaymentMethod
+                order.couponUsed = couponUsed
+                order.cart = cart
+                order.totalValueBeforeCoupon = Int(order.cart.totalValue)
+                order.totalValue = Int((order.cart.totalValue - Double(order.couponUsed?.value ?? 0)))
+                order.uid = UserManager.shared.getUserID()
+                order.id = "\(CACurrentMediaTime().truncatingRemainder(dividingBy: 1))"
+                order.orderDate = Date()
+                order.status = "Đang xử lý"
+                if order.cart.items.isEmpty {
+                    showAlert(message: "Giỏ hàng không có sản phẩm!", okButtonOnly: true)
+                } else if order.userShippingInfo.fullName.isEmpty ||
+                            order.userShippingInfo.mobileNumber.isEmpty ||
+                            order.userShippingInfo.address.isEmpty {
+                    showAlert(message: "Thông tin giao hàng không được bỏ trống!", okButtonOnly: true)
                 } else {
-                    print(currentPaymentMethod)
-                    print(discountValue)
-                    print(userShippingInfo)
-                    print(cart)
+                    if currentPaymentMethod.id != "HVFPM01" {
+                        let checkoutMessage = "Vui lòng thanh toán hoá đơn thông qua phương thức \n\(currentPaymentMethod.name)\n \(currentPaymentMethod.paymentDetail) \nNội dung chuyển khoản:\n <Họ và tên> <Ngày mua>"
+                        showAlert(message: checkoutMessage, okButtonOnly: true, okCompletion: { [unowned self] in
+                            showAlert(message: "Xác nhận đặt hàng",
+                                      rightCompletion: { [unowned self] in
+                                checkoutTrigger.onNext(order)
+                            })
+                        })
+                    } else {
+                        showAlert(message: "Xác nhận đặt hàng",
+                                  rightCompletion: { [unowned self] in
+                            checkoutTrigger.onNext(order)
+                        })
+                    }
                 }
             }
             .subscribe()
@@ -88,7 +108,8 @@ final class CartViewController: UIViewController {
         let input = CartViewModel.Input(updateCartTrigger: updateCartTrigger.asDriverOnErrorJustComplete(),
                                         userShippingInfoTrigger: getUserShippingInfoTrigger.asDriverOnErrorJustComplete(),
                                         getPaymentMethodTrigger: getPaymentMethodsTrigger.asDriverOnErrorJustComplete(),
-                                        getCouponsTrigger: getCouponsTrigger.asDriverOnErrorJustComplete())
+                                        getCouponsTrigger: getCouponsTrigger.asDriverOnErrorJustComplete(),
+                                        checkoutTrigger: checkoutTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -106,6 +127,10 @@ final class CartViewController: UIViewController {
 
         output.coupons
             .drive(getCouponsBinder)
+            .disposed(by: disposeBag)
+
+        output.checkout
+            .drive(checkoutBinder)
             .disposed(by: disposeBag)
 
         output.loading
@@ -150,6 +175,12 @@ extension CartViewController {
             vc.tableView.reloadData()
         }
     }
+
+    private var checkoutBinder: Binder<Void> {
+        return Binder(self) { vc, _ in
+
+        }
+    }
 }
 
 extension CartViewController: UITableViewDataSource {
@@ -184,7 +215,10 @@ extension CartViewController: UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CartBottomTableViewCell.identifier) as? CartBottomTableViewCell else { return UITableViewCell() }
-            cell.configCell(cart: cart, userShippingInfo: userShippingInfo, paymentMethod: currentPaymentMethod, discountValue: discountValue)
+            cell.configCell(cart: cart,
+                            userShippingInfo: userShippingInfo,
+                            paymentMethod: currentPaymentMethod,
+                            discountValue: couponUsed?.value ?? 0)
             cell.handleNavigateToCreateShippingInfo = {
                 self.navigationController?.pushViewController(AddNewShippingInfoViewController(), animated: true)
             }
@@ -206,7 +240,7 @@ extension CartViewController: UITableViewDataSource {
                 if let couponContain = coupons.first(where: { coupon in
                     coupon.name == couponName
                 }) {
-                    discountValue = couponContain.value
+                    couponUsed = couponContain
                     tableView.reloadData()
                 } else {
                     showAlert(message: "Mã giảm giá không đúng", okButtonOnly: true)

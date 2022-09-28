@@ -33,7 +33,7 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain">
                         <attributedString key="attributedTitle">
-                            <fragment content="Thanh toán">
+                            <fragment content="Đặt hàng">
                                 <attributes>
                                     <font key="NSFont" size="16" name="Helvetica-Bold"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>

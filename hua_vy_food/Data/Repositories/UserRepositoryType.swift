@@ -158,7 +158,7 @@ final class UserRepository: UserRepositoryType {
                     } else {
                         if let snapshot = snapshot {
                             let userShippingInfo = snapshot.documents.map { document in
-                                return UserShippingInfo(id: document["id"] as? String ?? "",
+                                return UserShippingInfo(id: document.documentID,
                                                         uid: document["uid"] as? String ?? "",
                                                         profileName: document["profileName"] as? String ?? "",
                                                         fullName: document["fullName"] as? String ?? "",
