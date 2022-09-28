@@ -200,7 +200,41 @@ final class CartRepository: CartRepositoryType {
                 if let error = error {
                     observer.onError(error)
                 } else {
-                    observer.onNext(())
+                    for product in order.cart.items {
+                        database.collection("orderDetails").addDocument(data: [
+                            "orderID": order.id,
+                            "uid": order.uid,
+                            "productName": product.name,
+                            "productPrice": product.price,
+                            "productImageName": product.imageName,
+                            "productImageURL": product.imageURL,
+                            "productCategoryID": product.category.id,
+                            "productCategoryName": product.category.name,
+                            "productQuantity": product.quantity
+                        ]) { error in
+                            if let error = error {
+                                observer.onError(error)
+                            } else {
+                                database.collection("carts").whereField("uid", isEqualTo: order.cart.uid).getDocuments { snapshot, error in
+                                    if let error = error {
+                                        observer.onError(error)
+                                    } else {
+                                        if let snapshot = snapshot {
+                                            for document in snapshot.documents {
+                                                database.collection("carts").document(document.documentID).delete { error in
+                                                    if let error = error {
+                                                        observer.onError(error)
+                                                        print("Error deleting cart: \n\(error)")
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                observer.onNext(())
+                            }
+                        }
+                    }
                 }
             }
             return Disposables.create()
