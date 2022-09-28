@@ -15,6 +15,7 @@ protocol CartRepositoryType {
     func getCart() -> Observable<Cart>
     func updateCart(cart: Cart) -> Observable<String>
     func getPaymentMethod() -> Observable<[PaymentMethod]>
+    func getCoupon() -> Observable<[Coupon]>
 }
 
 final class CartRepository: CartRepositoryType {
@@ -138,9 +139,38 @@ final class CartRepository: CartRepositoryType {
                                 var method = PaymentMethod()
                                 method.id = document["id"] as? String ?? ""
                                 method.name = document["name"] as? String ?? ""
+                                method.paymentDetail = document["paymentDetail"] as? String ?? ""
                                 returnPaymentMethods.append(method)
                             }
                             observer.onNext(returnPaymentMethods)
+                        }
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func getCoupon() -> Observable<[Coupon]> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("coupons").getDocuments { snapshot, error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    if let snapShot = snapshot {
+                        if snapShot.isEmpty {
+                            observer.onNext([Coupon()])
+                        } else {
+                            var returnCoupons: [Coupon] = []
+                            for document in snapShot.documents {
+                                var coupon = Coupon()
+                                coupon.id = document["id"] as? String ?? ""
+                                coupon.name = document["name"] as? String ?? ""
+                                coupon.value = document["value"] as? Int ?? 0
+                                returnCoupons.append(coupon)
+                            }
+                            observer.onNext(returnCoupons)
                         }
                     }
                 }

@@ -22,12 +22,15 @@ final class CartViewController: UIViewController {
     private var userShippingInfo = UserShippingInfo()
     private var paymentMethods = [PaymentMethod]()
     private var currentPaymentMethod = PaymentMethod(id: "HVFPM01", name: "Thanh toán khi nhận hàng")
+    private var coupons = [Coupon]()
+    private var discountValue = 0
 
 
     // Triggers
     private let updateCartTrigger = PublishSubject<Cart>()
     private let getUserShippingInfoTrigger = PublishSubject<Void>()
     private let getPaymentMethodsTrigger = PublishSubject<Void>()
+    private let getCouponsTrigger = PublishSubject<Void>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +41,7 @@ final class CartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         getUserShippingInfoTrigger.onNext(())
         getPaymentMethodsTrigger.onNext(())
+        getCouponsTrigger.onNext(())
     }
 
     func configCart(cart: Cart) {
@@ -61,10 +65,20 @@ final class CartViewController: UIViewController {
         checkoutButton.rx.tap
             .map { [unowned self] in
                 checkoutButton.animationSelect()
-                // navigationController?.pushViewController(CheckoutViewController(), animated: true)
-                print(currentPaymentMethod)
-                print(userShippingInfo)
-                print(cart)
+                if currentPaymentMethod.id != "HVFPM01" {
+                    let checkoutMessage = "Vui lòng thanh toán hoá đơn thông qua phương thức \n\(currentPaymentMethod.name)\n \(currentPaymentMethod.paymentDetail) \nNội dung chuyển khoản:\n <Họ và tên> <Ngày mua>"
+                    showAlert(message: checkoutMessage, okButtonOnly: true, okCompletion: {
+                        print(currentPaymentMethod)
+                        print(discountValue)
+                        print(userShippingInfo)
+                        print(cart)
+                    })
+                } else {
+                    print(currentPaymentMethod)
+                    print(discountValue)
+                    print(userShippingInfo)
+                    print(cart)
+                }
             }
             .subscribe()
             .disposed(by: disposeBag)
@@ -73,7 +87,8 @@ final class CartViewController: UIViewController {
     private func bindViewModel() {
         let input = CartViewModel.Input(updateCartTrigger: updateCartTrigger.asDriverOnErrorJustComplete(),
                                         userShippingInfoTrigger: getUserShippingInfoTrigger.asDriverOnErrorJustComplete(),
-                                        getPaymentMethodTrigger: getPaymentMethodsTrigger.asDriverOnErrorJustComplete())
+                                        getPaymentMethodTrigger: getPaymentMethodsTrigger.asDriverOnErrorJustComplete(),
+                                        getCouponsTrigger: getCouponsTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -89,6 +104,10 @@ final class CartViewController: UIViewController {
             .drive(getPaymentMethodsBinder)
             .disposed(by: disposeBag)
 
+        output.coupons
+            .drive(getCouponsBinder)
+            .disposed(by: disposeBag)
+
         output.loading
             .drive(rx.isLoading)
             .disposed(by: disposeBag)
@@ -99,6 +118,7 @@ final class CartViewController: UIViewController {
 
         getUserShippingInfoTrigger.onNext(())
         getPaymentMethodsTrigger.onNext(())
+        getCouponsTrigger.onNext(())
     }
 }
 
@@ -120,6 +140,13 @@ extension CartViewController {
     private var getPaymentMethodsBinder: Binder<[PaymentMethod]> {
         return Binder(self) { vc, paymentMethods in
             vc.paymentMethods = paymentMethods
+            vc.tableView.reloadData()
+        }
+    }
+
+    private var getCouponsBinder: Binder<[Coupon]> {
+        return Binder(self) { vc, coupons in
+            vc.coupons = coupons
             vc.tableView.reloadData()
         }
     }
@@ -157,7 +184,7 @@ extension CartViewController: UITableViewDataSource {
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CartBottomTableViewCell.identifier) as? CartBottomTableViewCell else { return UITableViewCell() }
-            cell.configCell(cart: cart, userShippingInfo: userShippingInfo, paymentMethod: currentPaymentMethod)
+            cell.configCell(cart: cart, userShippingInfo: userShippingInfo, paymentMethod: currentPaymentMethod, discountValue: discountValue)
             cell.handleNavigateToCreateShippingInfo = {
                 self.navigationController?.pushViewController(AddNewShippingInfoViewController(), animated: true)
             }
@@ -173,6 +200,16 @@ extension CartViewController: UITableViewDataSource {
                         self.currentPaymentMethod = data
                         tableView.reloadData()
                     }
+                }
+            }
+            cell.handleSubmitCoupon = { [unowned self] couponName in
+                if let couponContain = coupons.first(where: { coupon in
+                    coupon.name == couponName
+                }) {
+                    discountValue = couponContain.value
+                    tableView.reloadData()
+                } else {
+                    showAlert(message: "Mã giảm giá không đúng", okButtonOnly: true)
                 }
             }
             return cell
