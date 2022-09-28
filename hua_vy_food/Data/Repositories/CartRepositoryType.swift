@@ -16,6 +16,7 @@ protocol CartRepositoryType {
     func updateCart(cart: Cart) -> Observable<String>
     func getPaymentMethod() -> Observable<[PaymentMethod]>
     func getCoupon() -> Observable<[Coupon]>
+    func checkout(order: Order) -> Observable<Void>
 }
 
 final class CartRepository: CartRepositoryType {
@@ -173,6 +174,33 @@ final class CartRepository: CartRepositoryType {
                             observer.onNext(returnCoupons)
                         }
                     }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func checkout(order: Order) -> Observable<Void> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("orders").addDocument(data: [
+                "id": order.id,
+                "uid":  order.uid,
+                "totalValue": order.totalValue,
+                "totalValueBeforeCoupon": order.totalValueBeforeCoupon,
+                "couponUsedID": order.couponUsed?.id,
+                "couponUsedName": order.couponUsed?.name,
+                "couponUsedValue": order.couponUsed?.value,
+                "paymentMethodName": order.paymentMethod.name,
+                "userShippingInfoID": order.userShippingInfo.id,
+                "orderDate": order.orderDate.timeIntervalSince1970,
+                "status": order.status,
+                "paidDate": order.paidDate?.timeIntervalSince1970
+            ]) { error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    observer.onNext(())
                 }
             }
             return Disposables.create()
