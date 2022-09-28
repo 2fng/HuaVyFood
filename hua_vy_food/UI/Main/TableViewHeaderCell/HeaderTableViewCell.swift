@@ -51,7 +51,6 @@ final class HeaderTableViewCell: UITableViewCell, ReuseableCell {
         }
 
         categoryCollectionView.do {
-            $0.semanticContentAttribute = .forceRightToLeft
             $0.delegate = self
             $0.dataSource = self
             $0.register(CategoryCollectionViewCell.nib, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
