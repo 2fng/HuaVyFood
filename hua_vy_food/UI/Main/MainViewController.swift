@@ -135,8 +135,8 @@ extension MainViewController {
     private var returnProductCategories: Binder<[ProductCategory]> {
         return Binder(self) { vc, categories in
             vc.categories = categories
-            vc.categories.append(ProductCategory(id: "", name: "Tất cả"))
-            vc.categorySelectedIndex = vc.categories.count - 1
+            vc.categories.insert(ProductCategory(id: "", name: "Tất cả"), at: 0)
+            vc.categorySelectedIndex = 0
             vc.productTableView.reloadData()
         }
     }
