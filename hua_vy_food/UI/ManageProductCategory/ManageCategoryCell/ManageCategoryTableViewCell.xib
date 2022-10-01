@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="69" id="KGk-i7-Jjw" customClass="ManageCategoryTableViewCell" customModule="hua_vy_food" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="473" height="69"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="473" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a88-1F-iXI">
+                        <rect key="frame" x="390" y="19" width="60" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="iOn-K1-eDr"/>
+                        </constraints>
+                        <color key="tintColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Xoá"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qEI-CW-ZtJ">
+                        <rect key="frame" x="290" y="19" width="100" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="9EX-iD-ERO"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Cập nhật"/>
+                    </button>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tên thể loại" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="um4-eH-qqw" customClass="CustomTextField" customModule="hua_vy_food" customModuleProvider="target">
+                        <rect key="frame" x="23" y="17.5" width="200" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="b13-O3-0Rn"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="a88-1F-iXI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1Wf-mo-ssv"/>
+                    <constraint firstItem="um4-eH-qqw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Vt4-pf-qa9"/>
+                    <constraint firstItem="qEI-CW-ZtJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZRl-Dc-Pyj"/>
+                    <constraint firstItem="um4-eH-qqw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="23" id="bY0-t5-IK0"/>
+                    <constraint firstItem="a88-1F-iXI" firstAttribute="leading" secondItem="qEI-CW-ZtJ" secondAttribute="trailing" id="gfK-rf-is5"/>
+                    <constraint firstAttribute="trailing" secondItem="a88-1F-iXI" secondAttribute="trailing" constant="23" id="qPb-qh-Ys8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="deleteButton" destination="a88-1F-iXI" id="1NV-Gt-j7Y"/>
+                <outlet property="nameTextField" destination="um4-eH-qqw" id="fDm-Ki-w6B"/>
+                <outlet property="updateButton" destination="qEI-CW-ZtJ" id="Sdi-Vz-oRV"/>
+            </connections>
+            <point key="canvasLocation" x="242.75362318840581" y="73.995535714285708"/>
+        </tableViewCell>
+    </objects>
+</document>

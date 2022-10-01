@@ -9,6 +9,7 @@ import Foundation
 import ObjectMapper
 
 struct ProductCategory {
+    var documentID = ""
     var id = ""
     var name = ""
 }
@@ -19,6 +20,7 @@ extension ProductCategory: Mappable {
     }
 
     mutating func mapping(map: Map) {
+        documentID <- map["documentID"]
         id <- map["id"]
         name <- map["name"]
     }

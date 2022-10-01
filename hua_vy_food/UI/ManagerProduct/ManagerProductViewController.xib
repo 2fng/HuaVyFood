@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ManagerProductViewController" customModule="hua_vy_food" customModuleProvider="target">
             <connections>
                 <outlet property="floatingButton" destination="V6q-Ck-fgw" id="ajM-QN-f8R"/>
+                <outlet property="manageProductCategoryButton" destination="jMy-cs-erR" id="2T4-AJ-YzZ"/>
                 <outlet property="tableView" destination="jEH-uC-Hfp" id="TLi-1a-T2Q"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -34,16 +35,24 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMy-cs-erR">
+                    <rect key="frame" x="3" y="808" width="190.5" height="31"/>
+                    <color key="tintColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Quản lý thể loại sản phẩm"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="V6q-Ck-fgw" secondAttribute="trailing" constant="23" id="0Hv-HN-JdQ"/>
                 <constraint firstItem="jEH-uC-Hfp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Ktk-24-tAt"/>
+                <constraint firstItem="jMy-cs-erR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="3" id="Spr-wO-IhQ"/>
                 <constraint firstItem="V6q-Ck-fgw" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="-23" id="ZGw-Lk-Lwl"/>
                 <constraint firstItem="jEH-uC-Hfp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cdt-c8-xKb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jEH-uC-Hfp" secondAttribute="trailing" id="dPv-I3-baI"/>
                 <constraint firstItem="V6q-Ck-fgw" firstAttribute="top" secondItem="jEH-uC-Hfp" secondAttribute="bottom" constant="5" id="ga2-I6-OZq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="jMy-cs-erR" secondAttribute="bottom" constant="23" id="p7h-pk-tdF"/>
             </constraints>
             <point key="canvasLocation" x="132" y="115"/>
         </view>
