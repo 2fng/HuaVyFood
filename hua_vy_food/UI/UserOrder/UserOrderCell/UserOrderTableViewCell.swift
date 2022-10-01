@@ -31,8 +31,9 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
 
     private func setupView() {
         reOrderButton.layer.cornerRadius = 5
+        statusContainerView.roundCorners(corners: [.layerMinXMinYCorner, .layerMinXMaxYCorner], radius: 8)
         viewContainer.do {
-            $0.layer.cornerRadius = 5
+            $0.layer.cornerRadius = 8
             $0.backgroundColor = .white
         }
 
@@ -42,5 +43,37 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
             }
             .subscribe()
             .disposed(by: disposeBag)
+    }
+
+    func configCell(order: Order, shippingInfo: UserShippingInfo) {
+        var cartQuantity = 0
+        for item in order.cart.items {
+            cartQuantity += item.quantity
+        }
+        dateLabel.text = "\(order.orderDate)"
+        addressLabel.text = "\(shippingInfo.address)"
+        totalLabel.text = convertToPrice(value: Double(order.totalValue))
+        quantityAndPaymentMethodLabel.text = "(\(cartQuantity) món) - \(order.paymentMethod.name)"
+        paymentStatusLabel.text = order.paidDate != nil ? "Đã thanh toán" : "Chưa thanh toán"
+        switch order.status {
+        case "Đang xử lý":
+            statusContainerView.backgroundColor = UIColor.onGoing
+            statusImage.image = UIImage(named: "pending")
+        default:
+            break
+        }
+    }
+
+    private func convertToPrice(value: Double) -> String {
+        // Price's logic
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.numberStyle = .currency
+        if let string = formatter.string(from: value as NSNumber) {
+            let priceString = String(string.dropFirst()) + "đ"
+            return priceString
+        } else {
+            return "Không có giá trị"
+        }
     }
 }

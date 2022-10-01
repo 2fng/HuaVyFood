@@ -49,4 +49,9 @@ extension UIView {
         }
         return isVisible(inView: self.superview)
     }
+
+    func roundCorners(corners: CACornerMask, radius: CGFloat) {
+        layer.cornerRadius = radius
+        layer.maskedCorners = corners
+    }
 }
