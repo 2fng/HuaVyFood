@@ -54,11 +54,23 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
         addressLabel.text = "\(shippingInfo.address)"
         totalLabel.text = convertToPrice(value: Double(order.totalValue))
         quantityAndPaymentMethodLabel.text = "(\(cartQuantity) món) - \(order.paymentMethod.name)"
-        paymentStatusLabel.text = order.paidDate != nil ? "Đã thanh toán" : "Chưa thanh toán"
+        paymentStatusLabel.text = order.paidDate != Date(timeIntervalSince1970: 0) ? "Đã thanh toán" : "Chưa thanh toán"
         switch order.status {
         case "Đang xử lý":
             statusContainerView.backgroundColor = UIColor.onGoing
             statusImage.image = UIImage(named: "pending")
+        case "Đang giao hàng":
+            statusContainerView.backgroundColor = UIColor.shipping
+            statusImage.image = UIImage(named: "foward")
+        case "Hoàn thành":
+            statusContainerView.backgroundColor = UIColor.finish
+            statusImage.image = UIImage(named: "approved")
+        case "Huỷ":
+            statusContainerView.backgroundColor = UIColor.cancel
+            statusImage.image = UIImage(named: "cancel")
+        case "Từ chối":
+            statusContainerView.backgroundColor = UIColor.reject
+            statusImage.image = UIImage(named: "rejected")
         default:
             break
         }

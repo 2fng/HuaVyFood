@@ -191,7 +191,7 @@ final class UserRepository: UserRepositoryType {
                                                           value: document["couponUsedValue"] as? Int ?? 0)
                                 order.id = document["id"] as? String ?? ""
                                 order.orderDate = Date(timeIntervalSince1970: document["orderDate"] as? TimeInterval ?? 0)
-                                order.paidDate = document["paidDate"] as? Date ?? nil
+                                order.paidDate = Date(timeIntervalSince1970: document["paidDate"] as? TimeInterval ?? 0)
                                 order.paymentMethod.name = document["paymentMethodName"] as? String ?? ""
                                 order.status = document["status"] as? String ?? ""
                                 order.totalValue = document["totalValue"] as? Int ?? 0
