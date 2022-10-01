@@ -52,13 +52,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120.000 vnđ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBA-HK-h7t">
-                                <rect key="frame" x="65" y="78" width="90.5" height="19"/>
+                                <rect key="frame" x="65" y="78" width="100" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="7gK-cU-b3h"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(2 món) - Momo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcE-mr-1GM">
-                                <rect key="frame" x="165.5" y="78" width="114.5" height="19"/>
+                                <rect key="frame" x="165" y="78" width="263" height="19"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" systemColor="systemGray2Color"/>
                                 <nil key="highlightedColor"/>
@@ -92,18 +95,21 @@
                             <constraint firstAttribute="bottom" secondItem="EGI-fa-UBM" secondAttribute="bottom" id="5Jo-Ne-NxL"/>
                             <constraint firstAttribute="trailing" secondItem="jLY-Pa-Nhg" secondAttribute="trailing" constant="20" id="5kM-nn-lV5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eLf-HJ-j8S" secondAttribute="trailing" constant="25" id="Af3-fN-LNm"/>
+                            <constraint firstItem="VcE-mr-1GM" firstAttribute="top" secondItem="eLf-HJ-j8S" secondAttribute="bottom" constant="10" id="Awz-eg-PrW"/>
                             <constraint firstItem="eLf-HJ-j8S" firstAttribute="top" secondItem="KEM-oL-dPa" secondAttribute="bottom" constant="10" id="Jci-tx-YbS"/>
                             <constraint firstItem="VcE-mr-1GM" firstAttribute="centerY" secondItem="sBA-HK-h7t" secondAttribute="centerY" id="Kwy-HI-Fo1"/>
                             <constraint firstItem="KEM-oL-dPa" firstAttribute="top" secondItem="7tq-M5-GlR" secondAttribute="top" constant="15" id="M7i-J8-Shc"/>
+                            <constraint firstAttribute="trailing" secondItem="VcE-mr-1GM" secondAttribute="trailing" constant="10" id="RsS-OG-xC5"/>
                             <constraint firstItem="eLf-HJ-j8S" firstAttribute="leading" secondItem="EGI-fa-UBM" secondAttribute="trailing" constant="15" id="Ub7-5S-dA8"/>
                             <constraint firstAttribute="trailing" secondItem="mjr-ah-Yv3" secondAttribute="trailing" constant="20" id="UoE-s2-7uy"/>
                             <constraint firstAttribute="trailing" secondItem="NBP-Xi-5WC" secondAttribute="trailing" constant="20" id="XMv-eS-0Gm"/>
                             <constraint firstAttribute="bottom" secondItem="O3f-4t-JPY" secondAttribute="bottom" constant="10" id="Yxa-Q8-I1M"/>
                             <constraint firstItem="KEM-oL-dPa" firstAttribute="leading" secondItem="EGI-fa-UBM" secondAttribute="trailing" constant="15" id="bhs-7G-MvM"/>
                             <constraint firstItem="mjr-ah-Yv3" firstAttribute="top" secondItem="NBP-Xi-5WC" secondAttribute="bottom" constant="10" id="ff7-C9-wwZ"/>
+                            <constraint firstAttribute="trailing" secondItem="VcE-mr-1GM" secondAttribute="trailing" constant="10" id="fs5-O2-0N8"/>
                             <constraint firstItem="O3f-4t-JPY" firstAttribute="top" secondItem="NBP-Xi-5WC" secondAttribute="bottom" constant="10" id="kcu-A9-QXz"/>
                             <constraint firstItem="sBA-HK-h7t" firstAttribute="leading" secondItem="EGI-fa-UBM" secondAttribute="trailing" constant="15" id="meF-4L-0sN"/>
-                            <constraint firstItem="VcE-mr-1GM" firstAttribute="leading" secondItem="sBA-HK-h7t" secondAttribute="trailing" constant="10" id="nnG-CX-YvQ"/>
+                            <constraint firstItem="VcE-mr-1GM" firstAttribute="leading" secondItem="sBA-HK-h7t" secondAttribute="trailing" id="nnG-CX-YvQ"/>
                             <constraint firstItem="O3f-4t-JPY" firstAttribute="leading" secondItem="EGI-fa-UBM" secondAttribute="trailing" constant="15" id="ozn-tU-CQk"/>
                             <constraint firstItem="jLY-Pa-Nhg" firstAttribute="leading" secondItem="KEM-oL-dPa" secondAttribute="trailing" constant="10" id="pi6-fi-OE8"/>
                             <constraint firstItem="jLY-Pa-Nhg" firstAttribute="centerY" secondItem="KEM-oL-dPa" secondAttribute="centerY" id="qGh-IL-HtZ"/>

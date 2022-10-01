@@ -68,6 +68,7 @@
 		DFB2719028E7E4E400E11183 /* UserOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB2718E28E7E4E400E11183 /* UserOrderViewController.xib */; };
 		DFB2719428E80B0700E11183 /* UserOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2719228E80B0700E11183 /* UserOrderTableViewCell.swift */; };
 		DFB2719528E80B0700E11183 /* UserOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB2719328E80B0700E11183 /* UserOrderTableViewCell.xib */; };
+		DFB2719728E823CC00E11183 /* UserOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2719628E823CC00E11183 /* UserOrderViewModel.swift */; };
 		DFB4D0BE289121C300B109C0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */; };
 		DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */; };
 		DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D0C22891265C00B109C0 /* UIColor+.swift */; };
@@ -153,6 +154,7 @@
 		DFB2718E28E7E4E400E11183 /* UserOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserOrderViewController.xib; sourceTree = "<group>"; };
 		DFB2719228E80B0700E11183 /* UserOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrderTableViewCell.swift; sourceTree = "<group>"; };
 		DFB2719328E80B0700E11183 /* UserOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserOrderTableViewCell.xib; sourceTree = "<group>"; };
+		DFB2719628E823CC00E11183 /* UserOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrderViewModel.swift; sourceTree = "<group>"; };
 		DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		DFB4D0C22891265C00B109C0 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				DFB2719128E80AEE00E11183 /* UserOrderCell */,
 				DFB2718D28E7E4E400E11183 /* UserOrderViewController.swift */,
 				DFB2718E28E7E4E400E11183 /* UserOrderViewController.xib */,
+				DFB2719628E823CC00E11183 /* UserOrderViewModel.swift */,
 			);
 			path = UserOrder;
 			sourceTree = "<group>";
@@ -714,6 +717,7 @@
 				DFB6DAC4289E83CA008879BF /* UserSettingViewModel.swift in Sources */,
 				DFB6019128A8F635009CEA90 /* ProductRepositoryType.swift in Sources */,
 				DF6AAD252892AD6F008961FE /* UserRepositoryType.swift in Sources */,
+				DFB2719728E823CC00E11183 /* UserOrderViewModel.swift in Sources */,
 				DFA11ED4288EB04C00C8E2E2 /* LoginViewController.swift in Sources */,
 				DF8DF81228DC9FCB0075C4D5 /* AddNewShippingInfoViewModel.swift in Sources */,
 				DF55E68D28B24BEF00B05776 /* ManagerProductViewModel.swift in Sources */,

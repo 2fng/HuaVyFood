@@ -40,4 +40,9 @@ extension UIColor {
     static let logoPink = UIColor.hex("#FC8C84")
     static let primaryDark = UIColor.hex("#DF3A2D")
     static let whiteTransparent50 = UIColor.hex("#8Cffffff")
+    static let finish = UIColor.hex("#00C853")
+    static let onGoing = UIColor.hex("#FFCC80")
+    static let shipping = UIColor.hex("#777777")
+    static let reject = UIColor.hex("#FF5252")
+    static let cancel = UIColor.hex("#337AB7")
 }
