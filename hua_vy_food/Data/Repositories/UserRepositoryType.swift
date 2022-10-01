@@ -17,7 +17,7 @@ protocol UserRepositoryType {
     func logout() -> Observable<Void>
     func addNewShippingInfoProfile(profile: UserShippingInfo) -> Observable<String>
     func getUserShippingInfo() -> Observable<UserShippingInfo>
-    func getUserOrders() -> Observable<[Order]>
+    func getUserOrders(isAdmin: Bool) -> Observable<[Order]>
 }
 
 final class UserRepository: UserRepositoryType {
@@ -173,62 +173,79 @@ final class UserRepository: UserRepositoryType {
         }
     }
 
-    func getUserOrders() -> Observable<[Order]> {
+    func getUserOrders(isAdmin: Bool = false) -> Observable<[Order]> {
         return Observable.create { observer in
             let database = Firestore.firestore()
             let currentUID = UserManager.shared.getUserID()
-            database.collection("orders").whereField("uid", isEqualTo: currentUID)
-                .getDocuments(completion: { snapshot, error in
-                    if error != nil {
-                        observer.onError(error!)
-                    } else {
-                        var orders = [Order]()
-                        if let snapshot = snapshot {
-                            for document in snapshot.documents {
-                                var order = Order()
-                                order.couponUsed = Coupon(id: document["couponUsedID"] as? String ?? "",
-                                                          name: document["couponUsedName"] as? String ?? "",
-                                                          value: document["couponUsedValue"] as? Int ?? 0)
-                                order.id = document["id"] as? String ?? ""
-                                order.orderDate = Date(timeIntervalSince1970: document["orderDate"] as? TimeInterval ?? 0)
-                                order.paidDate = Date(timeIntervalSince1970: document["paidDate"] as? TimeInterval ?? 0)
-                                order.paymentMethod.name = document["paymentMethodName"] as? String ?? ""
-                                order.status = document["status"] as? String ?? ""
-                                order.totalValue = document["totalValue"] as? Int ?? 0
-                                order.totalValueBeforeCoupon = document["totalValueBeforeCoupon"] as? Int ?? 0
-                                order.uid = document["uid"] as? String ?? ""
-                                order.userShippingInfo.id = document["userShippingInfoID"] as? String ?? ""
-                                database.collection("orderDetails").whereField("orderID", isEqualTo: order.id)
-                                    .getDocuments { snapshot1, error in
-                                        if error != nil {
-                                            observer.onError(error!)
-                                        } else {
-                                            var cart = Cart()
-                                            if let snapshot1 = snapshot1 {
-                                                for document1 in snapshot1.documents {
-                                                    cart.items.append(Product(id: "",
-                                                                              documentID: "",
-                                                                              name: document1["productName"] as? String ?? "",
-                                                                              price: document1["productPrice"] as? Double ?? 0.0,
-                                                                              category: ProductCategory(documentID: "",
-                                                                                                        id: document1["productCategoryID"] as? String ?? "",
-                                                                                                        name: document1["productCategoryName"] as? String ?? ""),
-                                                                              image: UIImage(),
-                                                                              imageName: document1["productImageName"] as? String ?? "",
-                                                                              imageURL: document1["productImageURL"] as? String ?? "",
-                                                                              quantity: document1["productQuantity"] as? Int ?? 0))
+            let getCollection = isAdmin ? database.collection("orders") : database.collection("orders").whereField("uid", isEqualTo: currentUID)
+            
+            getCollection.getDocuments(completion: { snapshot, error in
+                if error != nil {
+                    observer.onError(error!)
+                } else {
+                    var orders = [Order]()
+                    if let snapshot = snapshot {
+                        for document in snapshot.documents {
+                            var order = Order()
+                            order.couponUsed = Coupon(id: document["couponUsedID"] as? String ?? "",
+                                                      name: document["couponUsedName"] as? String ?? "",
+                                                      value: document["couponUsedValue"] as? Int ?? 0)
+                            order.id = document["id"] as? String ?? ""
+                            order.orderDate = Date(timeIntervalSince1970: document["orderDate"] as? TimeInterval ?? 0)
+                            order.paidDate = Date(timeIntervalSince1970: document["paidDate"] as? TimeInterval ?? 0)
+                            order.paymentMethod.name = document["paymentMethodName"] as? String ?? ""
+                            order.status = document["status"] as? String ?? ""
+                            order.totalValue = document["totalValue"] as? Int ?? 0
+                            order.totalValueBeforeCoupon = document["totalValueBeforeCoupon"] as? Int ?? 0
+                            order.uid = document["uid"] as? String ?? ""
+                            order.userShippingInfo.id = document["userShippingInfoID"] as? String ?? ""
+                            database.collection("userShippingInfo").document(order.userShippingInfo.id)
+                                .getDocument { snapshot0, error in
+                                    if error != nil {
+                                        observer.onError(error!)
+                                    } else {
+                                        if let snapshot0 = snapshot0 {
+                                            order.userShippingInfo = UserShippingInfo(
+                                                id: snapshot0.documentID,
+                                                uid: snapshot0["uid"] as? String ?? "",
+                                                profileName: snapshot0["profileName"] as? String ?? "",
+                                                fullName: snapshot0["fullName"] as? String ?? "",
+                                                mobileNumber: snapshot0["mobileNumber"] as? String ?? "",
+                                                address: snapshot0["address"] as? String ?? "")
+                                            database.collection("orderDetails").whereField("orderID", isEqualTo: order.id)
+                                                .getDocuments { snapshot1, error in
+                                                    if error != nil {
+                                                        observer.onError(error!)
+                                                    } else {
+                                                        var cart = Cart()
+                                                        if let snapshot1 = snapshot1 {
+                                                            for document1 in snapshot1.documents {
+                                                                cart.items.append(Product(id: "",
+                                                                                          documentID: "",
+                                                                                          name: document1["productName"] as? String ?? "",
+                                                                                          price: document1["productPrice"] as? Double ?? 0.0,
+                                                                                          category: ProductCategory(documentID: "",
+                                                                                                                    id: document1["productCategoryID"] as? String ?? "",
+                                                                                                                    name: document1["productCategoryName"] as? String ?? ""),
+                                                                                          image: UIImage(),
+                                                                                          imageName: document1["productImageName"] as? String ?? "",
+                                                                                          imageURL: document1["productImageURL"] as? String ?? "",
+                                                                                          quantity: document1["productQuantity"] as? Int ?? 0))
+                                                            }
+                                                        }
+                                                        order.cart = cart
+                                                        orders.append(order)
+                                                        observer.onNext(orders)
+                                                    }
                                                 }
-                                            }
-                                            order.cart = cart
-                                            orders.append(order)
-                                            observer.onNext(orders)
                                         }
                                     }
-                            }
+                                }
                         }
-
                     }
-                })
+
+                }
+            })
             return Disposables.create()
         }
     }

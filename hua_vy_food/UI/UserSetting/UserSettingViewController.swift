@@ -85,6 +85,14 @@ final class UserSettingViewController: UIViewController {
             .subscribe()
             .disposed(by: disposeBag)
 
+        adminOrderButton.rx.tap
+            .map { [unowned self] in
+                adminOrderButton.animationSelect()
+                navigationController?.pushViewController(AdminOrderViewController(), animated: true)
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+
         // User
         userOrderButton.rx.tap
             .map { [unowned self] in
