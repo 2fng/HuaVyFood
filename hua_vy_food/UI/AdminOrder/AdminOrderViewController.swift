@@ -1,5 +1,5 @@
 //
-//  UserOrderViewController.swift
+//  AdminOrderViewController.swift
 //  hua_vy_food
 //
 //  Created by Hua Son Tung on 01/10/2022.
@@ -10,20 +10,18 @@ import RxSwift
 import RxCocoa
 import Then
 
-final class UserOrderViewController: UIViewController {
-    @IBOutlet weak var orderTableView: UITableView!
+final class AdminOrderViewController: UIViewController {
+    @IBOutlet private weak var tableView: UITableView!
 
     private let disposeBag = DisposeBag()
-    private let viewModel = UserOrderViewModel(cartRepository: CartRepository(),
+    private let viewModel = AdminOrderViewModel(cartRepository: CartRepository(),
                                                userRepository: UserRepository())
 
     // Variables
     private var orders = [Order]()
-    private var userShippingInfo = UserShippingInfo()
 
     // Trigger
     private let getOrdersTrigger = PublishSubject<Void>()
-    private let getUserShippingInfo = PublishSubject<Void>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +31,7 @@ final class UserOrderViewController: UIViewController {
     }
 
     private func setupView() {
-        orderTableView.do {
+        tableView.do {
             $0.delegate = self
             $0.dataSource = self
             $0.register(UserOrderTableViewCell.nib, forCellReuseIdentifier: UserOrderTableViewCell.identifier)
@@ -41,17 +39,12 @@ final class UserOrderViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        let input = UserOrderViewModel.Input(getOrdersTrigger: getOrdersTrigger.asDriverOnErrorJustComplete(),
-                                             userShippingInfoTrigger: getUserShippingInfo.asDriverOnErrorJustComplete())
+        let input = AdminOrderViewModel.Input(getOrdersTrigger: getOrdersTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
         output.getOrders
             .drive(ordersBinder)
-            .disposed(by: disposeBag)
-
-        output.userShippingInfo
-            .drive(userShippingInfoBinder)
             .disposed(by: disposeBag)
 
         output.loading
@@ -63,29 +56,21 @@ final class UserOrderViewController: UIViewController {
             .disposed(by: disposeBag)
 
         getOrdersTrigger.onNext(())
-        getUserShippingInfo.onNext(())
     }
 }
 
-extension UserOrderViewController {
-    private var userShippingInfoBinder: Binder<UserShippingInfo> {
-        return Binder(self) { vc, returnUserShippingInfo in
-            vc.userShippingInfo = returnUserShippingInfo
-            vc.orderTableView.reloadData()
-        }
-    }
-
+extension AdminOrderViewController {
     private var ordersBinder: Binder<[Order]> {
         return Binder(self) { vc, orders in
             vc.orders = orders.sorted(by: { order1, order2 in
                 order1.orderDate > order2.orderDate
             })
-            vc.orderTableView.reloadData()
+            vc.tableView.reloadData()
         }
     }
 }
 
-extension UserOrderViewController: UITableViewDataSource {
+extension AdminOrderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orders.count
     }
@@ -99,6 +84,6 @@ extension UserOrderViewController: UITableViewDataSource {
     }
 }
 
-extension UserOrderViewController: UITableViewDelegate {
-    
+extension AdminOrderViewController: UITableViewDelegate {
+
 }

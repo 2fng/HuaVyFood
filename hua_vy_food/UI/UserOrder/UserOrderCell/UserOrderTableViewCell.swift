@@ -18,6 +18,8 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
     @IBOutlet private weak var addressLabel: UILabel!
     @IBOutlet private weak var totalLabel: UILabel!
     @IBOutlet private weak var quantityAndPaymentMethodLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var phoneNumberLabel: UILabel!
     @IBOutlet private weak var paymentStatusLabel: UILabel!
     @IBOutlet private weak var reOrderButton: UIButton!
 
@@ -30,8 +32,13 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
     }
 
     private func setupView() {
-        reOrderButton.layer.cornerRadius = 5
         statusContainerView.roundCorners(corners: [.layerMinXMinYCorner, .layerMinXMaxYCorner], radius: 8)
+
+        reOrderButton.do {
+            $0.layer.cornerRadius = 5
+            $0.isHidden = true
+        }
+
         viewContainer.do {
             $0.layer.cornerRadius = 8
             $0.backgroundColor = .white
@@ -45,23 +52,25 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
             .disposed(by: disposeBag)
     }
 
-    func configCell(order: Order, shippingInfo: UserShippingInfo) {
+    func configCell(order: Order) {
         var cartQuantity = 0
         for item in order.cart.items {
             cartQuantity += item.quantity
         }
         dateLabel.text = "\(order.orderDate)"
-        addressLabel.text = "\(shippingInfo.address)"
+        addressLabel.text = "\(order.userShippingInfo.address)"
         totalLabel.text = convertToPrice(value: Double(order.totalValue))
         quantityAndPaymentMethodLabel.text = "(\(cartQuantity) món) - \(order.paymentMethod.name)"
         paymentStatusLabel.text = order.paidDate != Date(timeIntervalSince1970: 0) ? "Đã thanh toán" : "Chưa thanh toán"
+        nameLabel.text = order.userShippingInfo.fullName
+        phoneNumberLabel.text = order.userShippingInfo.mobileNumber
         switch order.status {
         case "Đang xử lý":
             statusContainerView.backgroundColor = UIColor.onGoing
             statusImage.image = UIImage(named: "pending")
         case "Đang giao hàng":
             statusContainerView.backgroundColor = UIColor.shipping
-            statusImage.image = UIImage(named: "foward")
+            statusImage.image = UIImage(named: "forward")
         case "Hoàn thành":
             statusContainerView.backgroundColor = UIColor.finish
             statusImage.image = UIImage(named: "approved")

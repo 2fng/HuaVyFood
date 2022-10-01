@@ -69,6 +69,9 @@
 		DFB2719428E80B0700E11183 /* UserOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2719228E80B0700E11183 /* UserOrderTableViewCell.swift */; };
 		DFB2719528E80B0700E11183 /* UserOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB2719328E80B0700E11183 /* UserOrderTableViewCell.xib */; };
 		DFB2719728E823CC00E11183 /* UserOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2719628E823CC00E11183 /* UserOrderViewModel.swift */; };
+		DFB2719D28E885A300E11183 /* AdminOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2719B28E885A300E11183 /* AdminOrderViewController.swift */; };
+		DFB2719E28E885A300E11183 /* AdminOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB2719C28E885A300E11183 /* AdminOrderViewController.xib */; };
+		DFB271A028E8864600E11183 /* AdminOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2719F28E8864600E11183 /* AdminOrderViewModel.swift */; };
 		DFB4D0BE289121C300B109C0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */; };
 		DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */; };
 		DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D0C22891265C00B109C0 /* UIColor+.swift */; };
@@ -155,6 +158,9 @@
 		DFB2719228E80B0700E11183 /* UserOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrderTableViewCell.swift; sourceTree = "<group>"; };
 		DFB2719328E80B0700E11183 /* UserOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserOrderTableViewCell.xib; sourceTree = "<group>"; };
 		DFB2719628E823CC00E11183 /* UserOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrderViewModel.swift; sourceTree = "<group>"; };
+		DFB2719B28E885A300E11183 /* AdminOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminOrderViewController.swift; sourceTree = "<group>"; };
+		DFB2719C28E885A300E11183 /* AdminOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminOrderViewController.xib; sourceTree = "<group>"; };
+		DFB2719F28E8864600E11183 /* AdminOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminOrderViewModel.swift; sourceTree = "<group>"; };
 		DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		DFB4D0C22891265C00B109C0 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -397,6 +403,7 @@
 		DF8E7480288EABC50010DFD9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DFB2719A28E8858700E11183 /* AdminOrder */,
 				DFB2718C28E7E4BF00E11183 /* UserOrder */,
 				DF80242D28E677CA00A193FA /* ManageProductCategory */,
 				DF8DF80C28DC98EA0075C4D5 /* AddNewShippingInfo */,
@@ -454,6 +461,16 @@
 				DFB2719328E80B0700E11183 /* UserOrderTableViewCell.xib */,
 			);
 			path = UserOrderCell;
+			sourceTree = "<group>";
+		};
+		DFB2719A28E8858700E11183 /* AdminOrder */ = {
+			isa = PBXGroup;
+			children = (
+				DFB2719B28E885A300E11183 /* AdminOrderViewController.swift */,
+				DFB2719C28E885A300E11183 /* AdminOrderViewController.xib */,
+				DFB2719F28E8864600E11183 /* AdminOrderViewModel.swift */,
+			);
+			path = AdminOrder;
 			sourceTree = "<group>";
 		};
 		DFB4D0BB289121AE00B109C0 /* Register */ = {
@@ -630,6 +647,7 @@
 				DFBF41CC288CDB0E00203759 /* LaunchScreen.storyboard in Resources */,
 				DF8874DE28B0E89500B407C7 /* CategoryCollectionViewCell.xib in Resources */,
 				DFBB0D5728A265A600EAA349 /* AddNewViewController.xib in Resources */,
+				DFB2719E28E885A300E11183 /* AdminOrderViewController.xib in Resources */,
 				DFBF41C9288CDB0E00203759 /* Assets.xcassets in Resources */,
 				DFBB0D5228A25D5400EAA349 /* ManagerProductViewController.xib in Resources */,
 				DF8E7489288EAC190010DFD9 /* MainViewController.xib in Resources */,
@@ -693,6 +711,7 @@
 				DF55E68A28B22E8D00B05776 /* HeaderTableViewCell.swift in Sources */,
 				DF12DEF928AE47A600558DF7 /* ReuseableCell.swift in Sources */,
 				DF031A6128C03EA8008960CD /* ImageSliderCollectionViewCell.swift in Sources */,
+				DFB2719D28E885A300E11183 /* AdminOrderViewController.swift in Sources */,
 				DF7C1A0E28915C100023CC11 /* ForgotPasswordViewController.swift in Sources */,
 				DF22A10528E4005B00778083 /* Order.swift in Sources */,
 				DF8C81B2289546A400A574CE /* UserSignIn.swift in Sources */,
@@ -730,6 +749,7 @@
 				DF6AAD2A2892B3A4008961FE /* UIView+.swift in Sources */,
 				DF22A10328E3F25000778083 /* Coupon.swift in Sources */,
 				DF8874DD28B0E89500B407C7 /* CategoryCollectionViewCell.swift in Sources */,
+				DFB271A028E8864600E11183 /* AdminOrderViewModel.swift in Sources */,
 				DF6A45A128D74CBF006D2848 /* CartViewModel.swift in Sources */,
 				DFB6019328A8F6E6009CEA90 /* AddNewViewModel.swift in Sources */,
 				DF80243328E6780C00A193FA /* ManageProductCategoryViewModel.swift in Sources */,
