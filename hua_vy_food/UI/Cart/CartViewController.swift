@@ -178,7 +178,9 @@ extension CartViewController {
 
     private var checkoutBinder: Binder<Void> {
         return Binder(self) { vc, _ in
-
+            vc.showAlert(message: "Đặt hàng thành công", okButtonOnly: true, okCompletion: {
+                vc.navigationController?.popToRootViewController(animated: true)
+            })
         }
     }
 }

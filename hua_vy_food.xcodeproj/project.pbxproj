@@ -64,6 +64,10 @@
 		DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFA11ED3288EB04C00C8E2E2 /* LoginViewController.xib */; };
 		DFADA40128E1F09600C47425 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFADA40028E1F09600C47425 /* PaymentMethod.swift */; };
 		DFB0880E2894E327002D2AE3 /* UIViewcontroller+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB0880D2894E327002D2AE3 /* UIViewcontroller+.swift */; };
+		DFB2718F28E7E4E400E11183 /* UserOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2718D28E7E4E400E11183 /* UserOrderViewController.swift */; };
+		DFB2719028E7E4E400E11183 /* UserOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB2718E28E7E4E400E11183 /* UserOrderViewController.xib */; };
+		DFB2719428E80B0700E11183 /* UserOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2719228E80B0700E11183 /* UserOrderTableViewCell.swift */; };
+		DFB2719528E80B0700E11183 /* UserOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB2719328E80B0700E11183 /* UserOrderTableViewCell.xib */; };
 		DFB4D0BE289121C300B109C0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */; };
 		DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */; };
 		DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D0C22891265C00B109C0 /* UIColor+.swift */; };
@@ -145,6 +149,10 @@
 		DFA11ED3288EB04C00C8E2E2 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		DFADA40028E1F09600C47425 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		DFB0880D2894E327002D2AE3 /* UIViewcontroller+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewcontroller+.swift"; sourceTree = "<group>"; };
+		DFB2718D28E7E4E400E11183 /* UserOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrderViewController.swift; sourceTree = "<group>"; };
+		DFB2718E28E7E4E400E11183 /* UserOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserOrderViewController.xib; sourceTree = "<group>"; };
+		DFB2719228E80B0700E11183 /* UserOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrderTableViewCell.swift; sourceTree = "<group>"; };
+		DFB2719328E80B0700E11183 /* UserOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserOrderTableViewCell.xib; sourceTree = "<group>"; };
 		DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		DFB4D0C22891265C00B109C0 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -387,6 +395,7 @@
 		DF8E7480288EABC50010DFD9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DFB2718C28E7E4BF00E11183 /* UserOrder */,
 				DF80242D28E677CA00A193FA /* ManageProductCategory */,
 				DF8DF80C28DC98EA0075C4D5 /* AddNewShippingInfo */,
 				DF6B216628CC4CA5008A8E8B /* Cart */,
@@ -423,6 +432,25 @@
 				DF8C81AB2895409F00A574CE /* LoginViewModel.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		DFB2718C28E7E4BF00E11183 /* UserOrder */ = {
+			isa = PBXGroup;
+			children = (
+				DFB2719128E80AEE00E11183 /* UserOrderCell */,
+				DFB2718D28E7E4E400E11183 /* UserOrderViewController.swift */,
+				DFB2718E28E7E4E400E11183 /* UserOrderViewController.xib */,
+			);
+			path = UserOrder;
+			sourceTree = "<group>";
+		};
+		DFB2719128E80AEE00E11183 /* UserOrderCell */ = {
+			isa = PBXGroup;
+			children = (
+				DFB2719228E80B0700E11183 /* UserOrderTableViewCell.swift */,
+				DFB2719328E80B0700E11183 /* UserOrderTableViewCell.xib */,
+			);
+			path = UserOrderCell;
 			sourceTree = "<group>";
 		};
 		DFB4D0BB289121AE00B109C0 /* Register */ = {
@@ -587,9 +615,11 @@
 				DF7C1A0F28915C100023CC11 /* ForgotPasswordViewController.xib in Resources */,
 				DF6B216A28CC4CCF008A8E8B /* CartViewController.xib in Resources */,
 				DF80243128E677F600A193FA /* ManageProductCategoryViewController.xib in Resources */,
+				DFB2719528E80B0700E11183 /* UserOrderTableViewCell.xib in Resources */,
 				DF12DEF728AE361900558DF7 /* PopupTableViewTableViewCell.xib in Resources */,
 				DF5EF7D128D8AEB100281FDF /* CartBottomTableViewCell.xib in Resources */,
 				DF55E68328B21F3300B05776 /* ProductTableViewCell.xib in Resources */,
+				DFB2719028E7E4E400E11183 /* UserOrderViewController.xib in Resources */,
 				DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */,
 				DF8DF81028DC992B0075C4D5 /* AddNewShippingInfoViewController.xib in Resources */,
 				DFB6DAC2289E806C008879BF /* UserSettingViewController.xib in Resources */,
@@ -690,7 +720,9 @@
 				DF8DF81428DCA02B0075C4D5 /* UserShippingInfo.swift in Sources */,
 				DFD1902B28B0BAFA00CED2C0 /* CustomTextField.swift in Sources */,
 				DFBB0D5128A25D5400EAA349 /* ManagerProductViewController.swift in Sources */,
+				DFB2718F28E7E4E400E11183 /* UserOrderViewController.swift in Sources */,
 				DF9E532C28C7553400FD7B1A /* Cart.swift in Sources */,
+				DFB2719428E80B0700E11183 /* UserOrderTableViewCell.swift in Sources */,
 				DF6AAD2A2892B3A4008961FE /* UIView+.swift in Sources */,
 				DF22A10328E3F25000778083 /* Coupon.swift in Sources */,
 				DF8874DD28B0E89500B407C7 /* CategoryCollectionViewCell.swift in Sources */,

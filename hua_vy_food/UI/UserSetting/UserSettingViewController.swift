@@ -76,10 +76,20 @@ final class UserSettingViewController: UIViewController {
             $0.shadowView(cornerRadius: 5)
         }
 
+        // Admin
         adminProductButton.rx.tap
             .map { [unowned self] in
                 adminProductButton.animationSelect()
                 navigationController?.pushViewController(ManagerProductViewController(), animated: true)
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+
+        // User
+        userOrderButton.rx.tap
+            .map { [unowned self] in
+                userOrderButton.animationSelect()
+                navigationController?.pushViewController(UserOrderViewController(), animated: true)
             }
             .subscribe()
             .disposed(by: disposeBag)
