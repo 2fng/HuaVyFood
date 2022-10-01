@@ -9,7 +9,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserSettingViewController" customModule="hua_vy_food" customModuleProvider="target">
             <connections>
-                <outlet property="adminCategoryButton" destination="hcD-dO-KTB" id="B02-7Y-atC"/>
                 <outlet property="adminOrderButton" destination="c1j-bp-Kyn" id="gdi-Si-6YQ"/>
                 <outlet property="adminProductButton" destination="YxL-4P-c01" id="3yM-rU-TEs"/>
                 <outlet property="adminResponseButton" destination="bTr-z9-t4f" id="Cvg-Nd-gUq"/>
@@ -55,15 +54,8 @@
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Đơn hàng"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcD-dO-KTB" userLabel="Thể loại sản phẩm">
-                                    <rect key="frame" x="0.0" y="168.5" width="368" height="50"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="Thể loại sản phẩm"/>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTr-z9-t4f">
-                                    <rect key="frame" x="0.0" y="235" width="368" height="50"/>
+                                    <rect key="frame" x="0.0" y="168.5" width="368" height="50"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Button"/>
@@ -84,15 +76,12 @@
                                 <constraint firstItem="c1j-bp-Kyn" firstAttribute="leading" secondItem="Ahz-4m-nLC" secondAttribute="leading" id="EKU-ye-ZjG"/>
                                 <constraint firstAttribute="trailing" secondItem="YxL-4P-c01" secondAttribute="trailing" id="NdG-MP-QFX"/>
                                 <constraint firstItem="ucu-4r-SVd" firstAttribute="centerX" secondItem="rnj-vZ-sgK" secondAttribute="centerX" id="PzU-zp-FWc"/>
-                                <constraint firstItem="hcD-dO-KTB" firstAttribute="leading" secondItem="Ahz-4m-nLC" secondAttribute="leading" id="Sgo-dc-9XU"/>
-                                <constraint firstAttribute="trailing" secondItem="hcD-dO-KTB" secondAttribute="trailing" id="SnM-gi-LWX"/>
                                 <constraint firstAttribute="trailing" secondItem="c1j-bp-Kyn" secondAttribute="trailing" id="Xw0-VT-ya8"/>
                                 <constraint firstItem="c1j-bp-Kyn" firstAttribute="top" secondItem="ucu-4r-SVd" secondAttribute="bottom" constant="20" id="Yc6-ex-9NV"/>
+                                <constraint firstItem="bTr-z9-t4f" firstAttribute="top" secondItem="YxL-4P-c01" secondAttribute="bottom" constant="16.5" id="ZQG-FQ-mDr"/>
                                 <constraint firstItem="bTr-z9-t4f" firstAttribute="leading" secondItem="Ahz-4m-nLC" secondAttribute="leading" id="hPr-bM-xaL"/>
                                 <constraint firstAttribute="trailing" secondItem="rnj-vZ-sgK" secondAttribute="trailing" id="n8m-JX-AfE"/>
                                 <constraint firstItem="rnj-vZ-sgK" firstAttribute="top" secondItem="Ahz-4m-nLC" secondAttribute="top" constant="5" id="ou2-Wx-B2w"/>
-                                <constraint firstItem="hcD-dO-KTB" firstAttribute="top" secondItem="YxL-4P-c01" secondAttribute="bottom" constant="16.5" id="rzE-Z7-Y8C"/>
-                                <constraint firstItem="bTr-z9-t4f" firstAttribute="top" secondItem="hcD-dO-KTB" secondAttribute="bottom" constant="16.5" id="uW9-Hn-gKa"/>
                                 <constraint firstItem="rnj-vZ-sgK" firstAttribute="leading" secondItem="Ahz-4m-nLC" secondAttribute="leading" id="v0N-HD-Zgy"/>
                                 <constraint firstAttribute="trailing" secondItem="bTr-z9-t4f" secondAttribute="trailing" id="vwE-K3-UeI"/>
                                 <constraint firstItem="YxL-4P-c01" firstAttribute="leading" secondItem="Ahz-4m-nLC" secondAttribute="leading" id="y0V-pM-iQK"/>
@@ -169,7 +158,6 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CZ5-jE-DgO" secondAttribute="trailing" constant="23" id="6E2-bp-KFI"/>
                 <constraint firstItem="CZ5-jE-DgO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="9lt-sz-KyP"/>
                 <constraint firstItem="I7x-An-f1j" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="Bkh-ym-PMl"/>
-                <constraint firstItem="hcD-dO-KTB" firstAttribute="height" secondItem="I7x-An-f1j" secondAttribute="height" id="Ckq-h6-dim"/>
                 <constraint firstItem="Zna-yW-Zmw" firstAttribute="height" secondItem="I7x-An-f1j" secondAttribute="height" id="DLO-Dn-Kum"/>
                 <constraint firstItem="bTr-z9-t4f" firstAttribute="height" secondItem="I7x-An-f1j" secondAttribute="height" id="FKC-WF-5vM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="I7x-An-f1j" secondAttribute="bottom" constant="32" id="J7c-0Z-iPZ"/>

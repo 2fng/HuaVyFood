@@ -14,6 +14,8 @@ import FirebaseStorage
 protocol ProductRepositoryType {
     func getProductCategories() -> Observable<[ProductCategory]>
     func addNewCategory(categoryName: String) -> Observable<String>
+    func updateCategory(category: ProductCategory) -> Observable<Void>
+    func deleteCategory(documentID: String) -> Observable<Void>
     func addNewProduct(product: Product) -> Observable<String>
     func getProducts() -> Observable<[Product]>
     func deleteProduct(documentID: String) -> Observable<String>
@@ -35,6 +37,7 @@ final class ProductRepository: ProductRepositoryType {
                             var returnCategories = [ProductCategory]()
                             for document in snapShot.documents {
                                 returnCategories.append(ProductCategory(
+                                    documentID: document.documentID,
                                     id: document["id"] as? String ?? "",
                                     name: document["name"] as? String ?? ""))
                             }
@@ -225,6 +228,36 @@ final class ProductRepository: ProductRepositoryType {
                 }
             } else {
                 observer.onNext("Cập nhật không thành công!")
+            }
+            return Disposables.create()
+        }
+    }
+
+    func updateCategory(category: ProductCategory) -> Observable<Void> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("categories").document(category.documentID).updateData([
+                "name" : category.name
+            ]) { error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    observer.onNext(())
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func deleteCategory(documentID: String) -> Observable<Void> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("categories").document(documentID).delete { error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    observer.onNext(())
+                }
             }
             return Disposables.create()
         }

@@ -13,6 +13,7 @@ import RxCocoa
 final class ManagerProductViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var floatingButton: UIButton!
+    @IBOutlet private weak var manageProductCategoryButton: UIButton!
 
     private let disposeBag = DisposeBag()
     private let viewModel = ManagerProductViewModel(productRepository: ProductRepository())
@@ -45,6 +46,7 @@ final class ManagerProductViewController: UIViewController {
         nav?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         nav?.navigationBar.shadowImage = UIImage()
         nav?.navigationBar.isTranslucent = true
+        self.navigationItem.backButtonTitle = "Quay lại"
 
         tableView.do {
             $0.addSubview(refreshControl)
@@ -59,10 +61,24 @@ final class ManagerProductViewController: UIViewController {
             $0.shadowView(color: .logoPink, cornerRadius: 25)
         }
 
+        manageProductCategoryButton.do {
+            $0.layer.cornerRadius = 10
+            $0.shadowView()
+        }
+
         floatingButton.rx.tap
             .map { [unowned self] in
                 floatingButton.animationSelect()
                 let vc = AddNewViewController()
+                navigationController?.pushViewController(vc, animated: true)
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+
+        manageProductCategoryButton.rx.tap
+            .map { [unowned self] in
+                manageProductCategoryButton.animationSelect()
+                let vc = ManageProductCategoryViewController()
                 navigationController?.pushViewController(vc, animated: true)
             }
             .subscribe()
