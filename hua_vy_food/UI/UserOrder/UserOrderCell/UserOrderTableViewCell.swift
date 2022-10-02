@@ -20,14 +20,16 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
     @IBOutlet private weak var quantityAndPaymentMethodLabel: UILabel!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var phoneNumberLabel: UILabel!
-    @IBOutlet private weak var paymentStatusLabel: UILabel!
+    @IBOutlet private weak var paymentStatusTextField: UITextField!
     @IBOutlet private weak var reOrderButton: UIButton!
     @IBOutlet private weak var statusTextField: UITextField!
 
     private let disposeBag = DisposeBag()
+    private var isAdmin = false
 
     // Callbacks
     var handleChooseStatus: (() -> Void)?
+    var handleChoosePaymentStatus: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,7 +40,9 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
     private func setupView() {
         statusContainerView.roundCorners(corners: [.layerMinXMinYCorner, .layerMinXMaxYCorner], radius: 8)
         let tappedOnStatusTextField = UITapGestureRecognizer(target: self, action: #selector(statusTapped))
+        let tappedOnPaymentStatusTextField = UITapGestureRecognizer(target: self, action: #selector(paymentStatusTapped))
         statusTextField.addGestureRecognizer(tappedOnStatusTextField)
+        paymentStatusTextField.addGestureRecognizer(tappedOnPaymentStatusTextField)
 
         reOrderButton.do {
             $0.layer.cornerRadius = 5
@@ -59,6 +63,7 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
     }
 
     func configCell(order: Order, isAdmin: Bool = false) {
+        self.isAdmin = isAdmin
         var cartQuantity = 0
         for item in order.cart.items {
             cartQuantity += item.quantity
@@ -69,7 +74,7 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
         addressLabel.text = "\(order.userShippingInfo.address)"
         totalLabel.text = convertToPrice(value: Double(order.totalValue))
         quantityAndPaymentMethodLabel.text = "(\(cartQuantity) món) - \(order.paymentMethod.name)"
-        paymentStatusLabel.text = order.paidDate != Date(timeIntervalSince1970: 0) ? "Đã thanh toán" : "Chưa thanh toán"
+        paymentStatusTextField.text = order.paidDate != Date(timeIntervalSince1970: 0) ? "Đã thanh toán" : "Chưa thanh toán"
         nameLabel.text = order.userShippingInfo.fullName
         phoneNumberLabel.text = order.userShippingInfo.mobileNumber
         switch order.status {
@@ -95,6 +100,12 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
 
     @objc private func statusTapped() {
         handleChooseStatus?()
+    }
+
+    @objc private func paymentStatusTapped() {
+        if isAdmin {
+            handleChoosePaymentStatus?()
+        }
     }
 
     private func convertToPrice(value: Double) -> String {

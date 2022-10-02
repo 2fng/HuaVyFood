@@ -19,13 +19,17 @@ extension AdminOrderViewModel {
     struct Input {
         let getOrdersTrigger: Driver<Void>
         let getOrderStatusTrigger: Driver<Void>
+        let getPaymentStatusTrigger: Driver<Void>
         let updateOrderStatusTrigger: Driver<Order>
+        let updateOrderPaymentStatusTrigger: Driver<Order>
     }
 
     struct Output {
         let getOrders: Driver<[Order]>
         let statuses: Driver<[OrderStatus]>
+        let paymentStatus: Driver<[String]>
         let updateOrderStatus: Driver<Void>
+        let updateOrderPaymentStatus: Driver<Void>
         let loading: Driver<Bool>
         let error: Driver<Error>
     }
@@ -50,6 +54,14 @@ extension AdminOrderViewModel {
                     .asDriverOnErrorJustComplete()
             }
 
+        let getPaymentStatus = input.getPaymentStatusTrigger
+            .flatMapLatest { _ in
+                return self.userRepository.getPaymentStatus()
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+
         let updateOrderStatus = input.updateOrderStatusTrigger
             .flatMapLatest { order in
                 return self.userRepository.updateOrderStatus(order: order)
@@ -57,9 +69,18 @@ extension AdminOrderViewModel {
                     .asDriverOnErrorJustComplete()
             }
 
+        let updateOrderPaymentStatus = input.updateOrderPaymentStatusTrigger
+            .flatMapLatest { order in
+                return self.userRepository.updateOrderPaymentStatus(order: order)
+                    .trackError(errorTracker)
+                    .asDriverOnErrorJustComplete()
+            }
+
         return Output(getOrders: getOrders.asDriver(),
                       statuses: getStatuses.asDriver(),
+                      paymentStatus: getPaymentStatus.asDriver(),
                       updateOrderStatus: updateOrderStatus.asDriver(),
+                      updateOrderPaymentStatus: updateOrderPaymentStatus.asDriver(),
                       loading: activityIndicator.asDriver(),
                       error: errorTracker.asDriver())
     }
