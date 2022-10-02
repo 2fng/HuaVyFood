@@ -8,6 +8,7 @@
 import Foundation
 
 struct Order {
+    var documentID = ""
     var id = ""
     var uid = ""
     var totalValue = 0

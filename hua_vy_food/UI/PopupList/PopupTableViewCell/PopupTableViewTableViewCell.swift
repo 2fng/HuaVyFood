@@ -40,6 +40,14 @@ final class PopupTableViewTableViewCell: UITableViewCell, ReuseableCell {
             } else {
                 checkMarkImage.isHidden = true
             }
+        } else if let data = data as? String {
+            titleLabel.text = data
+            if dataSelected != nil,
+                let dataSelected = dataSelected as? String {
+                checkMarkImage.isHidden = data == dataSelected ? false : true
+            } else {
+                checkMarkImage.isHidden = true
+            }
         }
     }
 }
