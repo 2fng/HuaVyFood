@@ -19,7 +19,9 @@ protocol UserRepositoryType {
     func getUserShippingInfo() -> Observable<UserShippingInfo>
     func getUserOrders(isAdmin: Bool) -> Observable<[Order]>
     func getOrderStatuses() -> Observable<[OrderStatus]>
+    func getPaymentStatus() -> Observable<[String]>
     func updateOrderStatus(order: Order) -> Observable<Void>
+    func updateOrderPaymentStatus(order: Order) -> Observable<Void>
 }
 
 final class UserRepository: UserRepositoryType {
@@ -274,11 +276,47 @@ final class UserRepository: UserRepositoryType {
         }
     }
 
+    func getPaymentStatus() -> Observable<[String]> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("paymentStatus").getDocuments { snapshot, error in
+                if error != nil {
+                    observer.onError(error!)
+                } else {
+                    var returnStatuses = [String]()
+                    if let snapshot = snapshot {
+                        for document in snapshot.documents {
+                            returnStatuses.append(document["name"] as? String ?? "")
+                        }
+                        observer.onNext(returnStatuses)
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
     func updateOrderStatus(order: Order) -> Observable<Void> {
         return Observable.create { observer in
             let database = Firestore.firestore()
             database.collection("orders").document(order.documentID).updateData([
                 "status" : order.status
+            ]) { error in
+                if error != nil {
+                    observer.onError(error!)
+                } else {
+                    observer.onNext(())
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func updateOrderPaymentStatus(order: Order) -> Observable<Void> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("orders").document(order.documentID).updateData([
+                "paidDate" : order.paidDate?.timeIntervalSince1970
             ]) { error in
                 if error != nil {
                     observer.onError(error!)

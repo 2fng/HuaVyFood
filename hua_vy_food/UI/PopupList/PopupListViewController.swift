@@ -61,7 +61,7 @@ final class PopupListViewController: UIViewController {
 
         clearButton.rx.tap
             .map { [unowned self] in
-                doneButton.animationSelect()
+                clearButton.animationSelect()
                 searchTextField.text = nil
                 searchContent = tableViewContent
                 tableView.reloadData()

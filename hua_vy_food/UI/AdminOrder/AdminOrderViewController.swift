@@ -20,11 +20,14 @@ final class AdminOrderViewController: UIViewController {
     // Variables
     private var orders = [Order]()
     private var statuses = [String]()
+    private var paymentStatuses = [String]()
 
     // Trigger
     private let getOrdersTrigger = PublishSubject<Void>()
     private let getOrderStatusTrigger = PublishSubject<Void>()
+    private let getPaymentStatusTrigger = PublishSubject<Void>()
     private let updateOrderStatusTrigger = PublishSubject<Order>()
+    private let updateOrderPaymentStatusTrigger = PublishSubject<Order>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +48,9 @@ final class AdminOrderViewController: UIViewController {
         let input = AdminOrderViewModel.Input(
             getOrdersTrigger: getOrdersTrigger.asDriverOnErrorJustComplete(),
             getOrderStatusTrigger: getOrderStatusTrigger.asDriverOnErrorJustComplete(),
-            updateOrderStatusTrigger: updateOrderStatusTrigger.asDriverOnErrorJustComplete())
+            getPaymentStatusTrigger: getPaymentStatusTrigger.asDriverOnErrorJustComplete(),
+            updateOrderStatusTrigger: updateOrderStatusTrigger.asDriverOnErrorJustComplete(),
+            updateOrderPaymentStatusTrigger: updateOrderPaymentStatusTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -57,8 +62,16 @@ final class AdminOrderViewController: UIViewController {
             .drive(orderStatusesBinder)
             .disposed(by: disposeBag)
 
+        output.paymentStatus
+            .drive(paymentStatusesBinder)
+            .disposed(by: disposeBag)
+
         output.updateOrderStatus
             .drive(updateOrderStatusBinder)
+            .disposed(by: disposeBag)
+
+        output.updateOrderPaymentStatus
+            .drive(updateOrderPaymentStatusBinder)
             .disposed(by: disposeBag)
 
         output.loading
@@ -70,6 +83,7 @@ final class AdminOrderViewController: UIViewController {
             .disposed(by: disposeBag)
 
         getOrdersTrigger.onNext(())
+        getPaymentStatusTrigger.onNext(())
         getOrderStatusTrigger.onNext(())
     }
 }
@@ -95,7 +109,20 @@ extension AdminOrderViewController {
         }
     }
 
+    private var paymentStatusesBinder: Binder<[String]> {
+        return Binder(self) { vc, statuses in
+            vc.paymentStatuses = statuses
+            vc.tableView.reloadData()
+        }
+    }
+
     private var updateOrderStatusBinder: Binder<Void> {
+        return Binder(self) { vc, _ in
+            vc.getOrdersTrigger.onNext(())
+        }
+    }
+
+    private var updateOrderPaymentStatusBinder: Binder<Void> {
         return Binder(self) { vc, _ in
             vc.getOrdersTrigger.onNext(())
         }
@@ -123,6 +150,21 @@ extension AdminOrderViewController: UITableViewDataSource {
                 if let data = data as? String {
                     orders[indexPath.row].status = data
                     updateOrderStatusTrigger.onNext(orders[indexPath.row])
+                }
+            }
+        }
+        cell.handleChoosePaymentStatus = { [unowned self] in
+            let vc = PopupListViewController()
+            vc.modalPresentationStyle = .overFullScreen
+            vc.modalTransitionStyle = .crossDissolve
+            present(vc, animated: true)
+            // Callbacks
+            let isPaid = orders[indexPath.row].paidDate != Date(timeIntervalSince1970: 0) ? "Đã thanh toán" : "Chưa thanh toán"
+            vc.getData(tableViewData: paymentStatuses, selectedData: isPaid)
+            vc.handleDoneButton = { [unowned self] data in
+                if let data = data as? String {
+                    orders[indexPath.row].paidDate = (data == "Đã thanh toán") ? Date() : nil
+                    updateOrderPaymentStatusTrigger.onNext(orders[indexPath.row])
                 }
             }
         }
