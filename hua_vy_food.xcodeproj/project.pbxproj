@@ -72,6 +72,7 @@
 		DFB2719D28E885A300E11183 /* AdminOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2719B28E885A300E11183 /* AdminOrderViewController.swift */; };
 		DFB2719E28E885A300E11183 /* AdminOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB2719C28E885A300E11183 /* AdminOrderViewController.xib */; };
 		DFB271A028E8864600E11183 /* AdminOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB2719F28E8864600E11183 /* AdminOrderViewModel.swift */; };
+		DFB271A228E9873700E11183 /* OrderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB271A128E9873700E11183 /* OrderStatus.swift */; };
 		DFB4D0BE289121C300B109C0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */; };
 		DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */; };
 		DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4D0C22891265C00B109C0 /* UIColor+.swift */; };
@@ -161,6 +162,7 @@
 		DFB2719B28E885A300E11183 /* AdminOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminOrderViewController.swift; sourceTree = "<group>"; };
 		DFB2719C28E885A300E11183 /* AdminOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminOrderViewController.xib; sourceTree = "<group>"; };
 		DFB2719F28E8864600E11183 /* AdminOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminOrderViewModel.swift; sourceTree = "<group>"; };
+		DFB271A128E9873700E11183 /* OrderStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatus.swift; sourceTree = "<group>"; };
 		DFB4D0BC289121C300B109C0 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		DFB4D0BD289121C300B109C0 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		DFB4D0C22891265C00B109C0 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				DFADA40028E1F09600C47425 /* PaymentMethod.swift */,
 				DF22A10228E3F25000778083 /* Coupon.swift */,
 				DF22A10428E4005B00778083 /* Order.swift */,
+				DFB271A128E9873700E11183 /* OrderStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -754,6 +757,7 @@
 				DFB6019328A8F6E6009CEA90 /* AddNewViewModel.swift in Sources */,
 				DF80243328E6780C00A193FA /* ManageProductCategoryViewModel.swift in Sources */,
 				DF122CCA28ACFC08001E14EC /* ProductCategory.swift in Sources */,
+				DFB271A228E9873700E11183 /* OrderStatus.swift in Sources */,
 				DF55E68228B21F3300B05776 /* ProductTableViewCell.swift in Sources */,
 				DFC49A5F289C013F00F856FC /* ForgotPasswordViewModel.swift in Sources */,
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,

@@ -22,8 +22,12 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
     @IBOutlet private weak var phoneNumberLabel: UILabel!
     @IBOutlet private weak var paymentStatusLabel: UILabel!
     @IBOutlet private weak var reOrderButton: UIButton!
+    @IBOutlet private weak var statusTextField: UITextField!
 
     private let disposeBag = DisposeBag()
+
+    // Callbacks
+    var handleChooseStatus: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +37,8 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
 
     private func setupView() {
         statusContainerView.roundCorners(corners: [.layerMinXMinYCorner, .layerMinXMaxYCorner], radius: 8)
+        let tappedOnStatusTextField = UITapGestureRecognizer(target: self, action: #selector(statusTapped))
+        statusTextField.addGestureRecognizer(tappedOnStatusTextField)
 
         reOrderButton.do {
             $0.layer.cornerRadius = 5
@@ -52,11 +58,13 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
             .disposed(by: disposeBag)
     }
 
-    func configCell(order: Order) {
+    func configCell(order: Order, isAdmin: Bool = false) {
         var cartQuantity = 0
         for item in order.cart.items {
             cartQuantity += item.quantity
         }
+        statusTextField.isHidden = !isAdmin
+        statusTextField.text = order.status
         dateLabel.text = "\(order.orderDate)"
         addressLabel.text = "\(order.userShippingInfo.address)"
         totalLabel.text = convertToPrice(value: Double(order.totalValue))
@@ -83,6 +91,10 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
         default:
             break
         }
+    }
+
+    @objc private func statusTapped() {
+        handleChooseStatus?()
     }
 
     private func convertToPrice(value: Double) -> String {

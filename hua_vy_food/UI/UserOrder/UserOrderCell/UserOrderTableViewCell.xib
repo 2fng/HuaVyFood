@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="235"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="approved" translatesAutoresizingMaskIntoConstraints="NO" id="h78-8N-oTp">
-                                        <rect key="frame" x="13" y="105.5" width="24" height="24"/>
+                                        <rect key="frame" x="13" y="107" width="24" height="21"/>
                                         <color key="tintColor" red="0.93725490199999995" green="0.95294117649999999" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                 </subviews>
@@ -36,17 +36,17 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" translatesAutoresizingMaskIntoConstraints="NO" id="KEM-oL-dPa">
-                                <rect key="frame" x="65" y="15" width="24" height="24"/>
+                                <rect key="frame" x="65" y="15" width="24" height="21"/>
                                 <color key="tintColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ngày 01/10/2022" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLY-Pa-Nhg">
-                                <rect key="frame" x="99" y="17.5" width="319" height="19"/>
+                                <rect key="frame" x="99" y="16" width="319" height="19"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yw7-sk-kRW">
-                                <rect key="frame" x="65" y="49" width="358" height="135.5"/>
+                                <rect key="frame" x="65" y="46" width="358" height="135.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Số 2 Ngõ 396 Thuỵ Khuê Tây Hồ Hà Nội" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLf-HJ-j8S">
                                         <rect key="frame" x="0.0" y="0.0" width="287.5" height="19"/>
@@ -81,25 +81,33 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBP-Xi-5WC">
-                                <rect key="frame" x="65" y="193" width="353" height="1"/>
+                                <rect key="frame" x="65" y="190" width="353" height="1"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="NeU-kg-9D4"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đã thanh toán" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3f-4t-JPY">
-                                <rect key="frame" x="65" y="204" width="101" height="19"/>
+                                <rect key="frame" x="65" y="201" width="101" height="19"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjr-ah-Yv3">
-                                <rect key="frame" x="352.5" y="204" width="65.5" height="31"/>
+                                <rect key="frame" x="352.5" y="201" width="65.5" height="31"/>
                                 <color key="backgroundColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.93725490199999995" green="0.95294117649999999" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Đặt lại"/>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trạng thái đơn hàng" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5nG-R9-frC">
+                                <rect key="frame" x="278" y="196" width="150" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="C3h-kx-TnO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -111,7 +119,8 @@
                             <constraint firstItem="KEM-oL-dPa" firstAttribute="top" secondItem="7tq-M5-GlR" secondAttribute="top" constant="15" id="M7i-J8-Shc"/>
                             <constraint firstAttribute="trailing" secondItem="mjr-ah-Yv3" secondAttribute="trailing" constant="20" id="UoE-s2-7uy"/>
                             <constraint firstAttribute="trailing" secondItem="NBP-Xi-5WC" secondAttribute="trailing" constant="20" id="XMv-eS-0Gm"/>
-                            <constraint firstAttribute="bottom" secondItem="O3f-4t-JPY" secondAttribute="bottom" constant="12" id="Yxa-Q8-I1M"/>
+                            <constraint firstItem="5nG-R9-frC" firstAttribute="top" secondItem="NBP-Xi-5WC" secondAttribute="bottom" constant="5" id="XXL-et-vos"/>
+                            <constraint firstAttribute="bottom" secondItem="O3f-4t-JPY" secondAttribute="bottom" constant="15" id="Yxa-Q8-I1M"/>
                             <constraint firstItem="KEM-oL-dPa" firstAttribute="leading" secondItem="EGI-fa-UBM" secondAttribute="trailing" constant="15" id="bhs-7G-MvM"/>
                             <constraint firstItem="mjr-ah-Yv3" firstAttribute="top" secondItem="NBP-Xi-5WC" secondAttribute="bottom" constant="10" id="ff7-C9-wwZ"/>
                             <constraint firstItem="O3f-4t-JPY" firstAttribute="top" secondItem="NBP-Xi-5WC" secondAttribute="bottom" constant="10" id="kcu-A9-QXz"/>
@@ -121,6 +130,7 @@
                             <constraint firstItem="jLY-Pa-Nhg" firstAttribute="leading" secondItem="KEM-oL-dPa" secondAttribute="trailing" constant="10" id="pi6-fi-OE8"/>
                             <constraint firstAttribute="trailing" secondItem="yw7-sk-kRW" secondAttribute="trailing" constant="15" id="q8l-rl-uUx"/>
                             <constraint firstItem="jLY-Pa-Nhg" firstAttribute="centerY" secondItem="KEM-oL-dPa" secondAttribute="centerY" id="qGh-IL-HtZ"/>
+                            <constraint firstAttribute="trailing" secondItem="5nG-R9-frC" secondAttribute="trailing" constant="10" id="viE-1a-F6E"/>
                             <constraint firstItem="KEM-oL-dPa" firstAttribute="height" secondItem="h78-8N-oTp" secondAttribute="height" id="wYU-Ce-W20"/>
                             <constraint firstItem="KEM-oL-dPa" firstAttribute="width" secondItem="h78-8N-oTp" secondAttribute="width" id="wih-5a-oQI"/>
                             <constraint firstItem="EGI-fa-UBM" firstAttribute="leading" secondItem="7tq-M5-GlR" secondAttribute="leading" id="zmK-Kf-8ej"/>
@@ -146,6 +156,7 @@
                 <outlet property="reOrderButton" destination="mjr-ah-Yv3" id="Wrn-SB-EQm"/>
                 <outlet property="statusContainerView" destination="EGI-fa-UBM" id="Z2L-bZ-a8G"/>
                 <outlet property="statusImage" destination="h78-8N-oTp" id="xsb-dJ-U4r"/>
+                <outlet property="statusTextField" destination="5nG-R9-frC" id="dzm-CT-c2k"/>
                 <outlet property="totalLabel" destination="sBA-HK-h7t" id="p7f-BJ-389"/>
                 <outlet property="viewContainer" destination="7tq-M5-GlR" id="xDC-rq-3CM"/>
             </connections>

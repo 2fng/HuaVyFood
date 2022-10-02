@@ -19,9 +19,12 @@ final class AdminOrderViewController: UIViewController {
 
     // Variables
     private var orders = [Order]()
+    private var statuses = [String]()
 
     // Trigger
     private let getOrdersTrigger = PublishSubject<Void>()
+    private let getOrderStatusTrigger = PublishSubject<Void>()
+    private let updateOrderStatusTrigger = PublishSubject<Order>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +42,23 @@ final class AdminOrderViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        let input = AdminOrderViewModel.Input(getOrdersTrigger: getOrdersTrigger.asDriverOnErrorJustComplete())
+        let input = AdminOrderViewModel.Input(
+            getOrdersTrigger: getOrdersTrigger.asDriverOnErrorJustComplete(),
+            getOrderStatusTrigger: getOrderStatusTrigger.asDriverOnErrorJustComplete(),
+            updateOrderStatusTrigger: updateOrderStatusTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
         output.getOrders
             .drive(ordersBinder)
+            .disposed(by: disposeBag)
+
+        output.statuses
+            .drive(orderStatusesBinder)
+            .disposed(by: disposeBag)
+
+        output.updateOrderStatus
+            .drive(updateOrderStatusBinder)
             .disposed(by: disposeBag)
 
         output.loading
@@ -56,6 +70,7 @@ final class AdminOrderViewController: UIViewController {
             .disposed(by: disposeBag)
 
         getOrdersTrigger.onNext(())
+        getOrderStatusTrigger.onNext(())
     }
 }
 
@@ -66,6 +81,23 @@ extension AdminOrderViewController {
                 order1.orderDate > order2.orderDate
             })
             vc.tableView.reloadData()
+        }
+    }
+
+    private var orderStatusesBinder: Binder<[OrderStatus]> {
+        return Binder(self) { vc, statuses in
+            vc.statuses = statuses
+                .sorted(by: { order1, order2 in
+                order1.id > order2.id
+            })
+                .map { $0.name }
+            vc.tableView.reloadData()
+        }
+    }
+
+    private var updateOrderStatusBinder: Binder<Void> {
+        return Binder(self) { vc, _ in
+            vc.getOrdersTrigger.onNext(())
         }
     }
 }
@@ -79,7 +111,21 @@ extension AdminOrderViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UserOrderTableViewCell.identifier) as? UserOrderTableViewCell else {
             return UITableViewCell()
         }
-        cell.configCell(order: orders[indexPath.row])
+        cell.configCell(order: orders[indexPath.row], isAdmin: true)
+        cell.handleChooseStatus = { [unowned self] in
+            let vc = PopupListViewController()
+            vc.modalPresentationStyle = .overFullScreen
+            vc.modalTransitionStyle = .crossDissolve
+            present(vc, animated: true)
+            // Callbacks
+            vc.getData(tableViewData: statuses, selectedData: orders[indexPath.row].status)
+            vc.handleDoneButton = { [unowned self] data in
+                if let data = data as? String {
+                    orders[indexPath.row].status = data
+                    updateOrderStatusTrigger.onNext(orders[indexPath.row])
+                }
+            }
+        }
         return cell
     }
 }

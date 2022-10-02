@@ -18,6 +18,8 @@ protocol UserRepositoryType {
     func addNewShippingInfoProfile(profile: UserShippingInfo) -> Observable<String>
     func getUserShippingInfo() -> Observable<UserShippingInfo>
     func getUserOrders(isAdmin: Bool) -> Observable<[Order]>
+    func getOrderStatuses() -> Observable<[OrderStatus]>
+    func updateOrderStatus(order: Order) -> Observable<Void>
 }
 
 final class UserRepository: UserRepositoryType {
@@ -187,6 +189,7 @@ final class UserRepository: UserRepositoryType {
                     if let snapshot = snapshot {
                         for document in snapshot.documents {
                             var order = Order()
+                            order.documentID = document.documentID
                             order.couponUsed = Coupon(id: document["couponUsedID"] as? String ?? "",
                                                       name: document["couponUsedName"] as? String ?? "",
                                                       value: document["couponUsedValue"] as? Int ?? 0)
@@ -246,6 +249,43 @@ final class UserRepository: UserRepositoryType {
 
                 }
             })
+            return Disposables.create()
+        }
+    }
+
+    func getOrderStatuses() -> Observable<[OrderStatus]> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("orderStatus").getDocuments { snapshot, error in
+                if error != nil {
+                    observer.onError(error!)
+                } else {
+                    var returnStatuses = [OrderStatus]()
+                    if let snapshot = snapshot {
+                        for document in snapshot.documents {
+                            returnStatuses.append(OrderStatus(id: document["id"] as? String ?? "",
+                                                              name: document["name"] as? String ?? ""))
+                        }
+                        observer.onNext(returnStatuses)
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func updateOrderStatus(order: Order) -> Observable<Void> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("orders").document(order.documentID).updateData([
+                "status" : order.status
+            ]) { error in
+                if error != nil {
+                    observer.onError(error!)
+                } else {
+                    observer.onNext(())
+                }
+            }
             return Disposables.create()
         }
     }
