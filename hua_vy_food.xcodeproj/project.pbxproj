@@ -92,6 +92,9 @@
 		DFBF41CC288CDB0E00203759 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFBF41CA288CDB0E00203759 /* LaunchScreen.storyboard */; };
 		DFC49A5F289C013F00F856FC /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC49A5E289C013F00F856FC /* ForgotPasswordViewModel.swift */; };
 		DFD1902B28B0BAFA00CED2C0 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD1902A28B0BAFA00CED2C0 /* CustomTextField.swift */; };
+		DFF0C61128EB0ECE0042E64A /* UserResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF0C60F28EB0ECE0042E64A /* UserResponseViewController.swift */; };
+		DFF0C61228EB0ECE0042E64A /* UserResponseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFF0C61028EB0ECE0042E64A /* UserResponseViewController.xib */; };
+		DFF0C61428EB26050042E64A /* UserResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF0C61328EB26050042E64A /* UserResponseViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -184,6 +187,9 @@
 		DFBF41CD288CDB0E00203759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFC49A5E289C013F00F856FC /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		DFD1902A28B0BAFA00CED2C0 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		DFF0C60F28EB0ECE0042E64A /* UserResponseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseViewController.swift; sourceTree = "<group>"; };
+		DFF0C61028EB0ECE0042E64A /* UserResponseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserResponseViewController.xib; sourceTree = "<group>"; };
+		DFF0C61328EB26050042E64A /* UserResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,6 +412,7 @@
 		DF8E7480288EABC50010DFD9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DFF0C60D28EB0E990042E64A /* UserResponse */,
 				DFB2719A28E8858700E11183 /* AdminOrder */,
 				DFB2718C28E7E4BF00E11183 /* UserOrder */,
 				DF80242D28E677CA00A193FA /* ManageProductCategory */,
@@ -573,6 +580,16 @@
 			path = hua_vy_food;
 			sourceTree = "<group>";
 		};
+		DFF0C60D28EB0E990042E64A /* UserResponse */ = {
+			isa = PBXGroup;
+			children = (
+				DFF0C60F28EB0ECE0042E64A /* UserResponseViewController.swift */,
+				DFF0C61028EB0ECE0042E64A /* UserResponseViewController.xib */,
+				DFF0C61328EB26050042E64A /* UserResponseViewModel.swift */,
+			);
+			path = UserResponse;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -640,6 +657,7 @@
 				DF80243128E677F600A193FA /* ManageProductCategoryViewController.xib in Resources */,
 				DFB2719528E80B0700E11183 /* UserOrderTableViewCell.xib in Resources */,
 				DF12DEF728AE361900558DF7 /* PopupTableViewTableViewCell.xib in Resources */,
+				DFF0C61228EB0ECE0042E64A /* UserResponseViewController.xib in Resources */,
 				DF5EF7D128D8AEB100281FDF /* CartBottomTableViewCell.xib in Resources */,
 				DF55E68328B21F3300B05776 /* ProductTableViewCell.xib in Resources */,
 				DFB2719028E7E4E400E11183 /* UserOrderViewController.xib in Resources */,
@@ -733,6 +751,7 @@
 				DF5EF7D028D8AEB100281FDF /* CartBottomTableViewCell.swift in Sources */,
 				DFBF41C2288CDB0C00203759 /* SceneDelegate.swift in Sources */,
 				DFB0880E2894E327002D2AE3 /* UIViewcontroller+.swift in Sources */,
+				DFF0C61428EB26050042E64A /* UserResponseViewModel.swift in Sources */,
 				DF67FA0828ADF943001F446B /* Product.swift in Sources */,
 				DF6AAD1F2892AB8A008961FE /* ObservableType+.swift in Sources */,
 				DFB6DAC1289E806C008879BF /* UserSettingViewController.swift in Sources */,
@@ -761,6 +780,7 @@
 				DF55E68228B21F3300B05776 /* ProductTableViewCell.swift in Sources */,
 				DFC49A5F289C013F00F856FC /* ForgotPasswordViewModel.swift in Sources */,
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
+				DFF0C61128EB0ECE0042E64A /* UserResponseViewController.swift in Sources */,
 				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,
 				DF031A6628C09528008960CD /* UILabelPadding.swift in Sources */,
 				DF6A459F28D6C13A006D2848 /* CartRepositoryType.swift in Sources */,
