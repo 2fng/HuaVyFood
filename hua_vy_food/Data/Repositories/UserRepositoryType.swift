@@ -23,6 +23,7 @@ protocol UserRepositoryType {
     func updateOrderStatus(order: Order) -> Observable<Void>
     func updateOrderPaymentStatus(order: Order) -> Observable<Void>
     func deleteOrder(documentID: String) -> Observable<Void>
+    func submitResponse(content: String) -> Observable<Void>
 }
 
 final class UserRepository: UserRepositoryType {
@@ -335,6 +336,24 @@ final class UserRepository: UserRepositoryType {
             database.collection("orders").document(documentID).delete { error in
                 if let error = error {
                     observer.onError(error)
+                } else {
+                    observer.onNext(())
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func submitResponse(content: String) -> Observable<Void> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("responses").addDocument(data: [
+                "id" : "\(CACurrentMediaTime().truncatingRemainder(dividingBy: 1))",
+                "uid" : "\(UserManager.shared.getUserID())",
+                "content": content
+            ]) { error in
+                if error != nil {
+                    observer.onError(error!)
                 } else {
                     observer.onNext(())
                 }
