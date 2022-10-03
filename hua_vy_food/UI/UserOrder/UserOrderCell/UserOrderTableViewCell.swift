@@ -23,6 +23,7 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
     @IBOutlet private weak var paymentStatusTextField: UITextField!
     @IBOutlet private weak var reOrderButton: UIButton!
     @IBOutlet private weak var statusTextField: UITextField!
+    @IBOutlet private weak var deleteOrderButton: UIButton!
 
     private let disposeBag = DisposeBag()
     private var isAdmin = false
@@ -30,6 +31,7 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
     // Callbacks
     var handleChooseStatus: (() -> Void)?
     var handleChoosePaymentStatus: (() -> Void)?
+    var handleDeleteOrder: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -54,6 +56,14 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
             $0.backgroundColor = .white
         }
 
+        deleteOrderButton.rx.tap
+            .map { [unowned self] in
+                deleteOrderButton.animationSelect()
+                handleDeleteOrder?()
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+
         reOrderButton.rx.tap
             .map { [unowned self] in
                 reOrderButton.animationSelect()
@@ -77,6 +87,12 @@ final class UserOrderTableViewCell: UITableViewCell, ReuseableCell {
         paymentStatusTextField.text = order.paidDate != Date(timeIntervalSince1970: 0) ? "Đã thanh toán" : "Chưa thanh toán"
         nameLabel.text = order.userShippingInfo.fullName
         phoneNumberLabel.text = order.userShippingInfo.mobileNumber
+        deleteOrderButton.setTitle(isAdmin ? "Xoá" : "Huỷ", for: .normal)
+        if order.status != "Đang xử lý" && !isAdmin {
+            deleteOrderButton.isHidden = true
+        } else {
+            deleteOrderButton.isHidden = false
+        }
         switch order.status {
         case "Đang xử lý":
             statusContainerView.backgroundColor = UIColor.onGoing

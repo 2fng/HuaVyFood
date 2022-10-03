@@ -16,11 +16,11 @@ final class UserSettingViewController: UIViewController {
     @IBOutlet private weak var adminViewContainer: UIView!
     @IBOutlet private weak var adminOrderButton: UIButton!
     @IBOutlet private weak var adminProductButton: UIButton!
-    @IBOutlet private weak var adminCategoryButton: UIButton!
     @IBOutlet private weak var adminResponseButton: UIButton!
     // User
     @IBOutlet private weak var userViewContainer: UIView!
     @IBOutlet private weak var userOrderButton: UIButton!
+    @IBOutlet weak var userResponseButton: UIButton!
 
     private let disposeBag = DisposeBag()
     private let viewModel = UserSettingViewModel(userRepository: UserRepository())
@@ -56,7 +56,8 @@ final class UserSettingViewController: UIViewController {
     private func setupView() {
         self.navigationItem.backButtonTitle = "Quay lại"
         self.navigationController?.navigationBar.tintColor = UIColor.logoPink
-        let adminButtons = [adminOrderButton, adminCategoryButton, adminProductButton, adminResponseButton]
+        let adminButtons = [adminOrderButton, adminProductButton, adminResponseButton]
+        let userButtons = [userOrderButton, userResponseButton]
         adminViewContainer.isHidden = !UserManager.shared.getUserIsAdmin()
         
         logOutButton.do {
@@ -71,9 +72,11 @@ final class UserSettingViewController: UIViewController {
             }
         }
 
-        userOrderButton.do {
-            $0.layer.cornerRadius = 5
-            $0.shadowView(cornerRadius: 5)
+        userButtons.forEach { adminButton in
+            adminButton?.do {
+                $0.layer.cornerRadius = 5
+                $0.shadowView(cornerRadius: 5)
+            }
         }
 
         // Admin
@@ -93,11 +96,27 @@ final class UserSettingViewController: UIViewController {
             .subscribe()
             .disposed(by: disposeBag)
 
+        adminResponseButton.rx.tap
+            .map { [unowned self] in
+                adminResponseButton.animationSelect()
+                // navigationController?.pushViewController(AdminOrderViewController(), animated: true)
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+
         // User
         userOrderButton.rx.tap
             .map { [unowned self] in
                 userOrderButton.animationSelect()
                 navigationController?.pushViewController(UserOrderViewController(), animated: true)
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+
+        userResponseButton.rx.tap
+            .map { [unowned self] in
+                userResponseButton.animationSelect()
+                // navigationController?.pushViewController(UserOrderViewController(), animated: true)
             }
             .subscribe()
             .disposed(by: disposeBag)
