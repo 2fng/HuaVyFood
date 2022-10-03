@@ -59,7 +59,7 @@ final class UserResponseViewController: UIViewController {
         let output = viewModel.transform(input)
 
         output.response
-            .drive()
+            .drive(responseBinder)
             .disposed(by: disposeBag)
 
         output.loading
@@ -75,21 +75,24 @@ final class UserResponseViewController: UIViewController {
 extension UserResponseViewController {
     private var responseBinder: Binder<Void> {
         return Binder(self) { vc, _ in
-            vc.showAlert(message: "Cảm ơn phản hồi của bạn ^^\n Hứa Vy Food sẽ cố gắng không ngừng để cải thiện để đem lại dịch vụ tốt nhất!", okButtonOnly: true)
+            vc.showAlert(message: "Cảm ơn phản hồi của bạn ^^\n Hứa Vy Food sẽ cố gắng không ngừng để cải thiện để đem lại dịch vụ tốt nhất!", okButtonOnly: true,
+                         okCompletion: {
+                vc.navigationController?.popToRootViewController(animated: true)
+            })
         }
     }
 }
 
 extension UserResponseViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "Hãy nhập phản hồi của bạn tại đây nhé..." {
+        if textView.text == "Hãy nhập phản hồi của bạn tại đây nhé... Nếu muốn phản ánh về chất lượng dịch vụ, bạn hãy để lại số điện thoại để chúng mình dễ liên lạc nha ^^" {
             textView.text = nil
         }
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Hãy nhập phản hồi của bạn tại đây nhé..."
+            textView.text = "Hãy nhập phản hồi của bạn tại đây nhé... Nếu muốn phản ánh về chất lượng dịch vụ, bạn hãy để lại số điện thoại để chúng mình dễ liên lạc nha ^^"
         }
     }
 }
