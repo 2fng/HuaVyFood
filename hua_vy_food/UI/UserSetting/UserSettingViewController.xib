@@ -15,6 +15,7 @@
                 <outlet property="adminViewContainer" destination="Ahz-4m-nLC" id="oRk-wo-9bn"/>
                 <outlet property="logOutButton" destination="I7x-An-f1j" id="U3b-qx-GLe"/>
                 <outlet property="userOrderButton" destination="Zna-yW-Zmw" id="MWs-BW-gxo"/>
+                <outlet property="userResponseButton" destination="TUR-gK-Q6i" id="NJ0-SV-trJ"/>
                 <outlet property="userViewContainer" destination="O11-lg-Kvv" id="WWe-f4-Y1l"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -114,13 +115,24 @@
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Đơn hàng"/>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUR-gK-Q6i">
+                                    <rect key="frame" x="0.0" y="102" width="368" height="50"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Phản hồi"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="TUR-gK-Q6i" secondAttribute="trailing" id="8qG-5N-TXa"/>
                                 <constraint firstItem="YA7-qD-rJ3" firstAttribute="leading" secondItem="O11-lg-Kvv" secondAttribute="leading" id="K1A-71-Zda"/>
                                 <constraint firstAttribute="trailing" secondItem="YA7-qD-rJ3" secondAttribute="trailing" id="KN8-hy-y2H"/>
                                 <constraint firstItem="oYD-IH-6dI" firstAttribute="centerX" secondItem="YA7-qD-rJ3" secondAttribute="centerX" id="PjQ-OF-cGP"/>
                                 <constraint firstItem="YA7-qD-rJ3" firstAttribute="top" secondItem="O11-lg-Kvv" secondAttribute="top" constant="5" id="PkJ-2E-wMm"/>
+                                <constraint firstItem="TUR-gK-Q6i" firstAttribute="leading" secondItem="O11-lg-Kvv" secondAttribute="leading" id="SVh-Wx-AsR"/>
+                                <constraint firstItem="TUR-gK-Q6i" firstAttribute="top" secondItem="Zna-yW-Zmw" secondAttribute="bottom" constant="16.5" id="TMk-N7-K4b"/>
+                                <constraint firstItem="TUR-gK-Q6i" firstAttribute="height" secondItem="Zna-yW-Zmw" secondAttribute="height" id="UEl-YU-hyA"/>
                                 <constraint firstItem="Zna-yW-Zmw" firstAttribute="top" secondItem="oYD-IH-6dI" secondAttribute="bottom" constant="20" id="UGH-0z-csJ"/>
                                 <constraint firstAttribute="trailing" secondItem="Zna-yW-Zmw" secondAttribute="trailing" id="bA1-Vw-HF7"/>
                                 <constraint firstItem="oYD-IH-6dI" firstAttribute="centerY" secondItem="YA7-qD-rJ3" secondAttribute="centerY" id="hWP-W7-UI2"/>

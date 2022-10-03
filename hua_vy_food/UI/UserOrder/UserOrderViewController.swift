@@ -24,6 +24,7 @@ final class UserOrderViewController: UIViewController {
     // Trigger
     private let getOrdersTrigger = PublishSubject<Void>()
     private let getUserShippingInfo = PublishSubject<Void>()
+    private let deleteOrderTrigger = PublishSubject<String>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,8 @@ final class UserOrderViewController: UIViewController {
 
     private func bindViewModel() {
         let input = UserOrderViewModel.Input(getOrdersTrigger: getOrdersTrigger.asDriverOnErrorJustComplete(),
-                                             userShippingInfoTrigger: getUserShippingInfo.asDriverOnErrorJustComplete())
+                                             userShippingInfoTrigger: getUserShippingInfo.asDriverOnErrorJustComplete(),
+                                             deleteOrderTrigger: deleteOrderTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -52,6 +54,10 @@ final class UserOrderViewController: UIViewController {
 
         output.userShippingInfo
             .drive(userShippingInfoBinder)
+            .disposed(by: disposeBag)
+
+        output.deleteOrder
+            .drive(deleteOrderBinder)
             .disposed(by: disposeBag)
 
         output.loading
@@ -83,6 +89,12 @@ extension UserOrderViewController {
             vc.orderTableView.reloadData()
         }
     }
+
+    private var deleteOrderBinder: Binder<Void> {
+        return Binder(self) { vc, _ in
+            vc.getOrdersTrigger.onNext(())
+        }
+    }
 }
 
 extension UserOrderViewController: UITableViewDataSource {
@@ -95,6 +107,12 @@ extension UserOrderViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.configCell(order: orders[indexPath.row])
+        cell.handleDeleteOrder = { [unowned self] in
+            showAlert(message: "Bạn có chắc chắn muốn xoá đơn hàng này không?",
+                      rightCompletion: { [unowned self] in
+                deleteOrderTrigger.onNext(orders[indexPath.row].documentID)
+            })
+        }
         return cell
     }
 }

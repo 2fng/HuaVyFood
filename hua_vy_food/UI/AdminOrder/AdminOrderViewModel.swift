@@ -22,6 +22,7 @@ extension AdminOrderViewModel {
         let getPaymentStatusTrigger: Driver<Void>
         let updateOrderStatusTrigger: Driver<Order>
         let updateOrderPaymentStatusTrigger: Driver<Order>
+        let deleteOrderTrigger: Driver<String>
     }
 
     struct Output {
@@ -30,6 +31,7 @@ extension AdminOrderViewModel {
         let paymentStatus: Driver<[String]>
         let updateOrderStatus: Driver<Void>
         let updateOrderPaymentStatus: Driver<Void>
+        let deleteOrder: Driver<Void>
         let loading: Driver<Bool>
         let error: Driver<Error>
     }
@@ -76,11 +78,20 @@ extension AdminOrderViewModel {
                     .asDriverOnErrorJustComplete()
             }
 
+        let deleteOrder = input.deleteOrderTrigger
+            .flatMapLatest { documentID in
+                return self.userRepository.deleteOrder(documentID: documentID)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+
         return Output(getOrders: getOrders.asDriver(),
                       statuses: getStatuses.asDriver(),
                       paymentStatus: getPaymentStatus.asDriver(),
                       updateOrderStatus: updateOrderStatus.asDriver(),
                       updateOrderPaymentStatus: updateOrderPaymentStatus.asDriver(),
+                      deleteOrder: deleteOrder.asDriver(),
                       loading: activityIndicator.asDriver(),
                       error: errorTracker.asDriver())
     }

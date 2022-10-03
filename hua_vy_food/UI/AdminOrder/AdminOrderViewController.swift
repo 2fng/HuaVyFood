@@ -28,6 +28,7 @@ final class AdminOrderViewController: UIViewController {
     private let getPaymentStatusTrigger = PublishSubject<Void>()
     private let updateOrderStatusTrigger = PublishSubject<Order>()
     private let updateOrderPaymentStatusTrigger = PublishSubject<Order>()
+    private let deleteOrderTrigger = PublishSubject<String>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,8 @@ final class AdminOrderViewController: UIViewController {
             getOrderStatusTrigger: getOrderStatusTrigger.asDriverOnErrorJustComplete(),
             getPaymentStatusTrigger: getPaymentStatusTrigger.asDriverOnErrorJustComplete(),
             updateOrderStatusTrigger: updateOrderStatusTrigger.asDriverOnErrorJustComplete(),
-            updateOrderPaymentStatusTrigger: updateOrderPaymentStatusTrigger.asDriverOnErrorJustComplete())
+            updateOrderPaymentStatusTrigger: updateOrderPaymentStatusTrigger.asDriverOnErrorJustComplete(),
+            deleteOrderTrigger: deleteOrderTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -72,6 +74,9 @@ final class AdminOrderViewController: UIViewController {
 
         output.updateOrderPaymentStatus
             .drive(updateOrderPaymentStatusBinder)
+            .disposed(by: disposeBag)
+        output.deleteOrder
+            .drive(deleteOrderBinder)
             .disposed(by: disposeBag)
 
         output.loading
@@ -127,6 +132,12 @@ extension AdminOrderViewController {
             vc.getOrdersTrigger.onNext(())
         }
     }
+
+    private var deleteOrderBinder: Binder<Void> {
+        return Binder(self) { vc, _ in
+            vc.getOrdersTrigger.onNext(())
+        }
+    }
 }
 
 extension AdminOrderViewController: UITableViewDataSource {
@@ -167,6 +178,12 @@ extension AdminOrderViewController: UITableViewDataSource {
                     updateOrderPaymentStatusTrigger.onNext(orders[indexPath.row])
                 }
             }
+        }
+        cell.handleDeleteOrder = { [unowned self] in
+            showAlert(message: "Bạn có chắc chắn muốn xoá đơn hàng này không?",
+                      rightCompletion: { [unowned self] in
+                deleteOrderTrigger.onNext(orders[indexPath.row].documentID)
+            })
         }
         return cell
     }
