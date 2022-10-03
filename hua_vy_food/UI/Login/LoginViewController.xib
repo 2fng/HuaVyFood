@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="hua_vy_food" customModuleProvider="target">
             <connections>
                 <outlet property="emailTextField" destination="yDF-IT-YST" id="KU3-1Q-yE6"/>
-                <outlet property="forgotPasswordButton" destination="CeC-10-CD7" id="QCi-e7-wC3"/>
+                <outlet property="forgotPasswordButton" destination="CeC-10-CD7" id="Sjp-c6-h18"/>
                 <outlet property="loginButton" destination="Nj8-ar-XBF" id="l9G-aP-YeC"/>
                 <outlet property="loginWithGoogleButton" destination="CUc-98-L1F" id="ZP4-ch-wIv"/>
                 <outlet property="passwordTextField" destination="lvO-EO-vXm" id="yNB-kk-1dJ"/>
@@ -133,7 +133,6 @@
                 <constraint firstItem="jTu-Ys-NoR" firstAttribute="top" secondItem="CUc-98-L1F" secondAttribute="bottom" constant="23" id="CY1-L4-CoL"/>
                 <constraint firstItem="lvO-EO-vXm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="FFk-7M-6cg"/>
                 <constraint firstItem="mrL-u2-oTU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="100" id="Flm-DG-MmR"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="jTu-Ys-NoR" secondAttribute="bottom" constant="46.5" id="JmT-fR-0yS"/>
                 <constraint firstItem="Nj8-ar-XBF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="JqM-LH-BOi"/>
                 <constraint firstItem="lvO-EO-vXm" firstAttribute="bottom" secondItem="7wd-ZL-Sqy" secondAttribute="bottom" id="JvU-Dv-rSD"/>
                 <constraint firstItem="lvO-EO-vXm" firstAttribute="trailing" secondItem="7wd-ZL-Sqy" secondAttribute="trailing" id="K26-0E-vvF"/>
