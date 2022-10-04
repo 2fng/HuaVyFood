@@ -21,6 +21,10 @@
 		DF22A10528E4005B00778083 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF22A10428E4005B00778083 /* Order.swift */; };
 		DF3DF05C28E6A63E002C2297 /* ManageCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DF05A28E6A63E002C2297 /* ManageCategoryTableViewCell.swift */; };
 		DF3DF05D28E6A63E002C2297 /* ManageCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF3DF05B28E6A63E002C2297 /* ManageCategoryTableViewCell.xib */; };
+		DF516A2028EC7A9F003B26A4 /* ManagerResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF516A1E28EC7A9F003B26A4 /* ManagerResponseViewController.swift */; };
+		DF516A2128EC7A9F003B26A4 /* ManagerResponseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF516A1F28EC7A9F003B26A4 /* ManagerResponseViewController.xib */; };
+		DF516A2528EC7B76003B26A4 /* ManagerResponseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF516A2328EC7B76003B26A4 /* ManagerResponseTableViewCell.swift */; };
+		DF516A2628EC7B76003B26A4 /* ManagerResponseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF516A2428EC7B76003B26A4 /* ManagerResponseTableViewCell.xib */; };
 		DF55E68228B21F3300B05776 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF55E68028B21F3300B05776 /* ProductTableViewCell.swift */; };
 		DF55E68328B21F3300B05776 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF55E68128B21F3300B05776 /* ProductTableViewCell.xib */; };
 		DF55E68A28B22E8D00B05776 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF55E68828B22E8D00B05776 /* HeaderTableViewCell.swift */; };
@@ -114,6 +118,10 @@
 		DF22A10428E4005B00778083 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		DF3DF05A28E6A63E002C2297 /* ManageCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		DF3DF05B28E6A63E002C2297 /* ManageCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManageCategoryTableViewCell.xib; sourceTree = "<group>"; };
+		DF516A1E28EC7A9F003B26A4 /* ManagerResponseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerResponseViewController.swift; sourceTree = "<group>"; };
+		DF516A1F28EC7A9F003B26A4 /* ManagerResponseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManagerResponseViewController.xib; sourceTree = "<group>"; };
+		DF516A2328EC7B76003B26A4 /* ManagerResponseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerResponseTableViewCell.swift; sourceTree = "<group>"; };
+		DF516A2428EC7B76003B26A4 /* ManagerResponseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManagerResponseTableViewCell.xib; sourceTree = "<group>"; };
 		DF55E68028B21F3300B05776 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		DF55E68128B21F3300B05776 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		DF55E68828B22E8D00B05776 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -256,6 +264,25 @@
 				DF3DF05B28E6A63E002C2297 /* ManageCategoryTableViewCell.xib */,
 			);
 			path = ManageCategoryCell;
+			sourceTree = "<group>";
+		};
+		DF516A1D28EC7A6C003B26A4 /* ManagerResponse */ = {
+			isa = PBXGroup;
+			children = (
+				DF516A2228EC7B53003B26A4 /* ManagerResponseCell */,
+				DF516A1E28EC7A9F003B26A4 /* ManagerResponseViewController.swift */,
+				DF516A1F28EC7A9F003B26A4 /* ManagerResponseViewController.xib */,
+			);
+			path = ManagerResponse;
+			sourceTree = "<group>";
+		};
+		DF516A2228EC7B53003B26A4 /* ManagerResponseCell */ = {
+			isa = PBXGroup;
+			children = (
+				DF516A2328EC7B76003B26A4 /* ManagerResponseTableViewCell.swift */,
+				DF516A2428EC7B76003B26A4 /* ManagerResponseTableViewCell.xib */,
+			);
+			path = ManagerResponseCell;
 			sourceTree = "<group>";
 		};
 		DF55E67F28B21F1A00B05776 /* ProductTableViewCell */ = {
@@ -412,6 +439,7 @@
 		DF8E7480288EABC50010DFD9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DF516A1D28EC7A6C003B26A4 /* ManagerResponse */,
 				DFF0C60D28EB0E990042E64A /* UserResponse */,
 				DFB2719A28E8858700E11183 /* AdminOrder */,
 				DFB2718C28E7E4BF00E11183 /* UserOrder */,
@@ -657,11 +685,13 @@
 				DF80243128E677F600A193FA /* ManageProductCategoryViewController.xib in Resources */,
 				DFB2719528E80B0700E11183 /* UserOrderTableViewCell.xib in Resources */,
 				DF12DEF728AE361900558DF7 /* PopupTableViewTableViewCell.xib in Resources */,
+				DF516A2128EC7A9F003B26A4 /* ManagerResponseViewController.xib in Resources */,
 				DFF0C61228EB0ECE0042E64A /* UserResponseViewController.xib in Resources */,
 				DF5EF7D128D8AEB100281FDF /* CartBottomTableViewCell.xib in Resources */,
 				DF55E68328B21F3300B05776 /* ProductTableViewCell.xib in Resources */,
 				DFB2719028E7E4E400E11183 /* UserOrderViewController.xib in Resources */,
 				DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */,
+				DF516A2628EC7B76003B26A4 /* ManagerResponseTableViewCell.xib in Resources */,
 				DF8DF81028DC992B0075C4D5 /* AddNewShippingInfoViewController.xib in Resources */,
 				DFB6DAC2289E806C008879BF /* UserSettingViewController.xib in Resources */,
 				DFB4D0BF289121C300B109C0 /* RegisterViewController.xib in Resources */,
@@ -777,8 +807,10 @@
 				DF80243328E6780C00A193FA /* ManageProductCategoryViewModel.swift in Sources */,
 				DF122CCA28ACFC08001E14EC /* ProductCategory.swift in Sources */,
 				DFB271A228E9873700E11183 /* OrderStatus.swift in Sources */,
+				DF516A2528EC7B76003B26A4 /* ManagerResponseTableViewCell.swift in Sources */,
 				DF55E68228B21F3300B05776 /* ProductTableViewCell.swift in Sources */,
 				DFC49A5F289C013F00F856FC /* ForgotPasswordViewModel.swift in Sources */,
+				DF516A2028EC7A9F003B26A4 /* ManagerResponseViewController.swift in Sources */,
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
 				DFF0C61128EB0ECE0042E64A /* UserResponseViewController.swift in Sources */,
 				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,

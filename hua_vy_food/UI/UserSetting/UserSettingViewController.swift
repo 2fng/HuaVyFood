@@ -99,7 +99,7 @@ final class UserSettingViewController: UIViewController {
         adminResponseButton.rx.tap
             .map { [unowned self] in
                 adminResponseButton.animationSelect()
-                // navigationController?.pushViewController(AdminOrderViewController(), animated: true)
+                navigationController?.pushViewController(ManagerResponseViewController(), animated: true)
             }
             .subscribe()
             .disposed(by: disposeBag)
