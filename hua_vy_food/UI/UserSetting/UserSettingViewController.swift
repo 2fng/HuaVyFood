@@ -116,7 +116,7 @@ final class UserSettingViewController: UIViewController {
         userResponseButton.rx.tap
             .map { [unowned self] in
                 userResponseButton.animationSelect()
-                navigationController?.pushViewController(UserResponseViewController(), animated: true)
+                navigationController?.pushViewController(UserResponseListViewController(), animated: true)
             }
             .subscribe()
             .disposed(by: disposeBag)
