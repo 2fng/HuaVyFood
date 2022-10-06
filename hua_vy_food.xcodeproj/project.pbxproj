@@ -19,6 +19,11 @@
 		DF12DEF928AE47A600558DF7 /* ReuseableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF12DEF828AE47A600558DF7 /* ReuseableCell.swift */; };
 		DF22A10328E3F25000778083 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF22A10228E3F25000778083 /* Coupon.swift */; };
 		DF22A10528E4005B00778083 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF22A10428E4005B00778083 /* Order.swift */; };
+		DF3488A528EEAFD600C682DB /* UserResponseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3488A328EEAFD600C682DB /* UserResponseListViewController.swift */; };
+		DF3488A628EEAFD600C682DB /* UserResponseListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF3488A428EEAFD600C682DB /* UserResponseListViewController.xib */; };
+		DF3488A828EEB56D00C682DB /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3488A728EEB56D00C682DB /* Response.swift */; };
+		DF3488AA28EEB77300C682DB /* ManagerResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3488A928EEB77300C682DB /* ManagerResponseViewModel.swift */; };
+		DF3488AC28EEB79F00C682DB /* UserResponseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3488AB28EEB79F00C682DB /* UserResponseListViewModel.swift */; };
 		DF3DF05C28E6A63E002C2297 /* ManageCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3DF05A28E6A63E002C2297 /* ManageCategoryTableViewCell.swift */; };
 		DF3DF05D28E6A63E002C2297 /* ManageCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF3DF05B28E6A63E002C2297 /* ManageCategoryTableViewCell.xib */; };
 		DF516A2028EC7A9F003B26A4 /* ManagerResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF516A1E28EC7A9F003B26A4 /* ManagerResponseViewController.swift */; };
@@ -116,6 +121,11 @@
 		DF12DEF828AE47A600558DF7 /* ReuseableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableCell.swift; sourceTree = "<group>"; };
 		DF22A10228E3F25000778083 /* Coupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
 		DF22A10428E4005B00778083 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		DF3488A328EEAFD600C682DB /* UserResponseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseListViewController.swift; sourceTree = "<group>"; };
+		DF3488A428EEAFD600C682DB /* UserResponseListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserResponseListViewController.xib; sourceTree = "<group>"; };
+		DF3488A728EEB56D00C682DB /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		DF3488A928EEB77300C682DB /* ManagerResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerResponseViewModel.swift; sourceTree = "<group>"; };
+		DF3488AB28EEB79F00C682DB /* UserResponseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseListViewModel.swift; sourceTree = "<group>"; };
 		DF3DF05A28E6A63E002C2297 /* ManageCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		DF3DF05B28E6A63E002C2297 /* ManageCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManageCategoryTableViewCell.xib; sourceTree = "<group>"; };
 		DF516A1E28EC7A9F003B26A4 /* ManagerResponseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerResponseViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +267,16 @@
 			path = PopupTableViewCell;
 			sourceTree = "<group>";
 		};
+		DF3488A228EEAFB500C682DB /* UserResponseList */ = {
+			isa = PBXGroup;
+			children = (
+				DF3488A328EEAFD600C682DB /* UserResponseListViewController.swift */,
+				DF3488A428EEAFD600C682DB /* UserResponseListViewController.xib */,
+				DF3488AB28EEB79F00C682DB /* UserResponseListViewModel.swift */,
+			);
+			path = UserResponseList;
+			sourceTree = "<group>";
+		};
 		DF3DF05928E6A607002C2297 /* ManageCategoryCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +292,7 @@
 				DF516A2228EC7B53003B26A4 /* ManagerResponseCell */,
 				DF516A1E28EC7A9F003B26A4 /* ManagerResponseViewController.swift */,
 				DF516A1F28EC7A9F003B26A4 /* ManagerResponseViewController.xib */,
+				DF3488A928EEB77300C682DB /* ManagerResponseViewModel.swift */,
 			);
 			path = ManagerResponse;
 			sourceTree = "<group>";
@@ -365,6 +386,7 @@
 				DF22A10228E3F25000778083 /* Coupon.swift */,
 				DF22A10428E4005B00778083 /* Order.swift */,
 				DFB271A128E9873700E11183 /* OrderStatus.swift */,
+				DF3488A728EEB56D00C682DB /* Response.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -611,6 +633,7 @@
 		DFF0C60D28EB0E990042E64A /* UserResponse */ = {
 			isa = PBXGroup;
 			children = (
+				DF3488A228EEAFB500C682DB /* UserResponseList */,
 				DFF0C60F28EB0ECE0042E64A /* UserResponseViewController.swift */,
 				DFF0C61028EB0ECE0042E64A /* UserResponseViewController.xib */,
 				DFF0C61328EB26050042E64A /* UserResponseViewModel.swift */,
@@ -690,6 +713,7 @@
 				DF5EF7D128D8AEB100281FDF /* CartBottomTableViewCell.xib in Resources */,
 				DF55E68328B21F3300B05776 /* ProductTableViewCell.xib in Resources */,
 				DFB2719028E7E4E400E11183 /* UserOrderViewController.xib in Resources */,
+				DF3488A628EEAFD600C682DB /* UserResponseListViewController.xib in Resources */,
 				DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */,
 				DF516A2628EC7B76003B26A4 /* ManagerResponseTableViewCell.xib in Resources */,
 				DF8DF81028DC992B0075C4D5 /* AddNewShippingInfoViewController.xib in Resources */,
@@ -771,6 +795,7 @@
 				DF6AAD192892A9D5008961FE /* RegisterViewModel.swift in Sources */,
 				DF8C81AC2895409F00A574CE /* LoginViewModel.swift in Sources */,
 				DF6AAD1C2892AB1B008961FE /* ErrorTracker.swift in Sources */,
+				DF3488A528EEAFD600C682DB /* UserResponseListViewController.swift in Sources */,
 				DF12DEF128AE2B4E00558DF7 /* PopupListViewController.swift in Sources */,
 				DFBB0D5628A265A600EAA349 /* AddNewViewController.swift in Sources */,
 				DF6AAD212892ABF3008961FE /* ActivityIndicator.swift in Sources */,
@@ -793,9 +818,11 @@
 				DF8DF81228DC9FCB0075C4D5 /* AddNewShippingInfoViewModel.swift in Sources */,
 				DF55E68D28B24BEF00B05776 /* ManagerProductViewModel.swift in Sources */,
 				DF8DF81428DCA02B0075C4D5 /* UserShippingInfo.swift in Sources */,
+				DF3488AA28EEB77300C682DB /* ManagerResponseViewModel.swift in Sources */,
 				DFD1902B28B0BAFA00CED2C0 /* CustomTextField.swift in Sources */,
 				DFBB0D5128A25D5400EAA349 /* ManagerProductViewController.swift in Sources */,
 				DFB2718F28E7E4E400E11183 /* UserOrderViewController.swift in Sources */,
+				DF3488A828EEB56D00C682DB /* Response.swift in Sources */,
 				DF9E532C28C7553400FD7B1A /* Cart.swift in Sources */,
 				DFB2719428E80B0700E11183 /* UserOrderTableViewCell.swift in Sources */,
 				DF6AAD2A2892B3A4008961FE /* UIView+.swift in Sources */,
@@ -814,6 +841,7 @@
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
 				DFF0C61128EB0ECE0042E64A /* UserResponseViewController.swift in Sources */,
 				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,
+				DF3488AC28EEB79F00C682DB /* UserResponseListViewModel.swift in Sources */,
 				DF031A6628C09528008960CD /* UILabelPadding.swift in Sources */,
 				DF6A459F28D6C13A006D2848 /* CartRepositoryType.swift in Sources */,
 				DF80243028E677F600A193FA /* ManageProductCategoryViewController.swift in Sources */,

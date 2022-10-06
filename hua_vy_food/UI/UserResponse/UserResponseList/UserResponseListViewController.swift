@@ -1,8 +1,8 @@
 //
-//  ManagerResponseViewController.swift
+//  UserResponseListViewController.swift
 //  hua_vy_food
 //
-//  Created by Hua Son Tung on 04/10/2022.
+//  Created by Hua Son Tung on 06/10/2022.
 //
 
 import UIKit
@@ -10,11 +10,12 @@ import RxSwift
 import RxCocoa
 import Then
 
-final class ManagerResponseViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+final class UserResponseListViewController: UIViewController {
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var createButton: UIButton!
 
     private let disposeBag = DisposeBag()
-    private let viewModel = ManagerResponseViewModel(userRepository: UserRepository())
+    private let viewModel = UserResponseListViewModel(userRepository: UserRepository())
 
     private let getResponseTrigger = PublishSubject<Void>()
 
@@ -29,14 +30,29 @@ final class ManagerResponseViewController: UIViewController {
 
     private func setupView() {
         tableView.do {
-            $0.dataSource = self
             $0.delegate = self
-            $0.register(ManagerResponseTableViewCell.nib, forCellReuseIdentifier: ManagerResponseTableViewCell.identifier)
+            $0.dataSource = self
+            $0.register(ManagerResponseTableViewCell.nib,
+                               forCellReuseIdentifier: ManagerResponseTableViewCell.identifier)
         }
+
+        createButton.do {
+            $0.layer.cornerRadius = 25
+            $0.shadowView(color: .logoPink, cornerRadius: 25)
+        }
+
+        createButton.rx.tap
+            .map { [unowned self] in
+                createButton.animationSelect()
+                let vc = UserResponseViewController()
+                navigationController?.pushViewController(vc, animated: true)
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 
     private func bindViewModel() {
-        let input = ManagerResponseViewModel.Input(getResponseTrigger: getResponseTrigger.asDriverOnErrorJustComplete())
+        let input = UserResponseListViewModel.Input(getResponseTrigger: getResponseTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -56,7 +72,7 @@ final class ManagerResponseViewController: UIViewController {
     }
 }
 
-extension ManagerResponseViewController {
+extension UserResponseListViewController {
     private var responsesBinder: Binder<[Response]> {
         return Binder(self) { vc, responses in
             vc.responses = responses
@@ -65,7 +81,7 @@ extension ManagerResponseViewController {
     }
 }
 
-extension ManagerResponseViewController: UITableViewDataSource {
+extension UserResponseListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return responses.count
     }
@@ -82,6 +98,6 @@ extension ManagerResponseViewController: UITableViewDataSource {
     }
 }
 
-extension ManagerResponseViewController: UITableViewDelegate {
+extension UserResponseListViewController: UITableViewDelegate {
 
 }

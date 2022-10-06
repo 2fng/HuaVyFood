@@ -23,6 +23,8 @@ protocol UserRepositoryType {
     func updateOrderStatus(order: Order) -> Observable<Void>
     func updateOrderPaymentStatus(order: Order) -> Observable<Void>
     func deleteOrder(documentID: String) -> Observable<Void>
+    func getUserResponse() -> Observable<[Response]>
+    func getResponse() -> Observable<[Response]>
     func submitResponse(content: String) -> Observable<Void>
 }
 
@@ -347,15 +349,74 @@ final class UserRepository: UserRepositoryType {
     func submitResponse(content: String) -> Observable<Void> {
         return Observable.create { observer in
             let database = Firestore.firestore()
-            database.collection("responses").addDocument(data: [
-                "id" : "\(CACurrentMediaTime().truncatingRemainder(dividingBy: 1))",
-                "uid" : "\(UserManager.shared.getUserID())",
-                "content": content
-            ]) { error in
+            var userName = ""
+            database.collection("userShippingInfo").whereField("uid", isEqualTo: UserManager.shared.getUserID()).getDocuments { snapshot1, error1 in
+                if error1 != nil {
+                    observer.onError(error1!)
+                } else {
+                    if let snapshot = snapshot1 {
+                        for document in snapshot.documents {
+                            userName = document["fullName"] as? String ?? ""
+                        }
+                        database.collection("responses").addDocument(data: [
+                            "id" : "\(CACurrentMediaTime().truncatingRemainder(dividingBy: 1))",
+                            "uid" : "\(UserManager.shared.getUserID())",
+                            "content": content,
+                            "date": Date().timeIntervalSince1970,
+                            "fullName": userName
+                        ]) { error in
+                            if error != nil {
+                                observer.onError(error!)
+                            } else {
+                                observer.onNext(())
+                            }
+                        }
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func getUserResponse() -> Observable<[Response]> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            let currentUID = UserManager.shared.getUserID()
+            database.collection("responses").whereField("uid", isEqualTo: currentUID).getDocuments { snapshot, error in
                 if error != nil {
                     observer.onError(error!)
                 } else {
-                    observer.onNext(())
+                    var returnResponses = [Response]()
+                    if let snapshot = snapshot {
+                        for document in snapshot.documents {
+                            returnResponses.append(Response(id: document["id"] as? String ?? "",
+                                                           uid: document["uid"] as? String ?? "",
+                                                           name: document["fullName"] as? String ?? "",
+                                                           date: Date(timeIntervalSince1970: document["date"] as? TimeInterval ?? 0),
+                                                           content: document["content"] as? String ?? ""))
+                        }
+                        observer.onNext(returnResponses)
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func getResponse() -> Observable<[Response]> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("responses").getDocuments { snapshot, error in
+                var returnResponses = [Response]()
+                if let snapshot = snapshot {
+                    for document in snapshot.documents {
+                        returnResponses.append(Response(id: document["id"] as? String ?? "",
+                                                       uid: document["uid"] as? String ?? "",
+                                                       name: document["fullName"] as? String ?? "",
+                                                       date: Date(timeIntervalSince1970: document["date"] as? TimeInterval ?? 0),
+                                                       content: document["content"] as? String ?? ""))
+                    }
+                    observer.onNext(returnResponses)
                 }
             }
             return Disposables.create()
