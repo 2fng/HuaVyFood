@@ -18,6 +18,7 @@ final class UserResponseListViewController: UIViewController {
     private let viewModel = UserResponseListViewModel(userRepository: UserRepository())
 
     private let getResponseTrigger = PublishSubject<Void>()
+    private let deleteTrigger = PublishSubject<String>()
 
     private var responses = [Response]()
 
@@ -52,12 +53,18 @@ final class UserResponseListViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        let input = UserResponseListViewModel.Input(getResponseTrigger: getResponseTrigger.asDriverOnErrorJustComplete())
+        let input = UserResponseListViewModel.Input(
+            getResponseTrigger: getResponseTrigger.asDriverOnErrorJustComplete(),
+            deleteResponeTrigger: deleteTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
         output.responses
             .drive(responsesBinder)
+            .disposed(by: disposeBag)
+
+        output.deleteResponse
+            .drive(deleteResponseBinder)
             .disposed(by: disposeBag)
 
         output.loading
@@ -79,6 +86,12 @@ extension UserResponseListViewController {
             vc.tableView.reloadData()
         }
     }
+
+    private var deleteResponseBinder: Binder<Void> {
+        return Binder(self) { vc, _ in
+            vc.getResponseTrigger.onNext(())
+        }
+    }
 }
 
 extension UserResponseListViewController: UITableViewDataSource {
@@ -92,7 +105,11 @@ extension UserResponseListViewController: UITableViewDataSource {
         }
         cell.config(response: responses[indexPath.row])
         cell.handleDeleteResponse = { [unowned self] responseID in
-            print("Delete \(responseID)")
+            showAlert(message: "Bạn có chắc chắn muốn xoá phản hồi này không?",
+                      okButtonOnly: false,
+                      rightCompletion: { [unowned self] in
+                deleteTrigger.onNext(responseID)
+            })
         }
         return cell
     }

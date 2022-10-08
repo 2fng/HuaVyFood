@@ -17,6 +17,7 @@ final class ManagerResponseViewController: UIViewController {
     private let viewModel = ManagerResponseViewModel(userRepository: UserRepository())
 
     private let getResponseTrigger = PublishSubject<Void>()
+    private let deleteResponseTrigger = PublishSubject<String>()
 
     private var responses = [Response]()
 
@@ -36,12 +37,17 @@ final class ManagerResponseViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        let input = ManagerResponseViewModel.Input(getResponseTrigger: getResponseTrigger.asDriverOnErrorJustComplete())
+        let input = ManagerResponseViewModel.Input(getResponseTrigger: getResponseTrigger.asDriverOnErrorJustComplete(),
+                                                   deleteResponseTrigger: deleteResponseTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
         output.responses
             .drive(responsesBinder)
+            .disposed(by: disposeBag)
+
+        output.deleteResponse
+            .drive(deleteResponseBinder)
             .disposed(by: disposeBag)
 
         output.loading
@@ -59,8 +65,16 @@ final class ManagerResponseViewController: UIViewController {
 extension ManagerResponseViewController {
     private var responsesBinder: Binder<[Response]> {
         return Binder(self) { vc, responses in
-            vc.responses = responses
+            vc.responses = responses.sorted(by: { response1, response2 in
+                response1.date > response2.date
+            })
             vc.tableView.reloadData()
+        }
+    }
+
+    private var deleteResponseBinder: Binder<Void> {
+        return Binder(self) { vc, _ in
+            vc.getResponseTrigger.onNext(())
         }
     }
 }
@@ -76,7 +90,7 @@ extension ManagerResponseViewController: UITableViewDataSource {
         }
         cell.config(response: responses[indexPath.row])
         cell.handleDeleteResponse = { [unowned self] responseID in
-            print("Delete \(responseID)")
+            deleteResponseTrigger.onNext(responseID)
         }
         return cell
     }

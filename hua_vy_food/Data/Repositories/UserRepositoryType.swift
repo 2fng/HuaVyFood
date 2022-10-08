@@ -26,6 +26,7 @@ protocol UserRepositoryType {
     func getUserResponse() -> Observable<[Response]>
     func getResponse() -> Observable<[Response]>
     func submitResponse(content: String) -> Observable<Void>
+    func deleteResponse(id: String) -> Observable<Void>
 }
 
 final class UserRepository: UserRepositoryType {
@@ -390,10 +391,11 @@ final class UserRepository: UserRepositoryType {
                     if let snapshot = snapshot {
                         for document in snapshot.documents {
                             returnResponses.append(Response(id: document["id"] as? String ?? "",
-                                                           uid: document["uid"] as? String ?? "",
-                                                           name: document["fullName"] as? String ?? "",
-                                                           date: Date(timeIntervalSince1970: document["date"] as? TimeInterval ?? 0),
-                                                           content: document["content"] as? String ?? ""))
+                                                            uid: document["uid"] as? String ?? "",
+                                                            documentID: document.documentID,
+                                                            name: document["fullName"] as? String ?? "",
+                                                            date: Date(timeIntervalSince1970: document["date"] as? TimeInterval ?? 0),
+                                                            content: document["content"] as? String ?? ""))
                         }
                         observer.onNext(returnResponses)
                     }
@@ -411,12 +413,27 @@ final class UserRepository: UserRepositoryType {
                 if let snapshot = snapshot {
                     for document in snapshot.documents {
                         returnResponses.append(Response(id: document["id"] as? String ?? "",
-                                                       uid: document["uid"] as? String ?? "",
-                                                       name: document["fullName"] as? String ?? "",
-                                                       date: Date(timeIntervalSince1970: document["date"] as? TimeInterval ?? 0),
-                                                       content: document["content"] as? String ?? ""))
+                                                        uid: document["uid"] as? String ?? "",
+                                                        documentID: document.documentID,
+                                                        name: document["fullName"] as? String ?? "",
+                                                        date: Date(timeIntervalSince1970: document["date"] as? TimeInterval ?? 0),
+                                                        content: document["content"] as? String ?? ""))
                     }
                     observer.onNext(returnResponses)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func deleteResponse(id: String) -> Observable<Void> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("responses").document(id).delete { error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    observer.onNext(())
                 }
             }
             return Disposables.create()
