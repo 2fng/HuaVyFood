@@ -35,7 +35,7 @@ final class ManagerResponseTableViewCell: UITableViewCell, ReuseableCell {
 
         deleteButton.rx.tap
             .map { [unowned self] in
-                self.handleDeleteResponse?(self.response.id)
+                self.handleDeleteResponse?(self.response.documentID)
             }
             .subscribe()
             .disposed(by: disposeBag)

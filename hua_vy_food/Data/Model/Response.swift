@@ -10,6 +10,7 @@ import Foundation
 struct Response {
     var id = ""
     var uid = ""
+    var documentID = ""
     var name = ""
     var date = Date()
     var content = ""

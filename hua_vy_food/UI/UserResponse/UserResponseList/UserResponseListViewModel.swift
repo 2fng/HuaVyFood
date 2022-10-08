@@ -17,10 +17,12 @@ struct UserResponseListViewModel {
 extension UserResponseListViewModel {
     struct Input {
         let getResponseTrigger: Driver<Void>
+        let deleteResponeTrigger: Driver<String>
     }
 
     struct Output {
         let responses: Driver<[Response]>
+        let deleteResponse: Driver<Void>
         let loading: Driver<Bool>
         let error: Driver<Error>
     }
@@ -37,7 +39,16 @@ extension UserResponseListViewModel {
                     .asDriverOnErrorJustComplete()
             }
 
+        let deleteResponse = input.deleteResponeTrigger
+            .flatMap { doucmentID in
+                return self.userRepository.deleteResponse(id: doucmentID)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+
         return Output(responses: responses.asDriver(),
+                      deleteResponse: deleteResponse,
                       loading: activityIndicator.asDriver(),
                       error: errorTracker.asDriver())
     }

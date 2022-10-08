@@ -17,10 +17,12 @@ struct ManagerResponseViewModel {
 extension ManagerResponseViewModel {
     struct Input {
         let getResponseTrigger: Driver<Void>
+        let deleteResponseTrigger: Driver<String>
     }
 
     struct Output {
         let responses: Driver<[Response]>
+        let deleteResponse: Driver<Void>
         let loading: Driver<Bool>
         let error: Driver<Error>
     }
@@ -37,7 +39,16 @@ extension ManagerResponseViewModel {
                     .asDriverOnErrorJustComplete()
             }
 
+        let deleteResponse = input.deleteResponseTrigger
+            .flatMap { documentID in
+                return self.userRepository.deleteResponse(id: documentID)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+
         return Output(responses: responses.asDriver(),
+                      deleteResponse: deleteResponse.asDriver(),
                       loading: activityIndicator.asDriver(),
                       error: errorTracker.asDriver())
     }
