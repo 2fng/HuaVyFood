@@ -28,5 +28,6 @@ target 'hua_vy_food' do
   pod 'SDWebImage'
   pod 'SwiftLint'
   pod 'SVProgressHUD'
+  pod 'IQKeyboardManagerSwift'
 
 end

@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseCore
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.overrideUserInterfaceStyle = .light
         FirebaseApp.configure()
         FirebaseConfiguration.shared.setLoggerLevel(.min)
+
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Xong"
 
         return true
     }
