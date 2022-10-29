@@ -42,9 +42,14 @@ extension RegisterViewModel {
                     .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
             }
-            .do(onNext: {
+            .do(onNext: { userSignIn in
                 print("Register successfully!")
+                if let userSignIn = userSignIn {
+                    UserManager.shared.setUserID(userSignIn.uid)
+                    UserManager.shared.setIsAdmin(userSignIn.isAdmin)
+                }
             })
+                .mapToVoid()
 
         return Output(register: register,
                       loading: activityIndicator.asDriver(),

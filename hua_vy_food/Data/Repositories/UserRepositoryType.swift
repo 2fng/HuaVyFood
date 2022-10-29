@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 protocol UserRepositoryType {
-    func register(email: String, password: String) -> Observable<Void>
+    func register(email: String, password: String) -> Observable<UserSignIn?>
     func login(email: String, password: String) -> Observable<UserSignIn?>
     func forgotPassword(email: String) -> Observable<Void>
     func logout() -> Observable<Void>
@@ -30,14 +30,13 @@ protocol UserRepositoryType {
 }
 
 final class UserRepository: UserRepositoryType {
-    func register(email: String, password: String) -> Observable<Void> {
+    func register(email: String, password: String) -> Observable<UserSignIn?> {
         return Observable.create { observer in
             Auth.auth().createUser(withEmail: email, password: password) { result, error in
                 if let error = error {
                     print("Error on register: \(error)")
                     observer.onError(error)
                 } else {
-                    observer.onNext(())
                     let database = Firestore.firestore()
                     if let uid = result?.user.uid {
                         database.collection("users").addDocument(data: [
@@ -50,6 +49,7 @@ final class UserRepository: UserRepositoryType {
                                 print("Error adding user to database: \(String(describing: error))")
                             }
                         }
+                        observer.onNext(UserSignIn(uid: uid, isAdmin: false))
                     }
                 }
             }
