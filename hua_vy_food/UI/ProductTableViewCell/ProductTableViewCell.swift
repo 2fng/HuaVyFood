@@ -135,6 +135,7 @@ final class ProductTableViewCell: UITableViewCell, ReuseableCell {
         numberOfItemTextField.do {
             $0.isHidden = product.quantity >= 1 ? false : true
             $0.text = String(product.quantity)
+            $0.isEnabled = false
         }
 
         subtractItem.isHidden = product.quantity >= 1 ? false : true

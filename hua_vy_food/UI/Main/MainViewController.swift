@@ -289,6 +289,15 @@ extension MainViewController: UITableViewDataSource {
             return cell
         }
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row != 0 {
+            let vc = DetailProductViewController(nibName: "DetailProductViewController", bundle: nil)
+            vc.awakeFromNib()
+            vc.configProduct(product: searchContent[indexPath.row - 1])
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension MainViewController: UITableViewDelegate {
