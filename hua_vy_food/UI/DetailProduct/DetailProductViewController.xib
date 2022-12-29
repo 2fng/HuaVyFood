@@ -128,10 +128,10 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7P-F6-CiH">
                             <rect key="frame" x="306" y="471" width="68" height="23"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <color key="tintColor" red="0.98823529409999999" green="0.54901960780000003" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="6" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="-12" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="123" image="hand.thumbsup.fill" catalog="system">
+                            <state key="normal" title="123" image="hand.thumbsup" catalog="system">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
@@ -234,7 +234,7 @@
     </objects>
     <resources>
         <image name="hand.thumbsdown" catalog="system" width="123" height="128"/>
-        <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
+        <image name="hand.thumbsup" catalog="system" width="123" height="128"/>
         <image name="minus" catalog="system" width="128" height="26"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
