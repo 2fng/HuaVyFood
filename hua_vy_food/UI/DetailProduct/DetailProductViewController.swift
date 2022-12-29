@@ -28,6 +28,9 @@ final class DetailProductViewController: UIViewController {
     private let disposeBag = DisposeBag()
 
     private var product = Product()
+    private var isLiked = false
+    private var isDisLiked = false
+    private var totalLike = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,12 +74,41 @@ final class DetailProductViewController: UIViewController {
             }
             .subscribe()
             .disposed(by: disposeBag)
+
+        likeButton.rx.tap
+            .map { [unowned self] in
+                isLiked = !isLiked
+                if isLiked {
+                    isDisLiked = false
+                    totalLike += 1
+                } else {
+                    totalLike -= 1
+                }
+                updateLikeAndDisLikeButtonUI()
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+
+        disLikeButton.rx.tap
+            .map { [unowned self] in
+                totalLike -= isLiked ? 1 : 0
+                isDisLiked = !isDisLiked
+                if isDisLiked {
+                    isLiked = false
+                } else {
+
+                }
+                updateLikeAndDisLikeButtonUI()
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 
     private func setupView() {
         view.backgroundColor = .white
 
         navigationController?.navigationBar.tintColor = .white
+        updateLikeAndDisLikeButtonUI()
 
         addButton.do {
             $0.layer.cornerRadius = 5
@@ -131,5 +163,19 @@ final class DetailProductViewController: UIViewController {
         commentTextView.do {
             $0.layer.cornerRadius = 5
         }
+    }
+
+    private func updateLikeAndDisLikeButtonUI() {
+        let likedImage = UIImage(systemName: "hand.thumbsup.fill")
+        let disLikedImage = UIImage(systemName: "hand.thumbsdown.fill")
+        let notDisLikeImage = UIImage(systemName: "hand.thumbsdown")
+        let notLikeImage = UIImage(systemName: "hand.thumbsup")
+
+        likeButton.setImage(isLiked ? likedImage : notLikeImage,
+                            for: .normal)
+        disLikeButton.setImage(isDisLiked ? disLikedImage : notDisLikeImage,
+                            for: .normal)
+        likeButton.tintColor = isLiked ? UIColor.logoPink : UIColor.black
+        likeButton.setTitle("\(totalLike)", for: .normal)
     }
 }
