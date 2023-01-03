@@ -20,6 +20,7 @@ protocol ProductRepositoryType {
     func getProducts() -> Observable<[Product]>
     func deleteProduct(documentID: String) -> Observable<String>
     func updateProduct(product: Product) -> Observable<String>
+    func updateLikeStatus(productID: String) -> Observable<Void>
 }
 
 final class ProductRepository: ProductRepositoryType {
@@ -259,6 +260,50 @@ final class ProductRepository: ProductRepositoryType {
                     observer.onNext(())
                 }
             }
+            return Disposables.create()
+        }
+    }
+
+    func updateLikeStatus(productID: String) -> Observable<Void> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("productLikes").whereField("productID", isEqualTo: productID)
+                .getDocuments(completion: { snapshot, error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    if let snapshot = snapshot {
+                        var documentID = ""
+                        let isLiked = snapshot.documents.contains { document in
+                            let userID = document["uid"] as? String ?? ""
+                            documentID = userID == UserManager.shared.getUserID() ? document.documentID : ""
+                            return userID == UserManager.shared.getUserID()
+                        }
+
+                        if isLiked {
+                            database.collection("productLikes").document(documentID).delete { error in
+                                if let error = error {
+                                    observer.onError(error)
+                                } else {
+                                    observer.onNext(())
+                                }
+                            }
+                        } else {
+                            database.collection("productLikes").addDocument(data: [
+                                "uid" : UserManager.shared.getUserID(),
+                                "productID": productID
+                            ]) { error in
+                                if error != nil {
+                                    print("Error: \(String(describing: error))")
+                                    observer.onError(error!)
+                                } else {
+                                    observer.onNext(())
+                                }
+                            }
+                        }
+                    }
+                }
+            })
             return Disposables.create()
         }
     }
