@@ -37,6 +37,7 @@
 		DF55E68A28B22E8D00B05776 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF55E68828B22E8D00B05776 /* HeaderTableViewCell.swift */; };
 		DF55E68B28B22E8D00B05776 /* HeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF55E68928B22E8D00B05776 /* HeaderTableViewCell.xib */; };
 		DF55E68D28B24BEF00B05776 /* ManagerProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF55E68C28B24BEF00B05776 /* ManagerProductViewModel.swift */; };
+		DF5A666B2963002A00D51856 /* DetailProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5A666A2963002A00D51856 /* DetailProductViewModel.swift */; };
 		DF5EF7D028D8AEB100281FDF /* CartBottomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5EF7CE28D8AEB100281FDF /* CartBottomTableViewCell.swift */; };
 		DF5EF7D128D8AEB100281FDF /* CartBottomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF5EF7CF28D8AEB100281FDF /* CartBottomTableViewCell.xib */; };
 		DF67FA0828ADF943001F446B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF67FA0728ADF943001F446B /* Product.swift */; };
@@ -141,6 +142,7 @@
 		DF55E68828B22E8D00B05776 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DF55E68928B22E8D00B05776 /* HeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderTableViewCell.xib; sourceTree = "<group>"; };
 		DF55E68C28B24BEF00B05776 /* ManagerProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerProductViewModel.swift; sourceTree = "<group>"; };
+		DF5A666A2963002A00D51856 /* DetailProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductViewModel.swift; sourceTree = "<group>"; };
 		DF5EF7CE28D8AEB100281FDF /* CartBottomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartBottomTableViewCell.swift; sourceTree = "<group>"; };
 		DF5EF7CF28D8AEB100281FDF /* CartBottomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartBottomTableViewCell.xib; sourceTree = "<group>"; };
 		DF67FA0728ADF943001F446B /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 			children = (
 				DF230B012939CE23001DC17F /* DetailProductViewController.swift */,
 				DF230B022939CE23001DC17F /* DetailProductViewController.xib */,
+				DF5A666A2963002A00D51856 /* DetailProductViewModel.swift */,
 			);
 			path = DetailProduct;
 			sourceTree = "<group>";
@@ -817,6 +820,7 @@
 				DF6AAD212892ABF3008961FE /* ActivityIndicator.swift in Sources */,
 				DF6AAD2C2892B4AA008961FE /* UIViewController+Rx.swift in Sources */,
 				DF8C81B428954C1F00A574CE /* SharedSequenceConvertibleType+.swift in Sources */,
+				DF5A666B2963002A00D51856 /* DetailProductViewModel.swift in Sources */,
 				DF6B216928CC4CCF008A8E8B /* CartViewController.swift in Sources */,
 				DF8DF80F28DC992B0075C4D5 /* AddNewShippingInfoViewController.swift in Sources */,
 				DF5EF7D028D8AEB100281FDF /* CartBottomTableViewCell.swift in Sources */,

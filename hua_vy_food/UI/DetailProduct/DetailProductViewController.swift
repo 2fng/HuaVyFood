@@ -26,6 +26,9 @@ final class DetailProductViewController: UIViewController {
     @IBOutlet private weak var disLikeButton: UIButton!
 
     private let disposeBag = DisposeBag()
+    private let viewModel = DetailProductViewModel(productRepository: ProductRepository())
+
+    private let updateLikeAndDislikeStatusTrigger = PublishSubject<(Bool, String)>()
 
     private var product = Product()
     private var isLiked = false
@@ -47,6 +50,14 @@ final class DetailProductViewController: UIViewController {
     }
 
     private func bindViewModel() {
+        let input = DetailProductViewModel.Input(updateLikeAndDislikeStatusTrigger: updateLikeAndDislikeStatusTrigger.asDriverOnErrorJustComplete())
+
+        let output = viewModel.transform(input)
+
+        output.likeAndDislikeStatus
+            .drive()
+            .disposed(by: disposeBag)
+
         addButton.rx.tap
             .map { [unowned self] in
                 self.addButton.animationSelect()
@@ -85,6 +96,7 @@ final class DetailProductViewController: UIViewController {
                     totalLike -= 1
                 }
                 updateLikeAndDisLikeButtonUI()
+                updateLikeAndDislikeStatusTrigger.onNext((true, product.id))
             }
             .subscribe()
             .disposed(by: disposeBag)
@@ -99,6 +111,7 @@ final class DetailProductViewController: UIViewController {
 
                 }
                 updateLikeAndDisLikeButtonUI()
+                updateLikeAndDislikeStatusTrigger.onNext((false, product.id))
             }
             .subscribe()
             .disposed(by: disposeBag)
