@@ -20,7 +20,7 @@ protocol ProductRepositoryType {
     func getProducts() -> Observable<[Product]>
     func deleteProduct(documentID: String) -> Observable<String>
     func updateProduct(product: Product) -> Observable<String>
-    func updateLikeStatus(productID: String) -> Observable<Void>
+    func updateLikeAndDislikeStatus(productID: String, isLike: Bool) -> Observable<Void>
 }
 
 final class ProductRepository: ProductRepositoryType {
@@ -264,24 +264,26 @@ final class ProductRepository: ProductRepositoryType {
         }
     }
 
-    func updateLikeStatus(productID: String) -> Observable<Void> {
+    func updateLikeAndDislikeStatus(productID: String, isLike: Bool) -> Observable<Void> {
         return Observable.create { observer in
             let database = Firestore.firestore()
-            database.collection("productLikes").whereField("productID", isEqualTo: productID)
+            let collectionName = isLike ? "productLikes" : "productDislikes"
+            let oppositeCollectionName = isLike ? "productDislikes" : "productLikes"
+            database.collection(collectionName).whereField("productID", isEqualTo: productID)
                 .getDocuments(completion: { snapshot, error in
                 if let error = error {
                     observer.onError(error)
                 } else {
                     if let snapshot = snapshot {
                         var documentID = ""
-                        let isLiked = snapshot.documents.contains { document in
+                        let isContained = snapshot.documents.contains { document in
                             let userID = document["uid"] as? String ?? ""
                             documentID = userID == UserManager.shared.getUserID() ? document.documentID : ""
                             return userID == UserManager.shared.getUserID()
                         }
 
-                        if isLiked {
-                            database.collection("productLikes").document(documentID).delete { error in
+                        if isContained {
+                            database.collection(collectionName).document(documentID).delete { error in
                                 if let error = error {
                                     observer.onError(error)
                                 } else {
@@ -289,7 +291,7 @@ final class ProductRepository: ProductRepositoryType {
                                 }
                             }
                         } else {
-                            database.collection("productLikes").addDocument(data: [
+                            database.collection(collectionName).addDocument(data: [
                                 "uid" : UserManager.shared.getUserID(),
                                 "productID": productID
                             ]) { error in
@@ -297,7 +299,33 @@ final class ProductRepository: ProductRepositoryType {
                                     print("Error: \(String(describing: error))")
                                     observer.onError(error!)
                                 } else {
-                                    observer.onNext(())
+                                    // Delete dislike if like and vice versa
+                                    database.collection(oppositeCollectionName).whereField("productID", isEqualTo: productID)
+                                        .getDocuments { deleteSnapshot, error in
+                                            if let error = error {
+                                                observer.onError(error)
+                                            } else {
+                                                if let deleteSnapshot = deleteSnapshot {
+                                                    var documentID = ""
+                                                    let isContained = deleteSnapshot.documents.contains { document in
+                                                        let userID = document["uid"] as? String ?? ""
+                                                        documentID = userID == UserManager.shared.getUserID() ? document.documentID : ""
+                                                        return userID == UserManager.shared.getUserID()
+                                                    }
+
+                                                    if isContained {
+                                                        database.collection(oppositeCollectionName).document(documentID).delete { error in
+                                                            if let error = error {
+                                                                observer.onError(error)
+                                                            } else {
+                                                                observer.onNext(())
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                observer.onNext(())
+                                            }
+                                        }
                                 }
                             }
                         }

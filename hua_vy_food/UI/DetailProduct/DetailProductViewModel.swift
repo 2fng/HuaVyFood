@@ -31,14 +31,10 @@ extension DetailProductViewModel {
 
         let likeAndDislikeStatus = input.updateLikeAndDislikeStatusTrigger
             .flatMapLatest { (isLike, productID) -> Driver<Void> in
-                if isLike {
-                    return self.productRepository.updateLikeStatus(productID: productID)
-                        .trackError(errorTracker)
-                        .trackActivity(activityIndicator)
-                        .asDriverOnErrorJustComplete()
-                } else {
-                    return Driver.just(())
-                }
+                return self.productRepository.updateLikeAndDislikeStatus(productID: productID, isLike: isLike)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
             }
             .trackError(errorTracker)
             .asDriverOnErrorJustComplete()
