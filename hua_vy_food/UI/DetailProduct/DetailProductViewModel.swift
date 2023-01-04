@@ -17,9 +17,11 @@ struct DetailProductViewModel {
 extension DetailProductViewModel {
     struct Input {
         let updateLikeAndDislikeStatusTrigger: Driver<(Bool, String)>
+        let getLikeAndDislikeTrigger: Driver<String>
     }
 
     struct Output {
+        let likeAndDislike: Driver<(Int, Bool, Bool)>
         let likeAndDislikeStatus: Driver<Void>
         let loading: Driver<Bool>
         let error: Driver<Error>
@@ -29,6 +31,14 @@ extension DetailProductViewModel {
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
 
+        let getLikeAndDislike = input.getLikeAndDislikeTrigger
+            .flatMapLatest { productID -> Driver<(Int, Bool, Bool)> in
+                return self.productRepository.getProductLikeAndDislike(productID: productID)
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+
         let likeAndDislikeStatus = input.updateLikeAndDislikeStatusTrigger
             .flatMapLatest { (isLike, productID) -> Driver<Void> in
                 return self.productRepository.updateLikeAndDislikeStatus(productID: productID, isLike: isLike)
@@ -36,10 +46,9 @@ extension DetailProductViewModel {
                     .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
             }
-            .trackError(errorTracker)
-            .asDriverOnErrorJustComplete()
 
-        return Output(likeAndDislikeStatus: likeAndDislikeStatus.asDriver(),
+        return Output(likeAndDislike: getLikeAndDislike.asDriver(),
+                      likeAndDislikeStatus: likeAndDislikeStatus.asDriver(),
                       loading: activityIndicator.asDriver(),
                       error: errorTracker.asDriver())
     }
