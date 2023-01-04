@@ -21,6 +21,7 @@ protocol ProductRepositoryType {
     func deleteProduct(documentID: String) -> Observable<String>
     func updateProduct(product: Product) -> Observable<String>
     func updateLikeAndDislikeStatus(productID: String, isLike: Bool) -> Observable<Void>
+    func getProductLikeAndDislike(productID: String) -> Observable<(Int, Bool, Bool)>
 }
 
 final class ProductRepository: ProductRepositoryType {
@@ -332,6 +333,44 @@ final class ProductRepository: ProductRepositoryType {
                     }
                 }
             })
+            return Disposables.create()
+        }
+    }
+
+    func getProductLikeAndDislike(productID: String) -> Observable<(Int, Bool, Bool)> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("productLikes").whereField("productID", isEqualTo: productID)
+                .getDocuments { snapshot, error in
+                    var likeCounter = 0
+                    var isLike = false
+                    var isDisLike = false
+                    if let error = error {
+                        observer.onError(error)
+                    } else {
+                        if let snapshot = snapshot {
+                            likeCounter = snapshot.documents.count
+                            isLike = snapshot.documents.contains { document in
+                                let userID = document["uid"] as? String ?? ""
+                                return userID == UserManager.shared.getUserID()
+                            }
+                            database.collection("productDislikes").whereField("productID", isEqualTo: productID)
+                                .getDocuments { snapshot1, error1 in
+                                    if let error1 = error1 {
+                                        observer.onError(error1)
+                                    } else {
+                                        if let snapshot1 = snapshot1 {
+                                            isDisLike = snapshot1.documents.contains { document in
+                                                let userID = document["uid"] as? String ?? ""
+                                                return userID == UserManager.shared.getUserID()
+                                            }
+                                            observer.onNext((likeCounter, isLike, isDisLike))
+                                        }
+                                    }
+                                }
+                        }
+                    }
+                }
             return Disposables.create()
         }
     }

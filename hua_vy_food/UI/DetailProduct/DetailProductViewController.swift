@@ -29,6 +29,7 @@ final class DetailProductViewController: UIViewController {
     private let viewModel = DetailProductViewModel(productRepository: ProductRepository())
 
     private let updateLikeAndDislikeStatusTrigger = PublishSubject<(Bool, String)>()
+    private let getLikeAndDislikeTrigger = PublishSubject<String>()
 
     private var product = Product()
     private var isLiked = false
@@ -50,12 +51,17 @@ final class DetailProductViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        let input = DetailProductViewModel.Input(updateLikeAndDislikeStatusTrigger: updateLikeAndDislikeStatusTrigger.asDriverOnErrorJustComplete())
+        let input = DetailProductViewModel.Input(updateLikeAndDislikeStatusTrigger: updateLikeAndDislikeStatusTrigger.asDriverOnErrorJustComplete(),
+                                                 getLikeAndDislikeTrigger: getLikeAndDislikeTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
         output.likeAndDislikeStatus
             .drive()
+            .disposed(by: disposeBag)
+
+        output.likeAndDislike
+            .drive(likeAndDislikeBinder)
             .disposed(by: disposeBag)
 
         addButton.rx.tap
@@ -115,6 +121,8 @@ final class DetailProductViewController: UIViewController {
             }
             .subscribe()
             .disposed(by: disposeBag)
+
+        getLikeAndDislikeTrigger.onNext(product.id)
     }
 
     private func setupView() {
@@ -190,5 +198,16 @@ final class DetailProductViewController: UIViewController {
                             for: .normal)
         likeButton.tintColor = isLiked ? UIColor.logoPink : UIColor.black
         likeButton.setTitle("\(totalLike)", for: .normal)
+    }
+}
+
+extension DetailProductViewController {
+    private var likeAndDislikeBinder: Binder<(Int, Bool, Bool)> {
+        return Binder(self) { vc, likeAndDislike in
+            vc.totalLike = likeAndDislike.0
+            vc.isLiked = likeAndDislike.1
+            vc.isDisLiked = likeAndDislike.2
+            vc.updateLikeAndDisLikeButtonUI()
+        }
     }
 }
