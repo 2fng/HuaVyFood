@@ -26,12 +26,15 @@ final class DetailProductViewController: UIViewController {
     @IBOutlet private weak var disLikeButton: UIButton!
 
     private let disposeBag = DisposeBag()
-    private let viewModel = DetailProductViewModel(productRepository: ProductRepository())
+    private let viewModel = DetailProductViewModel(productRepository: ProductRepository(),
+                                                   cartRepository: CartRepository())
 
     private let updateLikeAndDislikeStatusTrigger = PublishSubject<(Bool, String)>()
     private let getLikeAndDislikeTrigger = PublishSubject<String>()
+    private let updateCartTrigger = PublishSubject<Cart>()
 
     private var product = Product()
+    private var cart = Cart()
     private var isLiked = false
     private var isDisLiked = false
     private var totalLike = 0
@@ -46,13 +49,15 @@ final class DetailProductViewController: UIViewController {
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 1000)
     }
 
-    func configProduct(product: Product) {
+    func configProduct(product: Product, cart: Cart) {
         self.product = product
+        self.cart = cart
     }
 
     private func bindViewModel() {
         let input = DetailProductViewModel.Input(updateLikeAndDislikeStatusTrigger: updateLikeAndDislikeStatusTrigger.asDriverOnErrorJustComplete(),
-                                                 getLikeAndDislikeTrigger: getLikeAndDislikeTrigger.asDriverOnErrorJustComplete())
+                                                 getLikeAndDislikeTrigger: getLikeAndDislikeTrigger.asDriverOnErrorJustComplete(),
+                                                 updateCartTrigger: updateCartTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -64,6 +69,10 @@ final class DetailProductViewController: UIViewController {
             .drive(likeAndDislikeBinder)
             .disposed(by: disposeBag)
 
+        output.updateCart
+            .drive()
+            .disposed(by: disposeBag)
+
         addButton.rx.tap
             .map { [unowned self] in
                 self.addButton.animationSelect()
@@ -73,7 +82,7 @@ final class DetailProductViewController: UIViewController {
                     subtractButton.isHidden = product.quantity >= 1 ? false : true
                     numberOfItemTextField.isHidden = product.quantity >= 1 ? false : true
                 }
-                // handleAdjustItemQuantity?(product)
+                handleAdjustItemQuantity()
             }
             .subscribe()
             .disposed(by: disposeBag)
@@ -87,7 +96,7 @@ final class DetailProductViewController: UIViewController {
                     subtractButton.isHidden = product.quantity >= 1 ? false : true
                     numberOfItemTextField.isHidden = product.quantity >= 1 ? false : true
                 }
-                // handleAdjustItemQuantity?(product)
+                handleAdjustItemQuantity()
             }
             .subscribe()
             .disposed(by: disposeBag)
@@ -198,6 +207,27 @@ final class DetailProductViewController: UIViewController {
                             for: .normal)
         likeButton.tintColor = isLiked ? UIColor.logoPink : UIColor.black
         likeButton.setTitle("\(totalLike)", for: .normal)
+    }
+
+    private func handleAdjustItemQuantity() {
+        if product.quantity < 1 {
+            cart.items.removeAll { cartProduct in
+                cartProduct.id == product.id
+            }
+        } else {
+            if let cartIndex = cart.items.firstIndex(where: { cartProduct in
+                cartProduct.id == product.id
+            }) {
+                cart.items[cartIndex] = product
+            } else {
+                cart.items.append(product)
+            }
+        }
+        cart.totalValue = 0
+        for item in cart.items {
+            cart.totalValue += (item.price * Double(item.quantity))
+        }
+        updateCartTrigger.onNext(cart)
     }
 }
 

@@ -12,17 +12,20 @@ import RxCocoa
 
 struct DetailProductViewModel {
     let productRepository: ProductRepositoryType
+    let cartRepository: CartRepositoryType
 }
 
 extension DetailProductViewModel {
     struct Input {
         let updateLikeAndDislikeStatusTrigger: Driver<(Bool, String)>
         let getLikeAndDislikeTrigger: Driver<String>
+        let updateCartTrigger: Driver<Cart>
     }
 
     struct Output {
         let likeAndDislike: Driver<(Int, Bool, Bool)>
         let likeAndDislikeStatus: Driver<Void>
+        let updateCart: Driver<Void>
         let loading: Driver<Bool>
         let error: Driver<Error>
     }
@@ -47,8 +50,17 @@ extension DetailProductViewModel {
                     .asDriverOnErrorJustComplete()
             }
 
+        let updateCart = input.updateCartTrigger
+            .flatMapLatest { cart in
+                return self.cartRepository.updateCart(cart: cart)
+                    .mapToVoid()
+                    .trackError(errorTracker)
+                    .asDriverOnErrorJustComplete()
+            }
+
         return Output(likeAndDislike: getLikeAndDislike.asDriver(),
                       likeAndDislikeStatus: likeAndDislikeStatus.asDriver(),
+                      updateCart: updateCart.asDriver(),
                       loading: activityIndicator.asDriver(),
                       error: errorTracker.asDriver())
     }
