@@ -51,6 +51,8 @@ final class CartViewController: UIViewController {
     }
 
     private func configView() {
+        navigationController?.navigationBar.tintColor = .logoPink
+
         tableView.do {
             $0.delegate = self
             $0.dataSource = self

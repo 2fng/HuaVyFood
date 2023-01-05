@@ -294,7 +294,7 @@ extension MainViewController: UITableViewDataSource {
         if indexPath.row != 0 {
             let vc = DetailProductViewController(nibName: "DetailProductViewController", bundle: nil)
             vc.awakeFromNib()
-            vc.configProduct(product: searchContent[indexPath.row - 1])
+            vc.configProduct(product: searchContent[indexPath.row - 1], cart: cart)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
