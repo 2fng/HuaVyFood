@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Then
+import IQKeyboardManagerSwift
 
 final class DetailProductViewController: UIViewController {
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -32,6 +33,7 @@ final class DetailProductViewController: UIViewController {
     private let updateLikeAndDislikeStatusTrigger = PublishSubject<(Bool, String)>()
     private let getLikeAndDislikeTrigger = PublishSubject<String>()
     private let updateCartTrigger = PublishSubject<Cart>()
+    private let submitCommentTrigger = PublishSubject<(String, String)>()
 
     private var product = Product()
     private var cart = Cart()
@@ -57,7 +59,8 @@ final class DetailProductViewController: UIViewController {
     private func bindViewModel() {
         let input = DetailProductViewModel.Input(updateLikeAndDislikeStatusTrigger: updateLikeAndDislikeStatusTrigger.asDriverOnErrorJustComplete(),
                                                  getLikeAndDislikeTrigger: getLikeAndDislikeTrigger.asDriverOnErrorJustComplete(),
-                                                 updateCartTrigger: updateCartTrigger.asDriverOnErrorJustComplete())
+                                                 updateCartTrigger: updateCartTrigger.asDriverOnErrorJustComplete(),
+                                                 commentTrigger: submitCommentTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -71,6 +74,10 @@ final class DetailProductViewController: UIViewController {
 
         output.updateCart
             .drive()
+            .disposed(by: disposeBag)
+
+        output.productComment
+            .drive(submitCommentBinder)
             .disposed(by: disposeBag)
 
         addButton.rx.tap
@@ -127,6 +134,18 @@ final class DetailProductViewController: UIViewController {
                 }
                 updateLikeAndDisLikeButtonUI()
                 updateLikeAndDislikeStatusTrigger.onNext((false, product.id))
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+
+        submitCommentButton.rx.tap
+            .map { [unowned self] in
+                submitCommentButton.animationSelect()
+                if commentTextView.text.count > 10 {
+                    submitCommentTrigger.onNext((product.id, commentTextView.text))
+                } else {
+                    showAlert(message: "Bình luận phải có ít nhất 11 ký tự", okButtonOnly: true)
+                }
             }
             .subscribe()
             .disposed(by: disposeBag)
@@ -192,6 +211,7 @@ final class DetailProductViewController: UIViewController {
 
         commentTextView.do {
             $0.layer.cornerRadius = 5
+            $0.delegate = self
         }
     }
 
@@ -238,6 +258,29 @@ extension DetailProductViewController {
             vc.isLiked = likeAndDislike.1
             vc.isDisLiked = likeAndDislike.2
             vc.updateLikeAndDisLikeButtonUI()
+        }
+    }
+
+    private var submitCommentBinder: Binder<Void> {
+        return Binder(self) { vc, _ in
+            vc.commentTextView.text = nil
+            vc.showAlert(message: "Bình luận thành công!", okButtonOnly: true, okCompletion: {
+                print("Handle refresh view o day nha!")
+            })
+        }
+    }
+}
+
+extension DetailProductViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Bình luận về sản phẩm tại đây..." {
+            textView.text = nil
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Bình luận về sản phẩm tại đây..."
         }
     }
 }
