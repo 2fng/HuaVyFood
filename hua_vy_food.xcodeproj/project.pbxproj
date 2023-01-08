@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0ACE6AACA6824CDFEE40C7FF /* Pods_hua_vy_food.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */; };
+		DF00FB83296AD57F00980793 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00FB82296AD57F00980793 /* Comment.swift */; };
 		DF031A6128C03EA8008960CD /* ImageSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF031A5F28C03EA8008960CD /* ImageSliderCollectionViewCell.swift */; };
 		DF031A6228C03EA8008960CD /* ImageSliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF031A6028C03EA8008960CD /* ImageSliderCollectionViewCell.xib */; };
 		DF031A6628C09528008960CD /* UILabelPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF031A6528C09528008960CD /* UILabelPadding.swift */; };
@@ -113,6 +114,7 @@
 		1A41161FAF4EAA2374DEDB2A /* Pods-hua_vy_food.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.release.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.release.xcconfig"; sourceTree = "<group>"; };
 		3E14807D4A1DD20150F1C079 /* Pods-hua_vy_food.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hua_vy_food.debug.xcconfig"; path = "Target Support Files/Pods-hua_vy_food/Pods-hua_vy_food.debug.xcconfig"; sourceTree = "<group>"; };
 		D555685F0C73C32433624EC3 /* Pods_hua_vy_food.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hua_vy_food.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF00FB82296AD57F00980793 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		DF031A5F28C03EA8008960CD /* ImageSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF031A6028C03EA8008960CD /* ImageSliderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSliderCollectionViewCell.xib; sourceTree = "<group>"; };
 		DF031A6528C09528008960CD /* UILabelPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelPadding.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				DF22A10428E4005B00778083 /* Order.swift */,
 				DFB271A128E9873700E11183 /* OrderStatus.swift */,
 				DF3488A728EEB56D00C682DB /* Response.swift */,
+				DF00FB82296AD57F00980793 /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				DF516A2028EC7A9F003B26A4 /* ManagerResponseViewController.swift in Sources */,
 				DF8E7488288EAC190010DFD9 /* MainViewController.swift in Sources */,
 				DFF0C61128EB0ECE0042E64A /* UserResponseViewController.swift in Sources */,
+				DF00FB83296AD57F00980793 /* Comment.swift in Sources */,
 				DFB4D0C32891265C00B109C0 /* UIColor+.swift in Sources */,
 				DF3488AC28EEB79F00C682DB /* UserResponseListViewModel.swift in Sources */,
 				DF031A6628C09528008960CD /* UILabelPadding.swift in Sources */,

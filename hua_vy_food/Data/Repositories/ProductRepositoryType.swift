@@ -23,6 +23,7 @@ protocol ProductRepositoryType {
     func updateLikeAndDislikeStatus(productID: String, isLike: Bool) -> Observable<Void>
     func getProductLikeAndDislike(productID: String) -> Observable<(Int, Bool, Bool)>
     func submitProductComment(productID: String, comment: String) -> Observable<Void>
+    func getProductComments(productID: String) -> Observable<[Comment]>
 }
 
 final class ProductRepository: ProductRepositoryType {
@@ -380,7 +381,8 @@ final class ProductRepository: ProductRepositoryType {
         return Observable.create { observer in
             let database = Firestore.firestore()
             database.collection("productComments").addDocument(data: [
-                "id": productID,
+                "productID": productID,
+                "name": UserManager.shared.getUserID(),
                 "content":  comment,
                 "date": Date().timeIntervalSince1970
             ]) { error in
@@ -390,6 +392,33 @@ final class ProductRepository: ProductRepositoryType {
                     observer.onNext(())
                 }
             }
+            return Disposables.create()
+        }
+    }
+
+    func getProductComments(productID: String) -> Observable<[Comment]> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("productComments").whereField("productID", isEqualTo: productID)
+                .getDocuments { snapshot, error in
+                    if let error = error {
+                        observer.onError(error)
+                    } else {
+                        if let snapshot = snapshot {
+                            var comments = [Comment]()
+                            for document in snapshot.documents {
+                                var comment = Comment()
+                                comment.documentID = document.documentID
+                                comment.userName = document["name"] as? String ?? ""
+                                comment.productID = document["productID"] as? String ?? ""
+                                comment.content = document["content"] as? String ?? ""
+                                comment.date = Date(timeIntervalSince1970: document["date"] as? TimeInterval ?? 0)
+                                comments.append(comment)
+                            }
+                            observer.onNext(comments)
+                        }
+                    }
+                }
             return Disposables.create()
         }
     }
