@@ -22,6 +22,7 @@ protocol ProductRepositoryType {
     func updateProduct(product: Product) -> Observable<String>
     func updateLikeAndDislikeStatus(productID: String, isLike: Bool) -> Observable<Void>
     func getProductLikeAndDislike(productID: String) -> Observable<(Int, Bool, Bool)>
+    func submitProductComment(productID: String, comment: String) -> Observable<Void>
 }
 
 final class ProductRepository: ProductRepositoryType {
@@ -371,6 +372,24 @@ final class ProductRepository: ProductRepositoryType {
                         }
                     }
                 }
+            return Disposables.create()
+        }
+    }
+
+    func submitProductComment(productID: String, comment: String) -> Observable<Void> {
+        return Observable.create { observer in
+            let database = Firestore.firestore()
+            database.collection("productComments").addDocument(data: [
+                "id": productID,
+                "content":  comment,
+                "date": Date().timeIntervalSince1970
+            ]) { error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    observer.onNext(())
+                }
+            }
             return Disposables.create()
         }
     }

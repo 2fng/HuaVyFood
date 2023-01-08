@@ -20,12 +20,14 @@ extension DetailProductViewModel {
         let updateLikeAndDislikeStatusTrigger: Driver<(Bool, String)>
         let getLikeAndDislikeTrigger: Driver<String>
         let updateCartTrigger: Driver<Cart>
+        let commentTrigger: Driver<(String, String)>
     }
 
     struct Output {
         let likeAndDislike: Driver<(Int, Bool, Bool)>
         let likeAndDislikeStatus: Driver<Void>
         let updateCart: Driver<Void>
+        let productComment: Driver<Void>
         let loading: Driver<Bool>
         let error: Driver<Error>
     }
@@ -58,9 +60,19 @@ extension DetailProductViewModel {
                     .asDriverOnErrorJustComplete()
             }
 
+        let submitComment = input.commentTrigger
+            .flatMapLatest { productID, comment in
+                return self.productRepository.submitProductComment(productID: productID, comment: comment)
+                    .mapToVoid()
+                    .trackError(errorTracker)
+                    .trackActivity(activityIndicator)
+                    .asDriverOnErrorJustComplete()
+            }
+
         return Output(likeAndDislike: getLikeAndDislike.asDriver(),
                       likeAndDislikeStatus: likeAndDislikeStatus.asDriver(),
                       updateCart: updateCart.asDriver(),
+                      productComment: submitComment.asDriver(),
                       loading: activityIndicator.asDriver(),
                       error: errorTracker.asDriver())
     }
