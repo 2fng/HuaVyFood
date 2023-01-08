@@ -34,12 +34,14 @@ final class DetailProductViewController: UIViewController {
     private let getLikeAndDislikeTrigger = PublishSubject<String>()
     private let updateCartTrigger = PublishSubject<Cart>()
     private let submitCommentTrigger = PublishSubject<(String, String)>()
+    private let getCommentTrigger = PublishSubject<String>()
 
     private var product = Product()
     private var cart = Cart()
     private var isLiked = false
     private var isDisLiked = false
     private var totalLike = 0
+    private var comments = [Comment]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +62,8 @@ final class DetailProductViewController: UIViewController {
         let input = DetailProductViewModel.Input(updateLikeAndDislikeStatusTrigger: updateLikeAndDislikeStatusTrigger.asDriverOnErrorJustComplete(),
                                                  getLikeAndDislikeTrigger: getLikeAndDislikeTrigger.asDriverOnErrorJustComplete(),
                                                  updateCartTrigger: updateCartTrigger.asDriverOnErrorJustComplete(),
-                                                 commentTrigger: submitCommentTrigger.asDriverOnErrorJustComplete())
+                                                 commentTrigger: submitCommentTrigger.asDriverOnErrorJustComplete(),
+                                                 getCommentTrigger: getCommentTrigger.asDriverOnErrorJustComplete())
 
         let output = viewModel.transform(input)
 
@@ -78,6 +81,10 @@ final class DetailProductViewController: UIViewController {
 
         output.productComment
             .drive(submitCommentBinder)
+            .disposed(by: disposeBag)
+
+        output.comments
+            .drive(commentBinder)
             .disposed(by: disposeBag)
 
         addButton.rx.tap
@@ -151,6 +158,7 @@ final class DetailProductViewController: UIViewController {
             .disposed(by: disposeBag)
 
         getLikeAndDislikeTrigger.onNext(product.id)
+        getCommentTrigger.onNext(product.id)
     }
 
     private func setupView() {
@@ -265,8 +273,15 @@ extension DetailProductViewController {
         return Binder(self) { vc, _ in
             vc.commentTextView.text = nil
             vc.showAlert(message: "Bình luận thành công!", okButtonOnly: true, okCompletion: {
-                print("Handle refresh view o day nha!")
+                vc.getCommentTrigger.onNext(vc.product.id)
             })
+        }
+    }
+
+    private var commentBinder: Binder<[Comment]> {
+        return Binder(self) { vc, comments in
+            vc.comments = comments
+            print("Hehe: \n\(comments)")
         }
     }
 }
