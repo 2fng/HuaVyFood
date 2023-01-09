@@ -49,9 +49,9 @@ final class DetailProductViewController: UIViewController {
         setupView()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 1000)
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 1000)
+//    }
 
     func configProduct(product: Product, cart: Cart) {
         self.product = product
@@ -167,6 +167,13 @@ final class DetailProductViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         updateLikeAndDisLikeButtonUI()
 
+        tableView.do {
+            $0.dataSource = self
+            $0.delegate = self
+            $0.rowHeight = 100
+            $0.register(DetailProductTableViewCell.nib, forCellReuseIdentifier: DetailProductTableViewCell.identifier)
+        }
+
         addButton.do {
             $0.layer.cornerRadius = 5
             $0.shadowView(color: .logoPink, shadowRadius: 5, shadowOpacity: 0.3, cornerRadius: 5)
@@ -259,6 +266,24 @@ final class DetailProductViewController: UIViewController {
     }
 }
 
+extension DetailProductViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comments.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailProductTableViewCell.identifier) as? DetailProductTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configCell(comment: comments[indexPath.row])
+        return cell
+    }
+}
+
+extension DetailProductViewController: UITableViewDelegate {
+
+}
+
 extension DetailProductViewController {
     private var likeAndDislikeBinder: Binder<(Int, Bool, Bool)> {
         return Binder(self) { vc, likeAndDislike in
@@ -281,7 +306,11 @@ extension DetailProductViewController {
     private var commentBinder: Binder<[Comment]> {
         return Binder(self) { vc, comments in
             vc.comments = comments
-            print("Hehe: \n\(comments)")
+            vc.tableView.reloadData()
+            let totalRowHeight = CGFloat(comments.count - 1) * vc.tableView.rowHeight
+            vc.scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + totalRowHeight)
+            vc.scrollView.layoutSubviews()
+            vc.scrollView.layoutIfNeeded()
         }
     }
 }
