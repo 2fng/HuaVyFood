@@ -110,6 +110,8 @@
 		DFF0C61128EB0ECE0042E64A /* UserResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF0C60F28EB0ECE0042E64A /* UserResponseViewController.swift */; };
 		DFF0C61228EB0ECE0042E64A /* UserResponseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFF0C61028EB0ECE0042E64A /* UserResponseViewController.xib */; };
 		DFF0C61428EB26050042E64A /* UserResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF0C61328EB26050042E64A /* UserResponseViewModel.swift */; };
+		DFF717A32995F6590074C466 /* ProfanityFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF717A22995F6590074C466 /* ProfanityFilter.swift */; };
+		DFF717A72995FD4F0074C466 /* Profanity.json in Resources */ = {isa = PBXBuildFile; fileRef = DFF717A62995FD4E0074C466 /* Profanity.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,6 +222,8 @@
 		DFF0C60F28EB0ECE0042E64A /* UserResponseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseViewController.swift; sourceTree = "<group>"; };
 		DFF0C61028EB0ECE0042E64A /* UserResponseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserResponseViewController.xib; sourceTree = "<group>"; };
 		DFF0C61328EB26050042E64A /* UserResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseViewModel.swift; sourceTree = "<group>"; };
+		DFF717A22995F6590074C466 /* ProfanityFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfanityFilter.swift; sourceTree = "<group>"; };
+		DFF717A62995FD4E0074C466 /* Profanity.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profanity.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +368,8 @@
 				DF12DEF828AE47A600558DF7 /* ReuseableCell.swift */,
 				DFD1902A28B0BAFA00CED2C0 /* CustomTextField.swift */,
 				DF031A6528C09528008960CD /* UILabelPadding.swift */,
+				DFF717A22995F6590074C466 /* ProfanityFilter.swift */,
+				DFF717A62995FD4E0074C466 /* Profanity.json */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -749,6 +755,7 @@
 				DF5EF7D128D8AEB100281FDF /* CartBottomTableViewCell.xib in Resources */,
 				DF55E68328B21F3300B05776 /* ProductTableViewCell.xib in Resources */,
 				DFB2719028E7E4E400E11183 /* UserOrderViewController.xib in Resources */,
+				DFF717A72995FD4F0074C466 /* Profanity.json in Resources */,
 				DF3488A628EEAFD600C682DB /* UserResponseListViewController.xib in Resources */,
 				DFA11ED5288EB04C00C8E2E2 /* LoginViewController.xib in Resources */,
 				DF516A2628EC7B76003B26A4 /* ManagerResponseTableViewCell.xib in Resources */,
@@ -874,6 +881,7 @@
 				DF122CCA28ACFC08001E14EC /* ProductCategory.swift in Sources */,
 				DFB271A228E9873700E11183 /* OrderStatus.swift in Sources */,
 				DF516A2528EC7B76003B26A4 /* ManagerResponseTableViewCell.swift in Sources */,
+				DFF717A32995F6590074C466 /* ProfanityFilter.swift in Sources */,
 				DF55E68228B21F3300B05776 /* ProductTableViewCell.swift in Sources */,
 				DFC49A5F289C013F00F856FC /* ForgotPasswordViewModel.swift in Sources */,
 				DF516A2028EC7A9F003B26A4 /* ManagerResponseViewController.swift in Sources */,
