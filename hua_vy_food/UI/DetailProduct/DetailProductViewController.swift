@@ -149,7 +149,9 @@ final class DetailProductViewController: UIViewController {
             .map { [unowned self] in
                 submitCommentButton.animationSelect()
                 if commentTextView.text.count > 10 {
-                    submitCommentTrigger.onNext((product.id, commentTextView.text))
+                    var finalComment = commentTextView.text.censored()
+                    finalComment.censor()
+                    submitCommentTrigger.onNext((product.id, finalComment))
                 } else {
                     showAlert(message: "Bình luận phải có ít nhất 11 ký tự", okButtonOnly: true)
                 }
